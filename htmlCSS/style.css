@@ -3,7 +3,12 @@ body{
 	padding: 0px;
 	border: 0px;
 	overflow: auto;
-	font: 14pt sans-serif; 
+	font-size: 16pt; 
+	 font-family: 'Titillium Web', sans-serif;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
 }
 header{
 	height: 50px;
@@ -16,19 +21,22 @@ header{
 .logo{
 	margin: 0px;
 	border: 0px;
-	padding-top: 10px;
-	padding-left: 30px;
+	padding: 0px;
+	position:absolute;
+	top:5px;
+	left: 20px;
 }
 .top_buttons{
 	margin: 0px;
 	padding: 0px;
 	position: absolute;
 	right: 0px;
-	top: 0px;
-	margin-top: 10px;
+	top: 5px;
+	display: flex;
+	list-style-type: none;
 }
 .top_buttons li{
-	display: inline;
+
 	margin-right: 10px;
 }
 .top_buttons, a{
@@ -42,8 +50,7 @@ header{
 	margin:0px;
 	padding: 0px;
 	height: 400px;
-	position: absolute;
-	top: 50px;
+	
 	color: white;
 }
 
@@ -73,6 +80,13 @@ header{
 .categories {
 	color:#16a086;
 	text-align: center;
+	width: 100%;
+	height: 350px;
+	display: flex;
+
+	margin: 0px;
+	padding: 0px;
+	margin-top: 60px;
 }
 
 .categories div{
@@ -80,9 +94,7 @@ header{
 	height: 300px;	
 }
 .music{	
-	position: absolute;
-	top:500px;
-	padding: 0px;
+	padding: 20px;
 	margin: 0px;
 	left: 70%;
 	right: 0px;
@@ -99,9 +111,7 @@ header{
 
 
 .films{	
-	position: absolute;
-	top:500px;
-	padding: 0px;
+	padding: 20px;
 	margin: 0px;
 	left: 0px;
 	right: 70%;
@@ -119,9 +129,7 @@ header{
 
 
 .books{	
-	position: absolute;
-	top:500px;
-	padding: 0px;
+	padding: 20px;
 	margin: 0px;
 	left: 30%;
 	right: 30%;
@@ -135,4 +143,12 @@ header{
 	background-image: url(books.jpg);
 	width: 400px;
 	height: 150px;
+}
+footer{
+	width: 100%;
+	height: 100px;
+	background-color: darkgrey;
+	margin: 0px;
+	border: 0px;
+	padding: 0px;
 }
