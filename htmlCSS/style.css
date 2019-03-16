@@ -1,0 +1,138 @@
+body{
+	margin: 0px;
+	padding: 0px;
+	border: 0px;
+	overflow: auto;
+	font: 14pt sans-serif; 
+}
+header{
+	height: 50px;
+	width: 100%;
+	background-color:#16a086 ;
+	margin: 0px;
+	border: 0px;
+	color: white;
+}
+.logo{
+	margin: 0px;
+	border: 0px;
+	padding-top: 10px;
+	padding-left: 30px;
+}
+.top_buttons{
+	margin: 0px;
+	padding: 0px;
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	margin-top: 10px;
+}
+.top_buttons li{
+	display: inline;
+	margin-right: 10px;
+}
+.top_buttons, a{
+	text-decoration: none;
+	color: white;	
+}
+ 
+.home_page_logo{
+	background-color:#3b4b5b;
+	width: 100%;
+	margin:0px;
+	padding: 0px;
+	height: 400px;
+	position: absolute;
+	top: 50px;
+	color: white;
+}
+
+.greeting {
+	margin: 0px;
+	padding: 0px;
+	border: 0px;
+	left: 0px;
+	right: 0px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	font: 30pt sans-serif; 
+}
+.greeting, h1{
+	margin: 0px;
+	padding: 0px;
+	border: 0px;
+	margin-top: 70px;
+}
+.greeting, h2{
+	margin: 0px;
+	padding: 0px;
+	border: 0px;
+}
+
+.categories {
+	color:#16a086;
+	text-align: center;
+}
+
+.categories div{
+	width: 400px;
+	height: 300px;	
+}
+.music{	
+	position: absolute;
+	top:500px;
+	padding: 0px;
+	margin: 0px;
+	left: 70%;
+	right: 0px;
+	margin-left: auto;
+	margin-right: auto;
+
+}
+
+.music .picture{
+	background-image: url(music.jpg);
+	width: 400px;
+	height: 150px;
+}
+
+
+.films{	
+	position: absolute;
+	top:500px;
+	padding: 0px;
+	margin: 0px;
+	left: 0px;
+	right: 70%;
+	margin-left: auto;
+	margin-right: auto;
+
+	
+}
+
+.films .picture{
+	background-image: url(films.jpg);
+	width: 400px;
+	height: 150px;
+}
+
+
+.books{	
+	position: absolute;
+	top:500px;
+	padding: 0px;
+	margin: 0px;
+	left: 30%;
+	right: 30%;
+	margin-left: auto;
+	margin-right: auto;
+
+	
+}
+
+.books .picture{
+	background-image: url(books.jpg);
+	width: 400px;
+	height: 150px;
+}
