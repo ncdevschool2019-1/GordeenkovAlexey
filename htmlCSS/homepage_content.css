@@ -1,50 +1,4 @@
-body{
-	margin: 0px;
-	padding: 0px;
-	border: 0px;
-	overflow: auto;
-	font-size: 16pt; 
-	 font-family: 'Titillium Web', sans-serif;
-	width: 100%;
-	height: 100%;
-	display: flex;
-	flex-direction: column;
-}
-header{
-	height: 50px;
-	width: 100%;
-	background-color:#16a086 ;
-	margin: 0px;
-	border: 0px;
-	color: white;
-}
-.logo{
-	margin: 0px;
-	border: 0px;
-	padding: 0px;
-	position:absolute;
-	top:5px;
-	left: 20px;
-}
-.top_buttons{
-	margin: 0px;
-	padding: 0px;
-	position: absolute;
-	right: 0px;
-	top: 5px;
-	display: flex;
-	list-style-type: none;
-}
-.top_buttons li{
-
-	margin-right: 10px;
-}
-.top_buttons, a{
-	text-decoration: none;
-	color: white;	
-}
- 
-.home_page_logo{
+.home_page_content{
 	background-color:#3b4b5b;
 	width: 100%;
 	margin:0px;
@@ -65,33 +19,33 @@ header{
 	text-align: center;
 	font: 30pt sans-serif; 
 }
-.greeting, h1{
+.greeting h1{
 	margin: 0px;
 	padding: 0px;
 	border: 0px;
-	margin-top: 70px;
+	margin-top: 80px;
 }
-.greeting, h2{
+.greeting h2{
 	margin: 0px;
 	padding: 0px;
 	border: 0px;
 }
 
 .categories {
-	color:#16a086;
 	text-align: center;
 	width: 100%;
 	height: 350px;
 	display: flex;
-
 	margin: 0px;
 	padding: 0px;
 	margin-top: 60px;
 }
 
-.categories div{
+ .categories a{
 	width: 400px;
 	height: 300px;	
+	text-decoration: none;
+	color:#16a086;
 }
 .music{	
 	padding: 20px;
@@ -143,12 +97,4 @@ header{
 	background-image: url(books.jpg);
 	width: 400px;
 	height: 150px;
-}
-footer{
-	width: 100%;
-	height: 100px;
-	background-color: darkgrey;
-	margin: 0px;
-	border: 0px;
-	padding: 0px;
 }
