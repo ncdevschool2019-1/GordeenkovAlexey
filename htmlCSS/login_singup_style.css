@@ -4,16 +4,17 @@ header .top_buttons{
 .content{
 	display: flex;
 	margin: auto;
-	margin-top: 100px;
-	margin-bottom: 100px;
+	margin-top: 150px;
+	height: 100%;
+	flex-wrap: wrap;
 }
 .content > div {
 	padding: 0px;
 	width: 500px;
 	height:400px;
 	background-color: #3b4b5b;
-	margin-top: 30px;
-	margin-bottom: 100px;
+	margin-top:10px;
+	margin-bottom:0px;
 	border:5px solid white;
 }
 
@@ -22,7 +23,7 @@ form{
 	flex-direction: column;
 	width: 70%;
 	margin: auto;
-	margin-top: 100px;
+	margin-top: 80px;
 }
 form input{
 	height: 40px;
@@ -38,7 +39,6 @@ form input{
 	height: 60px;
 	background-color: #16a086;
 	margin: auto;
-	margin-bottom: 0px;
 	font-size: 30pt; 
 	color: white;
 	text-align: center;
