@@ -6,6 +6,7 @@ header .top_buttons{
 	margin: auto;
 	width: 100%;
 	margin-top: 150px;
+	margin-bottom: 30px;
 	height: 100%;
 	flex-wrap: wrap;
 }
@@ -58,4 +59,10 @@ form input{
 #loginSubmitButton:hover , #singUpSubmitButton:hover{
 	background-color: white;
 	color:#16a086;
+	}
+
+	@media only screen and (max-width: 1040px) {
+		.content>div{
+			margin: auto;
+		}
 	}
