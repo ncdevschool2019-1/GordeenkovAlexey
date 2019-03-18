@@ -1,7 +1,6 @@
 #singUp{
-	display: none;
+	background-color: #54AB91;
 }
-
 .content{
 	display: flex;
 	margin: auto;

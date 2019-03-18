@@ -1,13 +1,13 @@
 #home{
-	display: none;
+	background-color: #54AB91;
 }
+
 .home_page_content{
 	background-color:#3b4b5b;
 	width: 100%;
 	margin:0px;
 	padding: 0px;
 	height: 400px;
-	
 	color: white;
 }
 
