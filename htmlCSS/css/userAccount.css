@@ -1,3 +1,50 @@
 #myAccount{
 	display: none;
 }
+
+.content{
+	display: flex;
+	flex-wrap: nowrap;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	margin-bottom: 30px;
+}
+
+ .userInfo{
+ 	height: 100%;
+ 	width: 20%;
+ 	display: flex;
+ 	flex-direction: column;
+ 	border-right:3px solid #3b4b5b;	
+ 	border-bottom:3px solid #3b4b5b;
+ 	margin: auto;
+ 	margin-right: 0px;
+ 	margin-top: 0px;
+ 	padding: 0px;
+ 	text-align: left;
+
+ }
+
+ .userInfo>p{
+ 	margin: 0px;
+ 	padding: 0px;
+ 	margin-top: 10px;
+ 	margin-left: 20px;
+ }
+
+ .catalog{
+ 	margin: auto;
+ 	padding: 0px;
+ 	width: 80%;
+ 	list-style-type: none;
+ }
+
+ .catalog>li{
+ 	display: flex;
+ 	margin: auto;
+ }
+
+.catalog>li>p{
+	width: 100%;
+}
