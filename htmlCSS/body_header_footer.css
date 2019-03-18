@@ -37,14 +37,18 @@ header{
 	padding: 0px;
 	margin-top: 5px;
 	margin-left: auto;
-	
 	display: flex;
 	list-style-type: none;
 }
+.top_buttons>li>a:hover{
+	background-color: white;
+	color:#5cbb9d;
+	border-radius: 3px;
+	}
 .top_buttons li{
 	margin-right: 10px;
 }
-.top_buttons a{
+header a{
 	text-decoration: none;
 	color: white;	
 }
