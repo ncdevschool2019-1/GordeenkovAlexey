@@ -1,6 +1,7 @@
-header .top_buttons{
-	margin-right: 40px;
+#singUp{
+	display: none;
 }
+
 .content{
 	display: flex;
 	margin: auto;
