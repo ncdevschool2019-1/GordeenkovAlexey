@@ -3,15 +3,52 @@
 	height: 100%;
 	margin: auto;
 	margin-bottom: 25px;
+	margin-top: 40px;
 	display: flex;
 	flex-direction: column;
 	color: white;
 }
 .content > div{
 	width: 70%;
-	height: 300px;
-	background-color: grey;
-	border:5px solid #16a086;
+	height: 100%;
 	margin: auto;
 	margin-top: 25px;
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	background-color: #16a086;
+}
+
+.content > div > button {
+	height: 60px;
+	width: 300px;
+	background-color: #16a086;
+	margin: 10px;
+	margin-top: auto;
+	margin-bottom: auto;
+	font-size: 30pt; 
+	color: white;
+	text-align: center;
+	border-width: 0px;
+	padding: 0px;
+	cursor: pointer;
+}
+
+.content > div > button:hover{
+	background-color: white;
+	color:#16a086;
+	}
+
+.content>div>img{
+	width: 200px;
+	margin: 0px;
+	padding: 0px;
+	border-width: 0px;
+	margin-left: 30px;
+
+}
+.content>div>p{
+	text-align: center;
+	width: 50%;
+	margin: auto;
 }
