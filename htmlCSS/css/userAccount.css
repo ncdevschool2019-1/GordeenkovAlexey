@@ -1,6 +1,4 @@
-#myAccount{
-	background-color: #54AB91;
-}
+
 
 .content{
 	display: flex;
@@ -11,48 +9,50 @@
 	
 }
 
- .userInfo{
- 	min-height: 100%;
- 	display: flex;
- 	flex-direction: column;
- 	border-right:3px solid #3b4b5b;	
- 	margin: 0px;
- 	padding: 0px;
- 	text-align: left;
- 	min-width: 25%;
- }
+.userInfo {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    border-right: 3px solid #3b4b5b;
+    margin: 0px;
+    padding: 0px;
+    text-align: left;
+    min-width: 25%;
+    margin-top: 20px;
+}
 
- .userInfo>p{
- 	margin: 0px;
- 	padding: 0px;
- 	margin-left: 20px;
- 	margin-right: 10px;
- }
+.userInfo > p {
+    margin: 0px;
+    padding: 0px;
+    margin-left: 20px;
+    margin-right: 10px;
+}
 
 
- .catalog{
+.catalog {
 	min-width: 70%;
 	min-height: 100%;
- 	padding: 0px;
- 	margin: 0px;
- 	list-style-type: none;
- 	display: flex;
- 	flex-direction: column;
- 	margin-bottom: 20%;
- }
+    padding: 0px;
+    margin: 0px;
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20%;
+    margin-top: 20px;
+}
 
 
- .catalog>li{
- 	width: 100%;
- 	display: flex;
- 	margin: auto;
- }
- 
+.catalog > li {
+    width: 100%;
+    display: flex;
+    margin: auto;
+}
+
 .catalog>li>p{
 	width: 150px;
 	margin: auto;
 }
 
- .catalog>li .head{
- 	margin: 0px;
- }
+.catalog > li .head {
+    margin: 0px;
+}

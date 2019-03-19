@@ -23,9 +23,8 @@
 	height: 60px;
 	width: 300px;
 	background-color: #16a086;
-	margin: 10px;
-	margin-top: auto;
-	margin-bottom: auto;
+    margin: auto;
+    margin-right: 10px;
 	font-size: 30pt; 
 	color: white;
 	text-align: center;
@@ -39,9 +38,10 @@
 .content > div > button:hover{
 	background-color: white;
 	color:#16a086;
-	}
+}
 
 .content>div>img{
+    height: 200px;
 	width: 200px;
 	margin: 0px;
 	padding: 0px;
