@@ -14,45 +14,35 @@
     display: flex;
     flex-direction: column;
     border-right: 3px solid #3b4b5b;
+    border-left: 3px solid #3b4b5b;
     margin: 0px;
     padding: 0px;
     text-align: left;
-    min-width: 25%;
+    min-width: 300px;
     padding-top: 40px;
 }
 
-.userInfo > p {
+.userInfo > div {
     margin: 0px;
     padding: 0px;
+    width: 80%;
     margin-left: 20px;
-    margin-right: 10px;
-}
-
-
-.catalog {
-	min-width: 70%;
-	min-height: 100%;
-    padding: 0px;
-    margin: 0px;
-    list-style-type: none;
     display: flex;
     flex-direction: column;
-    margin-bottom: 20%;
-    padding-top: 40px;
+}
+
+.userInfo > div > p {
+
+}
+
+#billingAccount {
+    margin-top: 50%;
 }
 
 
-.catalog > li {
-    width: 100%;
+#listOfUsers {
+    min-width: 250px;
     display: flex;
-    margin: auto;
-}
-
-.catalog>li>p{
-	width: 150px;
-	margin: auto;
-}
-
-.catalog > li .head {
-    margin: 0px;
+    flex-direction: column;
+    /* display: none;*/
 }

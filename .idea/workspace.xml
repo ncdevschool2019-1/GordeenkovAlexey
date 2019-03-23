@@ -3,17 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="542d8b8a-6106-464b-9cda-943e5be2e668" name="Default Changelist" comment="Bootstrap in header">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/htmlCSS/css/header.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/htmlCSS/css/homePageContent.css" beforeDir="false" afterPath="$PROJECT_DIR$/htmlCSS/css/homePageContent.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/htmlCSS/css/logInSingUpStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/htmlCSS/css/logInSingUpStyle.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/htmlCSS/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/htmlCSS/css/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/htmlCSS/css/musicServicesStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/htmlCSS/css/musicServicesStyle.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/htmlCSS/css/readingServicesStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/htmlCSS/css/readingServicesStyle.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/htmlCSS/css/servicesStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/htmlCSS/css/servicesStyle.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/htmlCSS/css/userAccount.css" beforeDir="false" afterPath="$PROJECT_DIR$/htmlCSS/css/userAccount.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/htmlCSS/css/videoServicesStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/htmlCSS/css/videoServicesStyle.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/htmlCSS/html/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/htmlCSS/html/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/htmlCSS/html/logInSingUp.html" beforeDir="false" afterPath="$PROJECT_DIR$/htmlCSS/html/logInSingUp.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/htmlCSS/html/musicServices.html" beforeDir="false" afterPath="$PROJECT_DIR$/htmlCSS/html/musicServices.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/htmlCSS/html/readingServices.html" beforeDir="false" afterPath="$PROJECT_DIR$/htmlCSS/html/readingServices.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/htmlCSS/html/userAccount.html" beforeDir="false" afterPath="$PROJECT_DIR$/htmlCSS/html/userAccount.html" afterDir="false" />
@@ -70,8 +64,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/htmlCSS/html/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="18" column="32" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
+            <state relative-caret-position="323">
+              <caret line="19" column="6" selection-start-line="19" selection-start-column="6" selection-end-line="19" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -79,8 +73,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/htmlCSS/html/userAccount.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="421">
-              <caret line="36" column="13" selection-start-line="36" selection-start-column="13" selection-end-line="36" selection-end-column="13" />
+            <state relative-caret-position="285">
+              <caret line="28" column="52" lean-forward="true" selection-start-line="28" selection-start-column="52" selection-end-line="28" selection-end-column="52" />
             </state>
           </provider>
         </entry>
@@ -196,19 +190,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="project" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -305,6 +289,7 @@
       <workItem from="1552764774893" duration="27000" />
       <workItem from="1553008608935" duration="89000" />
       <workItem from="1553026508845" duration="197000" />
+      <workItem from="1553340532684" duration="281000" />
     </task>
     <task id="LOCAL-00001" summary="Start setting">
       <created>1552660534337</created>
@@ -317,13 +302,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="9231000" />
+    <option name="totallyTimeSpent" value="9512000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49945828" visible="true" weight="0.13859275" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49945828" visible="true" weight="0.1401919" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -429,6 +414,13 @@
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/ffba6b17-2e15-45e5-a137-313ef5e66f74/console.sql">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/htmlCSS/html/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="6" selection-start-line="19" selection-start-column="6" selection-end-line="19" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/fapi/src/main/java/com/netcracker/edu/fapi/FapiApplication.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -493,17 +485,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/htmlCSS/html/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="18" column="32" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/htmlCSS/html/userAccount.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="421">
-          <caret line="36" column="13" selection-start-line="36" selection-start-column="13" selection-end-line="36" selection-end-column="13" />
+        <state relative-caret-position="285">
+          <caret line="28" column="52" lean-forward="true" selection-start-line="28" selection-start-column="52" selection-end-line="28" selection-end-column="52" />
         </state>
       </provider>
     </entry>

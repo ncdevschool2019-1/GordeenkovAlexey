@@ -7,11 +7,13 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
+    <link rel="stylesheet" href="../css/logInSingUpStyle.css">
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/footer.css">
 
     <link rel="stylesheet" href="../css/servicesStyle.css">
     <link rel="stylesheet" href="../css/readingServicesStyle.css">
+
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
@@ -32,12 +34,44 @@
                     <li id="films" class="nav-item"><a class="nav-link" href="videoServices.html">Films</a></li>
                     <li id="books" class="nav-item active"><a class="nav-link" href="readingServices.html">Books</a>
                     </li>
-                    <li id="singUp" class="nav-item"><a class="nav-link" href="logInSingUp.html">Sing In/Up</a></li>
+                    <li id="singUp" class="nav-item">
+                        <button type="button" class="btn  text-light btn-lg" data-toggle="modal" data-target="#myModal">
+                            SingIn/Up
+                        </button>
+                    </li>
                     <li id="myAccount" class="nav-item"><a class="nav-link" href="userAccount.html">My Account</a></li>
                 </ul>
             </div>
         </nav>
     </header>
+
+    <div id="myModal" class="modal fade " role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="logInForm">
+                    <form method="post" action="#">
+                        <input type="text" required name="login" placeholder="Username" id="login">
+                        <input type="password" required name="password" placeholder="Password" id="password">
+                        <input type="submit" name="LogIn" id="loginSubmitButton" value="Log In">
+                    </form>
+                </div>
+                <div class="singUpForm">
+                    <form method="post" action="#">
+                        <input type="email" required placeholder="Email" name="login" id="login">
+                        <input type="text" required name="Username" placeholder="Username" id="username">
+                        <input type="password" required placeholder="Password" name="password" id="password">
+                        <input type="submit" name="LogIn" id="singUpSubmitButton" value="Sing Up">
+                    </form>
+                    <div class="modal-footer bg-light">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
     <div class="content">
       <div>
         <img src="https://img.icons8.com/doodle/200/000000/read.png">
@@ -46,7 +80,10 @@
             quis quibusdam officiis nisi deserunt, sint aut? Unde veritatis, velit illo repudiandae debitis
             inventore quis maxime?
         </p>
-        <button>SUBSCRIBE</button>
+          <div>
+              <p>$10/day</p>
+              <button>SUBSCRIBE</button>
+          </div>
     </div>
     
     

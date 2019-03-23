@@ -16,13 +16,17 @@
 	display: flex;
 	flex-wrap: wrap;
 	flex-direction: row;
-	background-color: #16a086;
+	background-color: #3b4b5b;
 }
 
-.content > div > button {
+.content > div > div {
+	margin: auto;
+}
+
+.content > div > div > button {
 	height: 60px;
 	width: 300px;
-	background-color: #16a086;
+	background-color: #3b4b5b;
     margin: auto;
     margin-right: 10px;
 	font-size: 30pt; 
@@ -35,9 +39,9 @@
 	outline: none;
 }
 
-.content > div > button:hover{
+.content > div button:hover {
 	background-color: white;
-	color:#16a086;
+	color: #3b4b5b;
 }
 
 .content>div>img{
@@ -49,7 +53,8 @@
 	margin-left: 30px;
 
 }
-.content>div>p{
+
+.content > div p {
 	text-align: center;
 	width: 50%;
 	margin: auto;

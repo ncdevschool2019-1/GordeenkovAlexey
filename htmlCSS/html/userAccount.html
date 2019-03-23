@@ -32,7 +32,6 @@
 					<li id="music" class="nav-item"><a class="nav-link" href="musicServices.html">Music</a></li>
 					<li id="films" class="nav-item"><a class="nav-link" href="videoServices.html">Films</a></li>
 					<li id="books" class="nav-item"><a class="nav-link" href="readingServices.html">Books</a></li>
-					<li id="singUp" class="nav-item"><a class="nav-link" href="logInSingUp.html">Sing In/Up</a></li>
 					<li id="myAccount" class="nav-item active"><a class="nav-link" href="userAccount.html">My
 					Account</a></li>
 				</ul>
@@ -40,73 +39,90 @@
 		</nav>
 	</header>
 
-	<div class="content">
-		<div class="userInfo">
-			<p id="firstName">Name : UserName</p>
-			<p id="lastName">Surname : UserSurname</p>
-			<p id="billingAccount">Billing Account : id123124141</p>
-			<p id="money">Amount of money : $666</p>
+	<div id="myModal" class="modal fade " role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="logInForm">
+					<form method="post" action="#">
+						<input type="text" required name="login" placeholder="Username" id="login">
+						<input type="password" required name="password" placeholder="Password" id="password">
+						<input type="submit" name="LogIn" id="loginSubmitButton" value="Log In">
+					</form>
+				</div>
+				<div class="singUpForm">
+					<form method="post" action="#">
+						<input type="email" required placeholder="Email" name="login" id="login">
+						<input type="text" required name="Username" placeholder="Username" id="username">
+						<input type="password" required placeholder="Password" name="password" id="password">
+						<input type="submit" name="LogIn" id="singUpSubmitButton" value="Sing Up">
+					</form>
+					<div class="modal-footer bg-light">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+
+			</div>
 		</div>
-		<ul class="catalog">
-			<li class="head">
-				<p>
-					Service
-				</p>
-				<p>
-					Days Left
-				</p>
-			</li>
+	</div>
 
-			<li>
-				<p>
-					Spotify
-				</p>
-				<p>
-					10
-				</p>
-			</li>
-			<li>
-				<p>
-					NetFlix
-				</p>
-				<p>
-					16
-				</p>
-			</li>
-			<li>
-				<p>
-					NetFlix
-				</p>
-				<p>
-					16
-				</p>
-			</li>
-			<li>
-				<p>
-					NetFlix
-				</p>
-				<p>
-					16
-				</p>
-			</li>
-			<li>
-				<p>
-					NetFlix
-				</p>
-				<p>
-					16
-				</p>
-			</li>
-			<li>
-				<p>
-					NetFlix
-				</p>
-				<p>
-					16
-				</p>
-			</li>
+	<div class="content">
+		<div id="listOfUsers">
+			<nav class="navbar navbar-light">
+				<ul class="navbar-nav nav-tabs ">
+					<li class="nav-item">
+						<a class="nav-link" href="#">user 1</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">user 2</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">user 3</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+		<div class="userInfo">
+			<div id="userAccount">
+				<p>Name : UserNameaaaaaaaa</p>
+				<p>Surname : UserSurname</p>
+			</div>
+			<div id="billingAccount">
+				<p>Billing Account : id123124141</p>
+				<p>Amount of money : $666</p>
+				<form action="#">
+					<div class="form-group">
+						<label for="addMoney">If you want to add money, enter the amount below</label>
+						<input type="number" required class="form-control" id="addMoney" placeholder="amount of money"
+							   min="1">
+					</div>
+					<button type="submit" class="btn btn-secondary float-right">Submit</button>
+				</form>
+			</div>
 
-		</ul>
+		</div>
+		<table class="table table-hover">
+			<thead>
+			<tr>
+				<th>Service</th>
+				<th>Cost</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr>
+				<td>Spotify</td>
+				<td>$10/day</td>
+			</tr>
+			<tr>
+				<td>Netflix</td>
+				<td>$100/mounth</td>
+			</tr>
+			<tr>
+				<td>Book</td>
+				<td>$1/day</td>
+			</tr>
+			</tbody>
+		</table>
 	</div>
 
 	<footer>
