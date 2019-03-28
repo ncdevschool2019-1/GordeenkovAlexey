@@ -19,6 +19,6 @@ header {
     font-size: 20pt;
 }
 
-.modal-content #myModal {
+#myModal .modal-content  {
     background-color: #3b4b5b;
 }
