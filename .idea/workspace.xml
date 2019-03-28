@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="542d8b8a-6106-464b-9cda-943e5be2e668" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="542d8b8a-6106-464b-9cda-943e5be2e668" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/be/target/" />
     <ignored path="$PROJECT_DIR$/fapi/target/" />
@@ -315,6 +313,7 @@
       <workItem from="1553772547263" duration="296000" />
       <workItem from="1553773090068" duration="1704000" />
       <workItem from="1553774856637" duration="533000" />
+      <workItem from="1553780412191" duration="80000" />
     </task>
     <task id="LOCAL-00001" summary="Start setting">
       <created>1552660534337</created>
@@ -362,12 +361,12 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="27104000" />
+    <option name="totallyTimeSpent" value="27184000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49945828" visible="true" weight="0.15138593" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49945828" visible="true" weight="0.15298508" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
