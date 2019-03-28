@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="542d8b8a-6106-464b-9cda-943e5be2e668" name="Default Changelist" comment="">
+    <list default="true" id="542d8b8a-6106-464b-9cda-943e5be2e668" name="Default Changelist" comment="modules">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
@@ -139,6 +139,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -194,8 +196,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -309,6 +309,7 @@
       <workItem from="1553614230559" duration="4353000" />
       <workItem from="1553761431450" duration="2307000" />
       <workItem from="1553767314156" duration="3250000" />
+      <workItem from="1553772547263" duration="296000" />
     </task>
     <task id="LOCAL-00001" summary="Start setting">
       <created>1552660534337</created>
@@ -338,17 +339,24 @@
       <option name="project" value="LOCAL" />
       <updated>1553772433159</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="modules">
+      <created>1553772569555</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1553772569555</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="24571000" />
+    <option name="totallyTimeSpent" value="24867000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49945828" visible="true" weight="0.14658849" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49945828" visible="true" weight="0.14818764" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -367,7 +375,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49733475" weight="0.30877572" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.4989339" weight="0.24593717" />
-      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.53038377" side_tool="true" visible="true" weight="0.32936078" />
+      <window_info active="true" anchor="bottom" id="Event Log" order="11" sideWeight="0.53038377" side_tool="true" visible="true" weight="0.32936078" />
       <window_info anchor="bottom" id="Spring" order="12" />
       <window_info anchor="bottom" id="Database Console" order="13" sideWeight="0.49733475" weight="0.28602383" />
       <window_info anchor="bottom" id="TypeScript" order="14" />
@@ -571,23 +579,23 @@
               <point x="377.0" y="355.0" />
               <point x="-45.0" y="103.0" />
             </edge>
-            <edge source="ffba6b17-2e15-45e5-a137-313ef5e66f74.TABLE:backend.users" target="ffba6b17-2e15-45e5-a137-313ef5e66f74.TABLE:backend.roles">
-              <point x="0.0" y="-103.0" />
-              <point x="0.0" y="37.0" />
-            </edge>
             <edge source="ffba6b17-2e15-45e5-a137-313ef5e66f74.TABLE:backend.billingaccount" target="ffba6b17-2e15-45e5-a137-313ef5e66f74.TABLE:backend.users">
               <point x="0.0" y="-48.0" />
               <point x="45.0" y="103.0" />
+            </edge>
+            <edge source="ffba6b17-2e15-45e5-a137-313ef5e66f74.TABLE:backend.subscriptions" target="ffba6b17-2e15-45e5-a137-313ef5e66f74.TABLE:backend.services">
+              <point x="2.8421709430404007E-14" y="-81.0" />
+              <point x="0.0" y="48.0" />
+            </edge>
+            <edge source="ffba6b17-2e15-45e5-a137-313ef5e66f74.TABLE:backend.users" target="ffba6b17-2e15-45e5-a137-313ef5e66f74.TABLE:backend.roles">
+              <point x="0.0" y="-103.0" />
+              <point x="0.0" y="37.0" />
             </edge>
             <edge source="ffba6b17-2e15-45e5-a137-313ef5e66f74.TABLE:backend.subscriptions" target="ffba6b17-2e15-45e5-a137-313ef5e66f74.TABLE:backend.statuses">
               <point x="-50.99999999999997" y="-81.0" />
               <point x="187.99999999999997" y="355.0" />
               <point x="73.0" y="355.0" />
               <point x="0.0" y="37.0" />
-            </edge>
-            <edge source="ffba6b17-2e15-45e5-a137-313ef5e66f74.TABLE:backend.subscriptions" target="ffba6b17-2e15-45e5-a137-313ef5e66f74.TABLE:backend.services">
-              <point x="2.8421709430404007E-14" y="-81.0" />
-              <point x="0.0" y="48.0" />
             </edge>
           </edges>
           <settings layout="Hierarchic Group" zoom="0.8540925266903915" x="265.0" y="271.0" />
@@ -598,6 +606,7 @@
             <Category>Key columns</Category>
             <Category>Columns</Category>
           </Categories>
+          <SCOPE>All</SCOPE>
         </state>
       </provider>
     </entry>
