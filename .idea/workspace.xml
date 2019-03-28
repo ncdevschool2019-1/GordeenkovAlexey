@@ -2,17 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="542d8b8a-6106-464b-9cda-943e5be2e668" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/frontend/src/app/modules/account/models/account.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/app/modules/billingAccount/models/billingAccount.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/app/modules/subscriptions/models/subscriptions.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/ffba6b17-2e15-45e5-a137-313ef5e66f74.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/ffba6b17-2e15-45e5-a137-313ef5e66f74.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/model/billing-account.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/model/billing-account.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/htmlCSS/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/htmlCSS/css/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/htmlCSS/css/userAccount.css" beforeDir="false" afterPath="$PROJECT_DIR$/htmlCSS/css/userAccount.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/htmlCSS/html/userAccount.html" beforeDir="false" afterPath="$PROJECT_DIR$/htmlCSS/html/userAccount.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/be/target/" />
@@ -73,7 +63,7 @@
         <entry file="file://$PROJECT_DIR$/frontend/src/app/modules/account/models/account.ts">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="34">
-              <caret line="2" column="18" lean-forward="true" selection-start-line="2" selection-start-column="18" selection-end-line="2" selection-end-column="18" />
+              <caret line="2" column="18" selection-start-line="2" selection-start-column="18" selection-end-line="2" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -82,7 +72,7 @@
         <entry file="file://$PROJECT_DIR$/frontend/src/app/modules/billingAccount/models/billingAccount.ts">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="119">
-              <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+              <caret line="7" selection-start-line="7" selection-end-line="7" />
             </state>
           </provider>
         </entry>
@@ -91,7 +81,7 @@
         <entry file="file://$PROJECT_DIR$/frontend/src/app/modules/subscriptions/models/subscriptions.ts">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="102">
-              <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+              <caret line="6" selection-start-line="6" selection-end-line="6" />
             </state>
           </provider>
         </entry>
@@ -216,7 +206,7 @@
     <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553772182620" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553772407216" />
     <property name="database.console.LAST_STATE" value="false" />
     <property name="editor.config.ad.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../project" />
@@ -318,7 +308,7 @@
       <workItem from="1553364562458" duration="633000" />
       <workItem from="1553614230559" duration="4353000" />
       <workItem from="1553761431450" duration="2307000" />
-      <workItem from="1553767314156" duration="3003000" />
+      <workItem from="1553767314156" duration="3163000" />
     </task>
     <task id="LOCAL-00001" summary="Start setting">
       <created>1552660534337</created>
@@ -334,11 +324,18 @@
       <option name="project" value="LOCAL" />
       <updated>1553341053123</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="modules">
+      <created>1553772312168</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1553772312168</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="24324000" />
+    <option name="totallyTimeSpent" value="24484000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -429,7 +426,8 @@
     <MESSAGE value="Start setting" />
     <MESSAGE value="Bootstrap in header" />
     <MESSAGE value="table in user acc" />
-    <option name="LAST_COMMIT_MESSAGE" value="table in user acc" />
+    <MESSAGE value="modules" />
+    <option name="LAST_COMMIT_MESSAGE" value="modules" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="antWorkspaceConfiguration">
@@ -631,21 +629,21 @@
     <entry file="file://$PROJECT_DIR$/frontend/src/app/modules/account/models/account.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
-          <caret line="2" column="18" lean-forward="true" selection-start-line="2" selection-start-column="18" selection-end-line="2" selection-end-column="18" />
+          <caret line="2" column="18" selection-start-line="2" selection-start-column="18" selection-end-line="2" selection-end-column="18" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/frontend/src/app/modules/billingAccount/models/billingAccount.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
-          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/frontend/src/app/modules/subscriptions/models/subscriptions.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
-          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
         </state>
       </provider>
     </entry>
