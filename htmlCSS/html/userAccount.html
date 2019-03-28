@@ -84,49 +84,96 @@
 		</div>
 		<div class="userInfo">
 			<div id="userAccount">
-				<p>Name : UserNameaaaaaaaa</p>
-				<p>Surname : UserSurname</p>
+                <p>Name : Nikita</p>
+                <p>Surname : Pateev</p>
+                <p>UserName : AminYaPusi</p>
+                <p>Email : lala@tut.by</p>
 			</div>
 			<div id="billingAccount">
-				<p>Billing Account : id123124141</p>
-				<p>Amount of money : $666</p>
-				<form action="#">
-					<div class="form-group">
-						<label for="addMoney">If you want to add money, enter the amount below</label>
-						<input type="number" required class="form-control" id="addMoney" placeholder="amount of money"
-							   min="1">
-					</div>
-					<button type="submit" class="btn btn-secondary float-right">Submit</button>
-				</form>
-			</div>
 
+                <button type="button" class="btn btn-secondary float-right" data-toggle="modal"
+                        data-target="#addBillingAccountModal">
+                    Add BillingAccount
+                </button>
+
+                <ul>
+                    <li>
+                        <p>Billing Account : id123124141</p>
+                        <p>Amount of money : $666</p>
+                        <form action="#">
+                            <div class="form-group">
+                                <label for="addMoney">If you want to add money, enter the amount below</label>
+                                <input type="number" required class="form-control" id="addMoney"
+                                       placeholder="amount of money"
+                                       min="1">
+                            </div>
+                            <button type="submit" class="btn btn-secondary float-right">Submit</button>
+                        </form>
+                    </li>
+                </ul>
+			</div>
 		</div>
 		<table class="table table-hover">
 			<thead>
-			<tr>
-				<th>Service</th>
-				<th>Cost</th>
-			</tr>
+            <tr>
+                <th>Service</th>
+                <th>Cost</th>
+                <th>Status</th>
+            </tr>
 			</thead>
 			<tbody>
-			<tr>
-				<td>Spotify</td>
-				<td>$10/day</td>
-			</tr>
-			<tr>
-				<td>Netflix</td>
-				<td>$100/mounth</td>
-			</tr>
-			<tr>
-				<td>Book</td>
-				<td>$1/day</td>
-			</tr>
+            <tr>
+                <td>Spotify</td>
+                <td>$10/day</td>
+                <td>Active</td>
+            </tr>
+            <tr>
+                <td>Netflix</td>
+                <td>$100/mounth</td>
+                <td>Active</td>
+            </tr>
+            <tr>
+                <td>Book</td>
+                <td>$1/day</td>
+                <td>Active</td>
+            </tr>
 			</tbody>
 		</table>
 	</div>
-
 	<footer>
-		
+
 	</footer>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="addBillingAccountModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Add Billing Account</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="#">
+                        <div class="form-group">
+                            <label for="addMoney">If you want to add money, enter the amount below</label>
+                            <input type="number" required class="form-control" id="addMoney"
+                                   placeholder="amount of money"
+                                   min="1">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
 </body>
 </html>

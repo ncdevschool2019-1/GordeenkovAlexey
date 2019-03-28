@@ -13,3 +13,7 @@ export class BillingAccount {
     return clonedBillingAccount;
   }
 }
+
+export class Roles {
+
+}

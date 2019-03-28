@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/ChargeService.iml" filepath="$PROJECT_DIR$/.idea/ChargeService.iml" />
       <module fileurl="file://$PROJECT_DIR$/be/backend.iml" filepath="$PROJECT_DIR$/be/backend.iml" />
+      <module fileurl="file://$PROJECT_DIR$/be/backend.iml" filepath="$PROJECT_DIR$/be/backend.iml" />
       <module fileurl="file://$PROJECT_DIR$/fapi/fapi.iml" filepath="$PROJECT_DIR$/fapi/fapi.iml" />
     </modules>
   </component>
