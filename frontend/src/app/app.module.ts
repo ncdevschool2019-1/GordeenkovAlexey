@@ -13,6 +13,7 @@ import {SingInUpPopUpComponent} from './modules/header/components/sing-in-up-pop
 import {CategoriesComponent} from './modules/home-page/components/categories/categories.component';
 import {ContentComponent} from './modules/home-page/components/content/content.component';
 import {FooterComponent} from './modules/footer/components/footer/footer.component';
+import {CatalogComponent} from './modules/catalog/components/catalog/catalog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,6 +22,7 @@ import {FooterComponent} from './modules/footer/components/footer/footer.compone
     CategoriesComponent,
     ContentComponent,
     FooterComponent,
+    CatalogComponent,
   ],
   imports: [
     BrowserModule,
