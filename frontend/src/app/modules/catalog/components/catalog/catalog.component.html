@@ -1,0 +1,14 @@
+<div class="content">
+  <div *ngFor="let service of catalog">
+    <div *ngIf="service.type === getSelectedLink()">
+      <img src="{{service.img}}">
+      <p>
+        {{service.text}}
+      </p>
+      <div>
+        <p>${{service.cost}}/day</p>
+        <button>SUBSCRIBE</button>
+      </div>
+    </div>
+  </div>
+</div>

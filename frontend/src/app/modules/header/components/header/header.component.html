@@ -1,0 +1,20 @@
+<nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top" id="header">
+  <a class="logo navbar-brand" href="index.html">SimpleChargingSystem</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse nav justify-content-end" id="collapsibleNavbar">
+    <ul class="top_buttons navbar-nav ">
+      <li *ngFor="let link of links" [class.selected]="link === getSelectedLink()" (click)="onSelect(link)"
+          class="nav-item ">
+        <a class="nav-link" href="#">  {{link.name}}</a>
+      </li>
+      <li id="singUp" class="nav-item">
+        <button type="button" class="btn  text-light btn-lg" data-toggle="modal" data-target="#myModal">
+          SingIn/Up
+        </button>
+      </li>
+    </ul>
+  </div>
+</nav>
+<app-sing-in-up-pop-up></app-sing-in-up-pop-up>
