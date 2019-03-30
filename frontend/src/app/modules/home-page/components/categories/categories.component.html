@@ -1,6 +1,7 @@
 <div class="categories">
-  <a *ngFor="let link of links" href="{{link.name}}" class="{{link.name}}">
+  <a *ngFor="let link of links" href="#" class="{{link.name}}" (click)="onSelect(link)">
     <img src="{{link.img}}">
     <p>{{link.text}}</p>
+    <p>{{sel}}</p>
   </a>
 </div>

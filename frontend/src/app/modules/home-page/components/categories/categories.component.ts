@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {Link} from "../../models/link";
+import {categoriesLink} from "../../models/link";
 import {LINKS} from "../../models/mock-links";
+import {HeaderService} from "../../../../services/header.service";
 
 @Component({
   selector: 'app-categories',
@@ -10,11 +11,15 @@ import {LINKS} from "../../models/mock-links";
 export class CategoriesComponent implements OnInit {
 
   links = LINKS;
+  sel: string;
 
-  constructor() {
+  constructor(private headerService: HeaderService) {
   }
 
   ngOnInit() {
   }
 
+  onSelect(link: categoriesLink): void {
+    this.headerService.setSelectedLink(link);
+  }
 }

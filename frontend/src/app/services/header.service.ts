@@ -10,6 +10,7 @@ export class HeaderService {
   private selectedLink: Link;
 
   constructor() {
+    this.selectedLink = this.getLinks()[0];
   }
 
   getLinks(): Link[] {
