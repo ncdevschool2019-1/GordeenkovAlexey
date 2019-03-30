@@ -7,13 +7,20 @@ import { FormsModule }   from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import {HttpClientModule} from '@angular/common/http';
-import { BillingAccountsComponent } from './billing-accounts/billing-accounts.component';
 import {Ng4LoadingSpinnerModule} from "ng4-loading-spinner";
-
+import {HeaderComponent} from './modules/header/components/header/header.component';
+import {SingInUpPopUpComponent} from './modules/header/components/sing-in-up-pop-up/sing-in-up-pop-up.component';
+import {CategoriesComponent} from './modules/home-page/components/categories/categories.component';
+import {ContentComponent} from './modules/home-page/components/content/content.component';
+import {FooterComponent} from './modules/footer/components/footer/footer.component';
 @NgModule({
   declarations: [
     AppComponent,
-    BillingAccountsComponent
+    HeaderComponent,
+    SingInUpPopUpComponent,
+    CategoriesComponent,
+    ContentComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

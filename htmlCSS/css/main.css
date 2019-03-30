@@ -11,13 +11,6 @@ body{
 	flex-direction: column;
 }
 
-header {
-    height: 60px;
-}
-
-.navbar-brand {
-    font-size: 20pt;
-}
 
 #myModal .modal-content  {
     background-color: #3b4b5b;
