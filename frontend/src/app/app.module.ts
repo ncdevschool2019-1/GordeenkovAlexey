@@ -14,6 +14,11 @@ import {CategoriesComponent} from './modules/home-page/components/categories/cat
 import {ContentComponent} from './modules/home-page/components/content/content.component';
 import {FooterComponent} from './modules/footer/components/footer/footer.component';
 import {CatalogComponent} from './modules/catalog/components/catalog/catalog.component';
+import {BillingAccountComponent} from './modules/account/components/billing-account/billing-account.component';
+import {UserInfoComponent} from './modules/account/components/user-info/user-info.component';
+import {SubscriptionsTableComponent} from './modules/account/components/subscriptions-table/subscriptions-table.component';
+import {UsersListComponent} from "./modules/account/components/users-list/users-list.component";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,6 +28,10 @@ import {CatalogComponent} from './modules/catalog/components/catalog/catalog.com
     ContentComponent,
     FooterComponent,
     CatalogComponent,
+    BillingAccountComponent,
+    UserInfoComponent,
+    SubscriptionsTableComponent,
+    UsersListComponent,
   ],
   imports: [
     BrowserModule,
