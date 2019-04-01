@@ -1,0 +1,7 @@
+
+#listOfUsers {
+  min-width: 250px;
+  display: flex;
+  flex-direction: column;
+  /* display: none;*/
+}

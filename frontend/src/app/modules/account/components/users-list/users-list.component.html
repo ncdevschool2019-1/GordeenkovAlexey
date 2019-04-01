@@ -1,0 +1,10 @@
+<div id="listOfUsers">
+  <nav class="navbar navbar-light">
+    <ul class="navbar-nav nav-tabs ">
+      <li *ngFor="let user of users" [class.selected]="user === getActiveUser()" class="nav-item"
+          (click)="onSelect(user)">
+        <a class="nav-link" href="#">{{user.userName}}</a>
+      </li>
+    </ul>
+  </nav>
+</div>
