@@ -9,7 +9,7 @@
   color: white;
 }
 
-.content > div > div {
+.content > div {
   width: 70%;
   height: 100%;
   margin: auto;
@@ -20,11 +20,11 @@
   background-color: #3b4b5b;
 }
 
-.content > div > div > div {
+.content > div > div {
   margin: auto;
 }
 
-.content > div > div > div > button {
+.content > div > div > button {
   height: 60px;
   width: 300px;
   background-color: #3b4b5b;
@@ -40,13 +40,12 @@
   outline: none;
 }
 
-
-.content > div > div > div > button:hover {
+.content > div > div > button:hover {
   background-color: white;
   color: #3b4b5b;
 }
 
-.content > div > div > img {
+.content > div > img {
   height: 200px;
   width: 200px;
   margin: 0px;

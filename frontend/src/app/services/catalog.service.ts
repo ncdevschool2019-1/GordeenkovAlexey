@@ -5,6 +5,8 @@ import {Observable, of} from 'rxjs';
 
 import {Service} from "../modules/catalog/models/service";
 import {CATALOG} from "../modules/catalog/models/mock-catalog";
+import {HeaderService} from "./header.service";
+import {BILLINGACCOUNTS} from "../modules/account/models/mock-billing-accounts";
 
 @Injectable({
   providedIn: 'root'
@@ -12,9 +14,9 @@ import {CATALOG} from "../modules/catalog/models/mock-catalog";
 export class CatalogService {
 
   getCatalog(): Observable<Service[]> {
-    return of(CATALOG);
+    return of(CATALOG.filter(serv => serv.type === this.headerService.getSelectedLink().name));
   }
 
-  constructor() {
+  constructor(private headerService: HeaderService) {
   }
 }

@@ -1,6 +1,5 @@
 <div class="content">
-  <div *ngFor="let service of catalog">
-    <div *ngIf="service.type === getSelectedLink()">
+  <div *ngFor="let service of getCatalog()">
       <img src="{{service.img}}">
       <p>
         {{service.text}}
@@ -11,4 +10,4 @@
       </div>
     </div>
   </div>
-</div>
+

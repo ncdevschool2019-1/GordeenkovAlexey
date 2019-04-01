@@ -10,7 +10,7 @@ import {HeaderService} from "../../../../services/header.service";
 })
 export class CatalogComponent implements OnInit {
 
-  catalog: Service[];
+  private catalog: Service[];
 
   constructor(private catalogService: CatalogService, private headerService: HeaderService) {
   }
@@ -19,13 +19,9 @@ export class CatalogComponent implements OnInit {
     this.getCatalog();
   }
 
-  getCatalog() {
+  getCatalog(): Service[] {
     this.catalogService.getCatalog()
       .subscribe(catalog => this.catalog = catalog);
+    return this.catalog;
   }
-
-  getSelectedLink(): string {
-    return this.headerService.getSelectedLink().name;
-  }
-
 }
