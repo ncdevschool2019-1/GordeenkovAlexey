@@ -18,20 +18,18 @@ import {BillingAccountComponent} from './modules/account/components/billing-acco
 import {UserInfoComponent} from './modules/account/components/user-info/user-info.component';
 import {SubscriptionsTableComponent} from './modules/account/components/subscriptions-table/subscriptions-table.component';
 import {UsersListComponent} from "./modules/account/components/users-list/users-list.component";
+import {AddBillingAccountComponent} from './modules/account/components/add-billing-account/add-billing-account.component';
+import {AppRoutingModule} from './/app-routing.module';
+import {HeaderModule} from './modules/header/header.module';
+import {LayoutModule} from './modules/layout/layout.module';
+import {AccountModule} from './modules/account/account.module';
+import {CatalogModule} from './modules/catalog/catalog.module';
+import {FooterModule} from './modules/footer/footer.module';
+import {HomePageModule} from './modules/home-page/home-page.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    HeaderComponent,
-    SingInUpPopUpComponent,
-    CategoriesComponent,
-    ContentComponent,
-    FooterComponent,
-    CatalogComponent,
-    BillingAccountComponent,
-    UserInfoComponent,
-    SubscriptionsTableComponent,
-    UsersListComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +38,14 @@ import {UsersListComponent} from "./modules/account/components/users-list/users-
     Ng4LoadingSpinnerModule.forRoot(),
     BsDropdownModule.forRoot(),
     TooltipModule.forRoot(),
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    AppRoutingModule,
+    HeaderModule,
+    LayoutModule,
+    AccountModule,
+    CatalogModule,
+    FooterModule,
+    HomePageModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -5,9 +5,9 @@
   </button>
   <div class="collapse navbar-collapse nav justify-content-end" id="collapsibleNavbar">
     <ul class="top_buttons navbar-nav ">
-      <li *ngFor="let link of links" [class.selected]="link === getSelectedLink()" (click)="onSelect(link)"
+      <li *ngFor="let link of links" [class.selected]="link === getSelectedLink()"
           class="nav-item ">
-        <a class="nav-link" href="#">  {{link.name}}</a>
+        <a class="nav-link" routerLink="/{{link.name.toLowerCase()}}" (click)="onSelect(link)">  {{link.name}}</a>
       </li>
       <li id="singUp" class="nav-item">
         <button type="button" class="btn  text-light btn-lg" data-toggle="modal" data-target="#myModal">
@@ -17,4 +17,6 @@
     </ul>
   </div>
 </nav>
+
+
 <app-sing-in-up-pop-up></app-sing-in-up-pop-up>
