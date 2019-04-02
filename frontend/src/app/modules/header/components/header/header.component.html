@@ -7,7 +7,8 @@
     <ul class="top_buttons navbar-nav ">
       <li *ngFor="let link of links" [class.selected]="link === getSelectedLink()"
           class="nav-item ">
-        <a class="nav-link" routerLink="/{{link.name.toLowerCase()}}" (click)="onSelect(link)">  {{link.name}}</a>
+        <a class="nav-link" routerLink="/{{link.name.toLowerCase().replace(' ','')}}"
+           (click)="onSelect(link)">  {{link.name}}</a>
       </li>
       <li id="singUp" class="nav-item">
         <button type="button" class="btn  text-light btn-lg" data-toggle="modal" data-target="#myModal">
