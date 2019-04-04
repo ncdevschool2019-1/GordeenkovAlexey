@@ -10,11 +10,10 @@ const routes: Routes = [
 
   {path: "", component: HomeComponent},
   {path: '', redirectTo: '/home', pathMatch: 'full'},
-  {path: 'music', redirectTo: '/catalog', pathMatch: 'full'},
-  {path: 'films', redirectTo: '/catalog', pathMatch: 'full'},
-  {path: 'books', redirectTo: '/catalog', pathMatch: 'full'},
   {path: 'home', component: HomeComponent},
-  {path: 'catalog', component: CatalogViewComponent},
+  {path: 'music', component: CatalogViewComponent},
+  {path: 'films', component: CatalogViewComponent},
+  {path: 'books', component: CatalogViewComponent},
   {path: 'myaccount', component: AccountComponent},
   {path: 'notFound', component: NotFoundComponent}
 ];

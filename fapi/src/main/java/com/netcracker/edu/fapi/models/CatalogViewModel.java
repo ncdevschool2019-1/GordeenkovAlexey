@@ -16,7 +16,7 @@ public class CatalogViewModel {
         id = 5;
         name = "1";
         text = "1";
-        img = "1";
+        img = "https://tehnot.com/wp-content/uploads/2017/03/android-o-00.jpg";
         cost = 5;
         type = "music";
     }

@@ -10,7 +10,7 @@ export class HeaderService {
   private selectedLink: Link;
 
   constructor() {
-    this.selectedLink = this.getLinks()[0];
+    this.selectedLink = this.getLinks().find(value => "/" + value.name.toLowerCase().replace(' ', '') === window.location.pathname);
   }
 
   getLinks(): Link[] {

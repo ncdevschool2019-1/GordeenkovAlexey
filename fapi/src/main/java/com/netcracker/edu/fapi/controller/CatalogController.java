@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/cat")
+@RequestMapping("/api/catalog")
 public class CatalogController {
 
     @Autowired
