@@ -4,9 +4,8 @@ import {Injectable} from '@angular/core';
 import {Observable, of} from 'rxjs';
 
 import {Service} from "../modules/catalog/models/service";
-import {CATALOG} from "../modules/catalog/models/mock-catalog";
 import {HeaderService} from "./header.service";
-import {BILLINGACCOUNTS} from "../modules/account/models/mock-billing-accounts";
+import {HttpClient} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
@@ -14,9 +13,9 @@ import {BILLINGACCOUNTS} from "../modules/account/models/mock-billing-accounts";
 export class CatalogService {
 
   getCatalog(): Observable<Service[]> {
-    return of(CATALOG.filter(serv => serv.type === this.headerService.getSelectedLink().name));
+    return this.http.get<Service[]>('http://localhost:8081/api/cat/' + this.headerService.getSelectedLink().name.toLowerCase());
   }
 
-  constructor(private headerService: HeaderService) {
+  constructor(private http: HttpClient, private headerService: HeaderService) {
   }
 }
