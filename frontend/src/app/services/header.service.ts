@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Link} from "../modules/header/models/link";
 import {LINKS} from "../modules/header/models/mock-links";
+import {CatalogService} from "./catalog.service";
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ export class HeaderService {
 
   private selectedLink: Link;
 
-  constructor() {
+  constructor(private catalogService: CatalogService) {
     this.selectedLink = this.getLinks().find(value => "/" + value.name.toLowerCase().replace(' ', '') === window.location.pathname);
   }
 
@@ -23,5 +24,6 @@ export class HeaderService {
 
   setSelectedLink(link: Link) {
     this.selectedLink = link;
+    this.catalogService.update();
   }
 }
