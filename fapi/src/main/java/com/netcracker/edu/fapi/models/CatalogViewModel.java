@@ -12,10 +12,10 @@ public class CatalogViewModel {
     private double cost;
     private String type;
 
-    public CatalogViewModel() {
+    public CatalogViewModel(String typ) {
         id = 5;
         name = "1";
-        text = "1";
+        text = typ;
         img = "https://tehnot.com/wp-content/uploads/2017/03/android-o-00.jpg";
         cost = 5;
         type = "music";

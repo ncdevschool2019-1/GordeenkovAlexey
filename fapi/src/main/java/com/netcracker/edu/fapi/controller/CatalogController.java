@@ -26,7 +26,7 @@ public class CatalogController {
     @RequestMapping(value = "/{type}", method = RequestMethod.GET)
     public List<CatalogViewModel> getCatalog(@PathVariable String type) {
         List<CatalogViewModel> list = new ArrayList<>();
-        list.add(new CatalogViewModel());
+        list.add(new CatalogViewModel(type));
         return list;
     }
 

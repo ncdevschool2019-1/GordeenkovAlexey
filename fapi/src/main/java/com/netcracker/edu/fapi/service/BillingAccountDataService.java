@@ -6,8 +6,12 @@ import org.springframework.http.ResponseEntity;
 import java.util.List;
 
 public interface BillingAccountDataService {
-    List<BillingAccountViewModel> getAll();
-    BillingAccountViewModel getBillingAccountById(Long id);
-    BillingAccountViewModel saveBillingAccount(BillingAccountViewModel account);
+
+
+    List<BillingAccountViewModel> getBillingAccountsByUserId(Long id);
+
+    BillingAccountViewModel addBillingAccount(BillingAccountViewModel account);
+
+    BillingAccountViewModel addMoney(BillingAccountViewModel account);
     void deleteBillingAccount(Long id);
 }

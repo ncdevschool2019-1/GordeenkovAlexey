@@ -10,21 +10,30 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/ba")
+@RequestMapping("/api/billing-accounts")
 public class BillingAccountDataController {
 
     @Autowired
     private BillingAccountDataService billingAccountDataService;
 
-    @RequestMapping
-    public ResponseEntity<List<BillingAccountViewModel>> getAllBillingAccounts() {
-        return ResponseEntity.ok(billingAccountDataService.getAll());
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public ResponseEntity<List<BillingAccountViewModel>> getBillingAccountsByUserId(@PathVariable String id) {
+        return ResponseEntity.ok(billingAccountDataService.getBillingAccountsByUserId(Long.valueOf(id)));
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<BillingAccountViewModel> saveBillingAccount(@RequestBody BillingAccountViewModel billingAccount /*todo server validation*/) {
+    public ResponseEntity<BillingAccountViewModel> addBillingAccount(@RequestBody BillingAccountViewModel billingAccount /*todo server validation*/) {
         if (billingAccount != null) {
-            return ResponseEntity.ok(billingAccountDataService.saveBillingAccount(billingAccount));
+            return ResponseEntity.ok(billingAccountDataService.addBillingAccount(billingAccount));
+        }
+        return null;
+    }
+
+    @RequestMapping(method = RequestMethod.PUT)
+    public ResponseEntity<BillingAccountViewModel> addMoney(@RequestBody BillingAccountViewModel billingAccount) {
+        if (billingAccount != null) {
+            return ResponseEntity.ok(billingAccountDataService.addMoney(billingAccount));
         }
         return null;
     }

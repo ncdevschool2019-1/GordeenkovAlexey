@@ -10,4 +10,10 @@ public interface BillingAccountService {
     Optional<BillingAccount> getBillingAccountById(Long id);
     Iterable<BillingAccount> getAllBillingAccounts();
     void deleteBillingAccount(Long id);
+
+    BillingAccount addBillingAccount(BillingAccount account);
+
+    Iterable<BillingAccount> getBillingAccountsByUserId(Long id);
+
+    BillingAccount addMoney(BillingAccount account);
 }

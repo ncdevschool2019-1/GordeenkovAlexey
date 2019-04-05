@@ -23,7 +23,7 @@ export class CatalogComponent implements OnInit {
 
   getCatalog() {
     if (this.subscription) this.subscription.unsubscribe();
-    this.catalogService.getCatalog()
+    this.catalogService.getCatalog(this.headerService.getSelectedLink().name)
       .subscribe(catalog => this.catalog = catalog);
   }
 }

@@ -4,51 +4,50 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class BillingAccountViewModel {
+    private Long id;
+    private double money;
+    private Long userId;
 
-    private int id;
-    private String address;
-    private String username;
-    private String email;
 
-    public BillingAccountViewModel() {
+    @Override
+    public String toString() {
+        return "BillingAccountViewModel{" +
+                "id=" + id +
+                ", money=" + money +
+                ", userId=" + userId +
+                '}';
     }
 
-    public BillingAccountViewModel(int id, String address, String username) {
-        this.id = id;
-        this.address = address;
-        this.username = username;
-        this.email = email;
-    }
-
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public String getAddress() {
-        return address;
+    public double getMoney() {
+        return money;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setMoney(double money) {
+        this.money = money;
     }
 
-    public String getUsername() {
-        return username;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
-    public String getEmail() {
-        return email;
+    public BillingAccountViewModel(Long id, double money, Long userId) {
+        this.id = id;
+        this.money = money;
+        this.userId = userId;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public BillingAccountViewModel() {
     }
 }

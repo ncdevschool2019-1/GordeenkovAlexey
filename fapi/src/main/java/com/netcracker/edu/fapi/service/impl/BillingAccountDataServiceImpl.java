@@ -17,22 +17,23 @@ public class BillingAccountDataServiceImpl implements BillingAccountDataService 
     @Value("${backend.server.url}")
     private String backendServerUrl;
 
+
     @Override
-    public List<BillingAccountViewModel> getAll() {
+    public List<BillingAccountViewModel> getBillingAccountsByUserId(Long id) {
         RestTemplate restTemplate = new RestTemplate();
-        BillingAccountViewModel[] billingAccountViewModelResponse = restTemplate.getForObject(backendServerUrl + "/api/billing-accounts/", BillingAccountViewModel[].class);
+        BillingAccountViewModel[] billingAccountViewModelResponse = restTemplate.getForObject(backendServerUrl + "/api/billing-accounts/" + id.toString(), BillingAccountViewModel[].class);
         return billingAccountViewModelResponse == null ? Collections.emptyList() : Arrays.asList(billingAccountViewModelResponse);
     }
 
     @Override
-    public BillingAccountViewModel getBillingAccountById(Long id) {
-        return null;
+    public BillingAccountViewModel addBillingAccount(BillingAccountViewModel account) {
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.postForEntity(backendServerUrl + "/api/billing-accounts", account, BillingAccountViewModel.class).getBody();
     }
 
     @Override
-    public BillingAccountViewModel saveBillingAccount(BillingAccountViewModel account) {
-        RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.postForEntity(backendServerUrl + "/api/billing-accounts", account, BillingAccountViewModel.class).getBody();
+    public BillingAccountViewModel addMoney(BillingAccountViewModel account) {
+        return null;
     }
 
     @Override

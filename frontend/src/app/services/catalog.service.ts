@@ -11,13 +11,10 @@ import {HttpClient} from "@angular/common/http";
 })
 export class CatalogService {
 
-  getCatalog(): Observable<Service[]> {
-    return this.http.get<Service[]>('http://localhost:8081/api/catalog' + document.location.pathname);
+  getCatalog(type: string): Observable<Service[]> {
+    return this.http.get<Service[]>('http://localhost:8081/api/catalog/' + type);
   }
 
-  update() {
-    this.getCatalog();
-  }
 
   constructor(private http: HttpClient) {
   }
