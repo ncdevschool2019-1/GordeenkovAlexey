@@ -3,47 +3,19 @@
     <!-- Modal content-->
     <div class="modal-content">
 
-
-      <div class="logInForm">
-        <form [formGroup]="logInForm" novalidate (ngSubmit)="loginSubmit()">
-
-          <div class="form-group">
-            <input class="form-control" formControlName="userName" placeholder="Username" type="text">
-            <div class="alert alert-danger"
-                 *ngIf="logInForm.controls['userName'].invalid && logInForm.controls['userName'].touched">
-              <p>It is necessary to fill the field</p>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <input class="form-control" formControlName="password" placeholder="password" type="password">
-            <div class="alert alert-danger"
-                 *ngIf="logInForm.controls['password'].invalid &&logInForm.controls['password'].touched">
-              <p>It is necessary to fill the field</p>
-            </div>
-          </div>
-
-
-          <div class="form-group">
-            <button class="btn btn-default" [disabled]="logInForm.invalid">
-              Submit
-            </button>
-          </div>
-        </form>
-
+      <div *ngIf="singIn===true">
+        <app-sing-in></app-sing-in>
+        <button type="button" class="btn btn-default" (click)="singUpClick()">SingUp</button>
       </div>
 
-      <div class="singUpForm">
-        <form method="post" action="#">
-          <input type="email" required placeholder="Email" name="login" id="login">
-          <input type="text" required name="Username" placeholder="Username" id="username">
-          <input type="password" required placeholder="Password" name="password" id="password">
-          <input type="submit" name="LogIn" id="singUpSubmitButton" value="Sing Up">
-        </form>
+      <div *ngIf="singUp===true">
+        <app-sing-up></app-sing-up>
+        <button type="button" class="btn btn-default" (click)="singInClick()">SingIn</button>
+      </div>
+
         <div class="modal-footer bg-light">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
-      </div>
 
     </div>
   </div>

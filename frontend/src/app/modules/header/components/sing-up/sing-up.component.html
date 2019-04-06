@@ -1,0 +1,36 @@
+<div class="logInForm">
+  <form [formGroup]="SingUpForm" novalidate (ngSubmit)="singUpSubmit()">
+
+    <div class="form-group">
+      <input class="form-control" formControlName="userName" placeholder="Username" type="text">
+      <div class="alert alert-danger"
+           *ngIf="SingUpForm.controls['userName'].invalid && SingUpForm.controls['userName'].touched">
+        <p>It is necessary to fill the field</p>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <input class="form-control" formControlName="Email" placeholder="Email" type="text">
+      <div class="alert alert-danger"
+           *ngIf="SingUpForm.controls['Email'].invalid && SingUpForm.controls['Email'].touched">
+        <p>It is necessary to fill the field</p>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <input class="form-control" formControlName="password" placeholder="password" type="password">
+      <div class="alert alert-danger"
+           *ngIf="SingUpForm.controls['password'].invalid &&SingUpForm.controls['password'].touched">
+        <p>It is necessary to fill the field</p>
+      </div>
+    </div>
+
+
+    <div class="form-group">
+      <button class="btn btn-default" [disabled]="SingUpForm.invalid">
+        Submit
+      </button>
+    </div>
+  </form>
+
+</div>

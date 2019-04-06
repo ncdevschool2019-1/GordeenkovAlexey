@@ -1,0 +1,28 @@
+<div class="logInForm">
+  <form [formGroup]="logInForm" novalidate (ngSubmit)="loginSubmit()">
+
+    <div class="form-group">
+      <input class="form-control" formControlName="userName" placeholder="Username" type="text">
+      <div class="alert alert-danger"
+           *ngIf="logInForm.controls['userName'].invalid && logInForm.controls['userName'].touched">
+        <p>It is necessary to fill the field</p>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <input class="form-control" formControlName="password" placeholder="password" type="password">
+      <div class="alert alert-danger"
+           *ngIf="logInForm.controls['password'].invalid &&logInForm.controls['password'].touched">
+        <p>It is necessary to fill the field</p>
+      </div>
+    </div>
+
+
+    <div class="form-group">
+      <button class="btn btn-default" [disabled]="logInForm.invalid">
+        Submit
+      </button>
+    </div>
+  </form>
+
+</div>

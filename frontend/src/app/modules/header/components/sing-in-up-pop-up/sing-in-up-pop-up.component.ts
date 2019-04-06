@@ -8,18 +8,25 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 })
 export class SingInUpPopUpComponent implements OnInit {
 
-  logInForm: FormGroup = new FormGroup({
-    "userName": new FormControl("", Validators.required),
-    "password": new FormControl("", Validators.required),
-  });
+  singIn: boolean;
+  singUp: boolean;
 
   constructor() {
   }
 
   ngOnInit() {
+    this.singIn = true;
+    this.singUp = false;
   }
 
-  loginSubmit() {
-    console.log(this.logInForm.value);
+  singUpClick() {
+    this.singUp = true;
+    this.singIn = false;
   }
+
+  singInClick() {
+    this.singUp = false;
+    this.singIn = true;
+  }
+
 }

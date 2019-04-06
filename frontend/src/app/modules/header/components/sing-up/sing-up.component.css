@@ -1,0 +1,48 @@
+
+div.singUpForm {
+  padding: 0px;
+  width: 500px;
+  height: 300px;
+  background-color: #3b4b5b;
+}
+
+.singUpForm > form {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  margin-top: 80px;
+}
+
+form input {
+  border-radius: 3px;
+  height: 40px;
+  color: #16a086;
+  font-size: 16pt;
+  font-family: 'Titillium Web', sans-serif;
+  margin-top: 20px;
+  text-align: center;
+}
+
+div > form > div {
+  display: flex;
+}
+
+div > form > div > button {
+  width: 50%;
+  height: 60px;
+  background-color: #16a086;
+  margin: auto;
+  font-size: 30pt;
+  color: white;
+  text-align: center;
+  border-width: 0px;
+  padding: 0px;
+  margin-top: 30px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+div > form > div > button:hover {
+  background-color: white;
+  color: #16a086;
+}

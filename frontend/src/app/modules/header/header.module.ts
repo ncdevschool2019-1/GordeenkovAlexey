@@ -7,11 +7,15 @@ import {RouterModule} from '@angular/router';
 import {HeaderComponent} from "./components/header/header.component";
 import {SingInUpPopUpComponent} from "./components/sing-in-up-pop-up/sing-in-up-pop-up.component";
 import {HeaderService} from "../../services/header.service";
+import {SingUpComponent} from './components/sing-up/sing-up.component';
+import {SingInComponent} from "./components/sing-in/sing-in.component";
 
 @NgModule({
   declarations: [
     HeaderComponent,
-    SingInUpPopUpComponent
+    SingInUpPopUpComponent,
+    SingInComponent,
+    SingUpComponent
   ],
   imports: [
     BrowserModule,
