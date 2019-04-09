@@ -12,6 +12,7 @@ public interface BillingAccountDataService {
 
     BillingAccountViewModel addBillingAccount(BillingAccountViewModel account);
 
-    BillingAccountViewModel addMoney(BillingAccountViewModel account);
+    /*  BillingAccountViewModel addMoney(BillingAccountViewModel account);*/
+
     void deleteBillingAccount(Long id);
 }

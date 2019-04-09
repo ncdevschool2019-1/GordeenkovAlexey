@@ -3,6 +3,7 @@ import {Observable, of, Subscription} from "rxjs";
 import {BillingAccount} from "../modules/account/models/billing-account";
 import {HttpClient} from "@angular/common/http";
 import {UsersService} from "./users.service";
+import {BILLINGACCOUNTS} from "../modules/account/models/mock-billing-accounts";
 
 @Injectable({
   providedIn: 'root'
@@ -28,8 +29,13 @@ export class BillingAccountService {
     return this.http.post<BillingAccount>('http://localhost:8081/api/billing-accounts/' + this.userService.getActiveUser().id, account);
   }
 
+  addMoney(account: BillingAccount): Observable<BillingAccount> {
+    return this.http.put<BillingAccount>('http://localhost:8081/api/billing-accounts/', account);
+  }
+
   getBillingAccounts(): BillingAccount[] {
-    return this.billingAccounts;
+    // return this.billingAccounts;
+    return BILLINGACCOUNTS;
   }
 
 }

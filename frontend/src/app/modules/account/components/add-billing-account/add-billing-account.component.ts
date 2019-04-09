@@ -21,7 +21,7 @@ export class AddBillingAccountComponent implements OnInit {
   )
 
 
-  constructor(private BillingAccountService: BillingAccountService, private usersService: UsersService) {
+  constructor(private billingAccountService: BillingAccountService, private usersService: UsersService) {
   }
 
   ngOnInit() {
@@ -30,11 +30,10 @@ export class AddBillingAccountComponent implements OnInit {
 
   submit() {
     if (this.subscription) this.subscription.unsubscribe();
-    console.log(this.addBillingAccountForm.get("money").value);
     this.subscription =
-      this.BillingAccountService.add(new BillingAccount(null, this.addBillingAccountForm.get("money").value, this.usersService.getActiveUser().id))
+      this.billingAccountService.add(new BillingAccount(null, this.addBillingAccountForm.get("money").value, this.usersService.getActiveUser().id))
         .subscribe(() => {
-          this.BillingAccountService.getBillingAccountsFromFapi();
+          this.billingAccountService.getBillingAccountsFromFapi();
         })
     ;
   }

@@ -2,19 +2,29 @@
 
 <div id="billingAccount">
   <ul>
-    <li *ngFor="let acc of billingAccounts">
+    <li *ngFor="let acc of getBillingAccounts();index as i;">
       <p>Billing Account : id{{acc.id}}</p>
       <p>Amount of money : ${{acc.money}}</p>
 
 
-      <form>
+      <form [formGroup]="addMoneyForms[i]" novalidate (ngSubmit)="addMoney(acc.id,i)">
         <div class="form-group">
-          <label for="addMoney">If you want to add money, enter the amount below</label>
-          <input type="number" required class="form-control" id="addMoney"
-                 placeholder="amount of money"
-                 min="1">
+
+          <label>If you want to add money, enter the amount below {{i}}</label>
+          <input class="form-control" placeholder="amount of money" min="1" formControlName="money">
+
+          <div class="alert alert-danger"
+               *ngIf="addMoneyForms[i].controls['money'].invalid && addMoneyForms[i].controls['money'].touched">
+            <p>It is necessary to fill the field</p>
+          </div>
         </div>
-        <button type="submit" class="btn btn-secondary float-right">Submit</button>
+
+        <div class="form-group">
+          <button type="submit" class="btn btn-secondary float-right" [disabled]="addMoneyForms[i].invalid">
+            Submit
+          </button>
+
+        </div>
       </form>
 
 

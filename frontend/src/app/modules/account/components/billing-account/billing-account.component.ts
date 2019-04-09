@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {BillingAccount} from "../../models/billing-account";
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {BillingAccountService} from "../../../../services/billing-account.service";
 import {Subscription} from "rxjs";
 import {forEach} from "@angular/router/src/utils/collection";
@@ -12,20 +12,35 @@ import {forEach} from "@angular/router/src/utils/collection";
 })
 export class BillingAccountComponent implements OnInit, OnDestroy {
 
-  billingAccounts: BillingAccount[];
-
   subscriptions: Subscription[] = [];
-
-  /* addMoneyForm:FormGroup = new FormGroup({
-     "money":new FormControl()
-   })
-
    addMoneyForms: FormGroup[] = [];
- */
-  getBillingAccounts(): BillingAccount[] {
-    return this.billingAccountService.getBillingAccounts();
+
+  addMoney(baId: number, indexOfForm: number) {
+    let tmpBA = this.getBillingAccounts()[indexOfForm];
+    this.subscriptions.push(
+      this.billingAccountService.addMoney(new BillingAccount(tmpBA.userId, tmpBA.money + this.addMoneyForms[indexOfForm].get("money").value, tmpBA.id))
+        .subscribe(() => {
+          this.billingAccountService.getBillingAccountsFromFapi();
+        }))
+    ;
   }
 
+  getBillingAccounts(): BillingAccount[] {
+    let acc = this.billingAccountService.getBillingAccounts();
+    if (acc.length != this.addMoneyForms.length) this.updateForms(acc.length);
+    return acc;
+  }
+
+  updateForms(length: number) {
+    this.addMoneyForms = [];
+    for (let i = 0; i < length; i++) {
+      this.addMoneyForms.push(
+        new FormGroup({
+          "money": new FormControl("", Validators.required)
+        })
+      );
+    }
+  }
   constructor(private billingAccountService: BillingAccountService) {
   }
 
