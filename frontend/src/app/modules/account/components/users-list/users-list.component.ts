@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {UsersService} from "../../../../services/users.service";
 import {User} from "../../models/user";
+import {BillingAccountService} from "../../../../services/billing-account.service";
 
 @Component({
   selector: 'app-users-list',
@@ -11,7 +12,7 @@ export class UsersListComponent implements OnInit {
 
   users: User[];
 
-  constructor(private usersService: UsersService) {
+  constructor(private usersService: UsersService, private billingAccount: BillingAccountService) {
   }
 
   ngOnInit() {
@@ -35,5 +36,6 @@ export class UsersListComponent implements OnInit {
 
   onSelect(user: User) {
     this.usersService.setActiveUser(user);
+    this.billingAccount.getBillingAccountsFromFapi();
   }
 }

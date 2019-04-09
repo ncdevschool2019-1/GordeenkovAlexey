@@ -1,4 +1,10 @@
 import {Component, OnInit} from '@angular/core';
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {BillingAccount} from "../../models/billing-account";
+import {UsersService} from "../../../../services/users.service";
+import {BillingAccountService} from "../../../../services/billing-account.service";
+import {BillingAccountComponent} from "../billing-account/billing-account.component";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-add-billing-account',
@@ -7,10 +13,29 @@ import {Component, OnInit} from '@angular/core';
 })
 export class AddBillingAccountComponent implements OnInit {
 
-  constructor() {
+  subscription: Subscription;
+
+  addBillingAccountForm: FormGroup = new FormGroup({
+      money: new FormControl("", Validators.required)
+    }
+  )
+
+
+  constructor(private BillingAccountService: BillingAccountService, private usersService: UsersService) {
   }
 
   ngOnInit() {
   }
 
+
+  submit() {
+    if (this.subscription) this.subscription.unsubscribe();
+    console.log(this.addBillingAccountForm.get("money").value);
+    this.subscription =
+      this.BillingAccountService.add(new BillingAccount(null, this.addBillingAccountForm.get("money").value, this.usersService.getActiveUser().id))
+        .subscribe(() => {
+          this.BillingAccountService.getBillingAccountsFromFapi();
+        })
+    ;
+  }
 }

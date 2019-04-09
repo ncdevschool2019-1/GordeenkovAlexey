@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
 import {Ng4LoadingSpinnerModule} from 'ng4-loading-spinner';
 import {BrowserModule} from '@angular/platform-browser';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
 import {AddBillingAccountComponent} from "./components/add-billing-account/add-billing-account.component";
 import {BillingAccountComponent} from "./components/billing-account/billing-account.component";
@@ -23,6 +23,7 @@ import {SubscriptionService} from "../../services/subscription.service";
   imports: [
     BrowserModule,
     RouterModule,
+    ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
     Ng4LoadingSpinnerModule.forRoot(),

@@ -49,5 +49,8 @@ public class BillingAccountViewModel {
     }
 
     public BillingAccountViewModel() {
+        this.id = 1l;
+        this.money = 1l;
+        this.userId = 1l;
     }
 }

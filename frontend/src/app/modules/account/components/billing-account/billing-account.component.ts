@@ -1,27 +1,39 @@
-import {Component, OnInit} from '@angular/core';
-import {UsersService} from "../../../../services/users.service";
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {BillingAccount} from "../../models/billing-account";
+import {FormControl, FormGroup} from "@angular/forms";
+import {BillingAccountService} from "../../../../services/billing-account.service";
+import {Subscription} from "rxjs";
+import {forEach} from "@angular/router/src/utils/collection";
 
 @Component({
   selector: 'app-billing-account',
   templateUrl: './billing-account.component.html',
   styleUrls: ['./billing-account.component.css']
 })
-export class BillingAccountComponent implements OnInit {
+export class BillingAccountComponent implements OnInit, OnDestroy {
 
   billingAccounts: BillingAccount[];
 
-  getBillingAcconts(): BillingAccount[] {
-    this.usersService.getBillingAccounts()
-      .subscribe(billingAccounts => this.billingAccounts = billingAccounts);
-    return this.billingAccounts;
+  subscriptions: Subscription[] = [];
+
+  /* addMoneyForm:FormGroup = new FormGroup({
+     "money":new FormControl()
+   })
+
+   addMoneyForms: FormGroup[] = [];
+ */
+  getBillingAccounts(): BillingAccount[] {
+    return this.billingAccountService.getBillingAccounts();
   }
 
-  constructor(private usersService: UsersService) {
+  constructor(private billingAccountService: BillingAccountService) {
   }
 
   ngOnInit() {
-    this.getBillingAcconts();
+    this.billingAccountService.getBillingAccountsFromFapi();
   }
 
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(s => s.unsubscribe());
+  }
 }

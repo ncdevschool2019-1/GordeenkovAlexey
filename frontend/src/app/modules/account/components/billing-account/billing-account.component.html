@@ -2,10 +2,12 @@
 
 <div id="billingAccount">
   <ul>
-    <li *ngFor="let acc of getBillingAcconts()">
+    <li *ngFor="let acc of billingAccounts">
       <p>Billing Account : id{{acc.id}}</p>
       <p>Amount of money : ${{acc.money}}</p>
-      <form action="#">
+
+
+      <form>
         <div class="form-group">
           <label for="addMoney">If you want to add money, enter the amount below</label>
           <input type="number" required class="form-control" id="addMoney"
@@ -14,6 +16,8 @@
         </div>
         <button type="submit" class="btn btn-secondary float-right">Submit</button>
       </form>
+
+
     </li>
   </ul>
 </div>

@@ -5,6 +5,8 @@ import {User} from "../modules/account/models/user";
 import {USERS} from "../modules/account/models/mock-users";
 import {BillingAccount} from "../modules/account/models/billing-account";
 import {BILLINGACCOUNTS} from "../modules/account/models/mock-billing-accounts";
+import {BillingAccountComponent} from "../modules/account/components/billing-account/billing-account.component";
+import {BillingAccountService} from "./billing-account.service";
 
 
 @Injectable({
@@ -18,10 +20,6 @@ export class UsersService {
     return of(USERS);
   }
 
-  getBillingAccounts(): Observable<BillingAccount[]> {
-    return of(BILLINGACCOUNTS.filter(acc => acc.userId == this.activeUser.id));
-  }
-
   setActiveUser(user: User) {
     this.activeUser = user;
   }
@@ -33,4 +31,5 @@ export class UsersService {
   constructor() {
     this.activeUser = USERS[0];
   }
+
 }

@@ -14,18 +14,22 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="#">
+
+        <form [formGroup]="addBillingAccountForm" novalidate (ngSubmit)="submit()">
           <div class="form-group">
-            <label for="addMoney">If you want to add money, enter the amount below</label>
-            <input type="number" required class="form-control" id="add"
-                   placeholder="amount of money"
-                   min="1">
+            <label>If you want to add money, enter the amount below</label>
+            <input class="form-control" formControlName="money" type="number" placeholder="amount of money" min="1">
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary" [disabled]="addBillingAccountForm.invalid">Save changes
+            </button>
           </div>
         </form>
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+
       </div>
     </div>
   </div>
