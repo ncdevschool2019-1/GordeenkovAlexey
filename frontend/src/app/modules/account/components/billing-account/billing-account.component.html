@@ -10,7 +10,7 @@
       <form [formGroup]="addMoneyForms[i]" novalidate (ngSubmit)="addMoney(acc.id,i)">
         <div class="form-group">
 
-          <label>If you want to add money, enter the amount below {{i}}</label>
+          <label>If you want to add money, enter the amount below </label>
           <input class="form-control" placeholder="amount of money" min="1" formControlName="money">
 
           <div class="alert alert-danger"

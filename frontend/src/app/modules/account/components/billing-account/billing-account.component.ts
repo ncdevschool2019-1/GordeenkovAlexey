@@ -27,7 +27,8 @@ export class BillingAccountComponent implements OnInit, OnDestroy {
 
   getBillingAccounts(): BillingAccount[] {
     let acc = this.billingAccountService.getBillingAccounts();
-    if (acc.length != this.addMoneyForms.length) this.updateForms(acc.length);
+    if (acc.length
+      != this.addMoneyForms.length) this.updateForms(acc.length);
     return acc;
   }
 

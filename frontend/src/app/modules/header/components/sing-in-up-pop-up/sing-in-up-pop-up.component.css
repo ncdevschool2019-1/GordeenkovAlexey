@@ -1,78 +1,15 @@
-
-#myModal .modal-content {
+.modal-content {
   background-color: #3b4b5b;
 }
 
-
-.content {
-  display: flex;
-  margin: auto;
-  width: 100%;
-  margin-top: 150px;
-  margin-bottom: 30px;
-  height: 100%;
-  flex-wrap: wrap;
-}
-
-.content > div {
-  padding: 0px;
-  width: 500px;
-  height: 400px;
-  background-color: #3b4b5b;
-  margin: auto;
-  margin-top: 10px;
-  margin-bottom: 0px;
-  border: 5px solid white;
-}
-
-div.logInForm {
-  margin-right: 0px;
-}
-
-div.singUpForm {
-  margin-left: 0px;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-  width: 70%;
-  margin: auto;
-  margin-top: 80px;
-}
-
-form input {
-  border-radius: 3px;
-  height: 40px;
-  color: #16a086;
-  font-size: 16pt;
-  font-family: 'Titillium Web', sans-serif;
-  margin-top: 20px;
-  text-align: center;
-}
-
-#loginSubmitButton, #singUpSubmitButton {
-  width: 50%;
-  height: 60px;
-  background-color: #16a086;
-  margin: auto;
-  font-size: 30pt;
+button {
   color: white;
   text-align: center;
   border-width: 0px;
-  padding: 0px;
-  margin-top: 30px;
   cursor: pointer;
-  margin-bottom: 20px;
 }
 
-#loginSubmitButton:hover, #singUpSubmitButton:hover {
+button:hover {
   background-color: white;
   color: #16a086;
-}
-
-@media only screen and (max-width: 1040px) {
-  .content > div {
-    margin: auto;
-  }
 }

@@ -31,12 +31,12 @@ public class BillingAccountDataServiceImpl implements BillingAccountDataService 
         return restTemplate.postForEntity(backendServerUrl + "/api/billing-accounts", account, BillingAccountViewModel.class).getBody();
     }
 
-    /*  @Override
-      public BillingAccountViewModel addMoney(BillingAccountViewModel account) {
+    @Override
+    public void addMoney(BillingAccountViewModel account) {
           RestTemplate restTemplate = new RestTemplate();
-          return restTemplate.put(backendServerUrl + "/api/billing-accounts", account, BillingAccountViewModel.class).getBody();
+        restTemplate.put(backendServerUrl + "/api/billing-accounts", account, BillingAccountViewModel.class);
       }
-  */
+
     @Override
     public void deleteBillingAccount(Long id) {
         RestTemplate restTemplate = new RestTemplate();

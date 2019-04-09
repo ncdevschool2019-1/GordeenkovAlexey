@@ -11,7 +11,7 @@ import {BILLINGACCOUNTS} from "../modules/account/models/mock-billing-accounts";
 export class BillingAccountService {
 
 
-  billingAccounts: BillingAccount[];
+  billingAccounts: BillingAccount[] = [];
 
   subscription: Subscription;
 
@@ -34,8 +34,8 @@ export class BillingAccountService {
   }
 
   getBillingAccounts(): BillingAccount[] {
-    // return this.billingAccounts;
-    return BILLINGACCOUNTS;
+    return this.billingAccounts;
+    //  return BILLINGACCOUNTS;
   }
 
 }

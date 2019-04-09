@@ -36,20 +36,23 @@ public class BillingAccountDataController {
         if (billingAccount != null) {
             return ResponseEntity.ok(billingAccountDataService.addBillingAccount(billingAccount));
         }
-        return null;
+        return ResponseEntity.badRequest().build();
     }
 
-    /*   @RequestMapping(method = RequestMethod.PUT)
+    @RequestMapping(method = RequestMethod.PUT)
        public ResponseEntity<BillingAccountViewModel> addMoney(@RequestBody BillingAccountViewModel billingAccount) {
            if (billingAccount != null) {
-               return ResponseEntity.ok(billingAccountDataService.addMoney(billingAccount));
+               billingAccountDataService.addMoney(billingAccount);
+               return ResponseEntity.ok(billingAccount);
            }
-           return null;
+
+        return ResponseEntity.badRequest().build();
        }
-   */
+
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public void deleteBillingAccount(@PathVariable String id) {
+    public ResponseEntity deleteBillingAccount(@PathVariable String id) {
         billingAccountDataService.deleteBillingAccount(Long.valueOf(id));
+        return ResponseEntity.ok().build();
     }
 
 }

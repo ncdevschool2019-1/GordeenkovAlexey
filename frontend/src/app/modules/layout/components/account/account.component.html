@@ -1,7 +1,18 @@
-<app-header></app-header>
-<app-users-list></app-users-list>
-<app-user-info></app-user-info>
-<app-add-billing-account></app-add-billing-account>
-<app-billing-account></app-billing-account>
-<app-subscriptions-table></app-subscriptions-table>
-<app-footer></app-footer>
+<div class="accountPage">
+  <app-header></app-header>
+
+  <div class="content">
+    <app-users-list></app-users-list>
+    <div class="accountInfo">
+      <app-user-info></app-user-info>
+      <app-add-billing-account></app-add-billing-account>
+      <app-billing-account></app-billing-account>
+    </div>
+
+    <div class="table">
+      <app-subscriptions-table></app-subscriptions-table>
+    </div>
+
+  </div>
+  <app-footer></app-footer>
+</div>

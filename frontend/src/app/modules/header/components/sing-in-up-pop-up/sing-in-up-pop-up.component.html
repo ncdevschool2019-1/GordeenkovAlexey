@@ -4,18 +4,19 @@
     <div class="modal-content">
 
       <div *ngIf="singIn===true">
+
         <app-sing-in></app-sing-in>
-        <button type="button" class="btn btn-default" (click)="singUpClick()">SingUp</button>
+        <button type="button" class="btn btn-default float-right" (click)="singUpClick()">SingUp</button>
       </div>
 
       <div *ngIf="singUp===true">
+
         <app-sing-up></app-sing-up>
-        <button type="button" class="btn btn-default" (click)="singInClick()">SingIn</button>
+        <button type="button" class="btn btn-default float-right" (click)="singInClick()">SingIn</button>
       </div>
 
-        <div class="modal-footer bg-light">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
+
 
     </div>
   </div>

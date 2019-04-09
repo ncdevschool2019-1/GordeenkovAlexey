@@ -1,5 +1,6 @@
 <div class="categories">
-  <a *ngFor="let link of links" class="{{link.name}}" (click)="onSelect(link)">
+  <a *ngFor="let link of links" class="{{link.name}}" routerLink="/{{link.name.toLowerCase().replace(' ','')}}"
+     (click)="onSelect(link)">
     <img src="{{link.img}}">
     <p>{{link.text}}</p>
     <p>{{sel}}</p>
