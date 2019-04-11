@@ -3,10 +3,7 @@ import {Injectable} from '@angular/core';
 import {Observable, of} from 'rxjs';
 import {User} from "../modules/account/models/user";
 import {USERS} from "../modules/account/models/mock-users";
-import {BillingAccount} from "../modules/account/models/billing-account";
-import {BILLINGACCOUNTS} from "../modules/account/models/mock-billing-accounts";
-import {BillingAccountComponent} from "../modules/account/components/billing-account/billing-account.component";
-import {BillingAccountService} from "./billing-account.service";
+import {HttpClient} from "@angular/common/http";
 
 
 @Injectable({
@@ -17,7 +14,7 @@ export class UsersService {
   private activeUser: User;
 
   getUsers(): Observable<User[]> {
-    return of(USERS);
+    return this.http.get<User[]>('http://localhost:8081/api/users')
   }
 
   setActiveUser(user: User) {
@@ -28,7 +25,7 @@ export class UsersService {
     return this.activeUser;
   }
 
-  constructor() {
+  constructor(private http: HttpClient) {
     this.activeUser = USERS[0];
   }
 

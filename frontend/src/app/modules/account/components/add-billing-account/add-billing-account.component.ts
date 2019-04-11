@@ -31,7 +31,7 @@ export class AddBillingAccountComponent implements OnInit {
   submit() {
     if (this.subscription) this.subscription.unsubscribe();
     this.subscription =
-      this.billingAccountService.add(new BillingAccount(null, this.addBillingAccountForm.get("money").value, this.usersService.getActiveUser().id))
+      this.billingAccountService.addBillingAccount(new BillingAccount(null, this.addBillingAccountForm.get("money").value, this.usersService.getActiveUser().id))
         .subscribe(() => {
           this.billingAccountService.getBillingAccountsFromFapi();
         })

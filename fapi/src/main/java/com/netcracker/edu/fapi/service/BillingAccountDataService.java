@@ -12,7 +12,7 @@ public interface BillingAccountDataService {
 
     BillingAccountViewModel addBillingAccount(BillingAccountViewModel account);
 
-    void addMoney(BillingAccountViewModel account);
+    void addMoney(BillingAccountViewModel account, String id);
 
     void deleteBillingAccount(Long id);
 }

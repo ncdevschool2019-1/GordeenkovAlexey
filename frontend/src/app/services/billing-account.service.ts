@@ -10,6 +10,7 @@ import {BILLINGACCOUNTS} from "../modules/account/models/mock-billing-accounts";
 })
 export class BillingAccountService {
 
+  private fapiServerUrl: string = 'http://localhost:8081/api/billing-accounts/';
 
   billingAccounts: BillingAccount[] = [];
 
@@ -21,17 +22,18 @@ export class BillingAccountService {
   getBillingAccountsFromFapi() {
     if (this.subscription) this.subscription.unsubscribe();
     this.subscription =
-      this.http.get<BillingAccount[]>('http://localhost:8081/api/billing-accounts/' + this.userService.getActiveUser().id)
+      this.http.get<BillingAccount[]>(this.fapiServerUrl + this.userService.getActiveUser().id)
         .subscribe(billingAccounts => this.billingAccounts = billingAccounts);
   }
 
-  add(account: BillingAccount): Observable<BillingAccount> {
-    return this.http.post<BillingAccount>('http://localhost:8081/api/billing-accounts/' + this.userService.getActiveUser().id, account);
+  addBillingAccount(account: BillingAccount): Observable<BillingAccount> {
+    return this.http.post<BillingAccount>(this.fapiServerUrl, account);
   }
 
   addMoney(account: BillingAccount): Observable<BillingAccount> {
-    return this.http.put<BillingAccount>('http://localhost:8081/api/billing-accounts/', account);
+    return this.http.put<BillingAccount>(this.fapiServerUrl + account.id, account);
   }
+
 
   getBillingAccounts(): BillingAccount[] {
     return this.billingAccounts;

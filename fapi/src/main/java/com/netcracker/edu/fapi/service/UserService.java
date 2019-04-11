@@ -5,7 +5,9 @@ import java.util.List;
 
 public interface UserService {
 
-    User findByLogin(String login);
-    List<User> findAll();
+    User getUserByUserName(String userName);
+
+    List<User> getUsers();
+
     User save(User user);
 }

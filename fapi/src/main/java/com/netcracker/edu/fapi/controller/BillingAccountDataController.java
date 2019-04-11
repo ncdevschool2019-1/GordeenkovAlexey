@@ -39,10 +39,10 @@ public class BillingAccountDataController {
         return ResponseEntity.badRequest().build();
     }
 
-    @RequestMapping(method = RequestMethod.PUT)
-       public ResponseEntity<BillingAccountViewModel> addMoney(@RequestBody BillingAccountViewModel billingAccount) {
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<BillingAccountViewModel> addMoney(@PathVariable String id, @RequestBody BillingAccountViewModel billingAccount) {
            if (billingAccount != null) {
-               billingAccountDataService.addMoney(billingAccount);
+               billingAccountDataService.addMoney(billingAccount, id);
                return ResponseEntity.ok(billingAccount);
            }
 

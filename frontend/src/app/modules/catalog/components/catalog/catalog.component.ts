@@ -3,6 +3,8 @@ import {CatalogService} from "../../../../services/catalog.service";
 import {Service} from "../../models/service";
 import {HeaderService} from "../../../../services/header.service";
 import {Subscription} from "rxjs";
+import {SubscriptionService} from "../../../../services/subscription.service";
+
 
 @Component({
   selector: 'app-catalog',
@@ -14,7 +16,7 @@ export class CatalogComponent implements OnInit {
   private catalog: Service[];
   private subscription: Subscription;
 
-  constructor(private catalogService: CatalogService, private headerService: HeaderService) {
+  constructor(private catalogService: CatalogService, private headerService: HeaderService, private subscriptionsService: SubscriptionService) {
   }
 
   ngOnInit() {
@@ -25,5 +27,9 @@ export class CatalogComponent implements OnInit {
     if (this.subscription) this.subscription.unsubscribe();
     this.catalogService.getCatalog(this.headerService.getSelectedLink().name)
       .subscribe(catalog => this.catalog = catalog);
+  }
+
+  subscribe(serv: Service) {
+    this.subscriptionsService.subscribe(serv);
   }
 }

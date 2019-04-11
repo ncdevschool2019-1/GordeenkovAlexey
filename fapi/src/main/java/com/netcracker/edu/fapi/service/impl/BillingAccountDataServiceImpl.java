@@ -32,9 +32,9 @@ public class BillingAccountDataServiceImpl implements BillingAccountDataService 
     }
 
     @Override
-    public void addMoney(BillingAccountViewModel account) {
+    public void addMoney(BillingAccountViewModel account, String id) {
           RestTemplate restTemplate = new RestTemplate();
-        restTemplate.put(backendServerUrl + "/api/billing-accounts", account, BillingAccountViewModel.class);
+        restTemplate.put(backendServerUrl + "/api/billing-accounts" + id, account, BillingAccountViewModel.class);
       }
 
     @Override

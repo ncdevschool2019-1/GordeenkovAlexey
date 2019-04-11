@@ -3,32 +3,36 @@ package com.netcracker.edu.fapi.controller;
 import com.netcracker.edu.fapi.models.User;
 import com.netcracker.edu.fapi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping("/api/users")
 public class UserController {
 
     @Autowired
     private UserService userService;
 
-    @PreAuthorize("hasRole('ADMIN')")
-    @GetMapping
-    public List<User> getAllUsers(){
-        return userService.findAll();
+    @RequestMapping(method = RequestMethod.GET)
+    public ResponseEntity<List<User>> getUsers() {
+        return ResponseEntity.ok(userService.getUsers());
     }
 
-    @GetMapping("/login/{login}")
-    public User getUserByLogin(@PathVariable String login) {
-        return userService.findByLogin(login);
+    @RequestMapping(value = "/{userName}", method = RequestMethod.GET)
+    public ResponseEntity<User> getUserByUserId(@PathVariable String userName) {
+        return ResponseEntity.ok(userService.getUserByUserName(userName));
     }
 
-    @RequestMapping(value="/signup", method = RequestMethod.POST, produces = "application/json")
-    public User saveUser(@RequestBody User user){
-        return userService.save(user);
+
+    @RequestMapping(method = RequestMethod.POST)
+    public ResponseEntity<User> addBillingAccount(@RequestBody User user /*todo server validation*/) {
+        if (user != null) {
+            return ResponseEntity.ok(userService.save(user));
+        }
+        return ResponseEntity.badRequest().build();
     }
+
 }
+
