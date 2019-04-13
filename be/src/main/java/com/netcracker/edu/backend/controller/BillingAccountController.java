@@ -35,4 +35,9 @@ public class BillingAccountController {
         billingAccountService.deleteBillingAccount(id);
     }
 
+
+    @RequestMapping(method = RequestMethod.PUT)
+    public BillingAccount addMoney(@RequestBody BillingAccount account) {
+        return billingAccountService.addMoney(account);
+    }
 }

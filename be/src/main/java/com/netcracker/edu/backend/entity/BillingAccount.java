@@ -14,8 +14,17 @@ public class BillingAccount {
     private int userId;
 
 
-    public BillingAccount(double balance) {
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public BillingAccount(double balance, int userId) {
         this.balance = balance;
+        this.userId = userId;
     }
 
     public long getId() {
@@ -44,6 +53,7 @@ public class BillingAccount {
         return "BillingAccount{" +
                 "id=" + id +
                 ", balance=" + balance +
+                ", userId=" + userId +
                 '}';
     }
 
