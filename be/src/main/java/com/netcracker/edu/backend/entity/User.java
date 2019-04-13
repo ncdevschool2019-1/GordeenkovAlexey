@@ -1,40 +1,82 @@
 package com.netcracker.edu.backend.entity;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
+@Table(name = "users")
 public class User {
-    private int id;
-    private String login;
-    private String password;
-    private String role;
 
     @Id
-    @Column(name = "id")
-    public int getId() {
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
+    private String firstName;
+    private String lastName;
+    private String userName;
+    private String password;
+    private String Email;
+    private String phone;
+
+    @ManyToOne
+    @JoinColumn(name = "roleId")
+    private RoleId role;
+
+    @OneToMany(mappedBy = "userByUserId")
+    private List<BillingAccount> billingAccounts;
+
+    @OneToMany(mappedBy = "userByUserId")
+    private List<Subscription> subscriptions;
+
+
+    public User() {
+    }
+
+    public User(String firstName, String lastName, String userName, String password, String email, String phone, RoleId role, List<BillingAccount> billingAccounts, List<Subscription> subscriptions) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.userName = userName;
+        this.password = password;
+        Email = email;
+        this.phone = phone;
+        this.role = role;
+        this.billingAccounts = billingAccounts;
+        this.subscriptions = subscriptions;
+    }
+
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "login")
-    public String getLogin() {
-        return login;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    @Basic
-    @Column(name = "password")
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
     public String getPassword() {
         return password;
     }
@@ -43,29 +85,81 @@ public class User {
         this.password = password;
     }
 
-    @Basic
-    @Column(name = "role")
-    public String getRole() {
+    public String getEmail() {
+        return Email;
+    }
+
+    public void setEmail(String email) {
+        Email = email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public RoleId getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(RoleId role) {
         this.role = role;
+    }
+
+    public List<BillingAccount> getBillingAccounts() {
+        return billingAccounts;
+    }
+
+    public void setBillingAccounts(List<BillingAccount> billingAccounts) {
+        this.billingAccounts = billingAccounts;
+    }
+
+    public List<Subscription> getSubscriptions() {
+        return subscriptions;
+    }
+
+    public void setSubscriptions(List<Subscription> subscriptions) {
+        this.subscriptions = subscriptions;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof User)) return false;
         User user = (User) o;
-        return id == user.id &&
-                Objects.equals(login, user.login) &&
-                Objects.equals(password, user.password) &&
-                Objects.equals(role, user.role);
+        return getId() == user.getId() &&
+                Objects.equals(getFirstName(), user.getFirstName()) &&
+                Objects.equals(getLastName(), user.getLastName()) &&
+                getUserName().equals(user.getUserName()) &&
+                getPassword().equals(user.getPassword()) &&
+                Objects.equals(getEmail(), user.getEmail()) &&
+                Objects.equals(getPhone(), user.getPhone()) &&
+                Objects.equals(getRole(), user.getRole()) &&
+                Objects.equals(getBillingAccounts(), user.getBillingAccounts()) &&
+                Objects.equals(getSubscriptions(), user.getSubscriptions());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, login, password, role);
+        return Objects.hash(getId(), getFirstName(), getLastName(), getUserName(), getPassword(), getEmail(), getPhone(), getRole(), getBillingAccounts(), getSubscriptions());
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", Email='" + Email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", role=" + role +
+                ", billingAccounts=" + billingAccounts +
+                ", subscriptions=" + subscriptions +
+                '}';
     }
 }

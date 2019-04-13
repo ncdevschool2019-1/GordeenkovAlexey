@@ -18,17 +18,10 @@ public class BillingAccountDataController {
     private BillingAccountDataService billingAccountDataService;
 
 
-    /*   @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
        public ResponseEntity<List<BillingAccountViewModel>> getBillingAccountsByUserId(@PathVariable String id) {
            return ResponseEntity.ok(billingAccountDataService.getBillingAccountsByUserId(Long.valueOf(id)));
        }
-   */
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public List<BillingAccountViewModel> getBillingAccountsByUserId(@PathVariable String id) {
-        List<BillingAccountViewModel> list = new ArrayList<>();
-        list.add(new BillingAccountViewModel());
-        return list;
-    }
 
 
     @RequestMapping(method = RequestMethod.POST)

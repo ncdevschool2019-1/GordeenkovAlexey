@@ -12,26 +12,17 @@ import java.util.Optional;
 @RequestMapping("/api/billing-accounts")
 public class BillingAccountController {
 
+    @Autowired
     private BillingAccountService billingAccountService;
 
-    @Autowired
+
     public BillingAccountController(BillingAccountService billingAccountService) {
         this.billingAccountService = billingAccountService;
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<BillingAccount> getBillingAccountById(@PathVariable(name = "id") Long id) {
-        Optional<BillingAccount> billingAccount = billingAccountService.getBillingAccountById(id);
-        if (billingAccount.isPresent()) {
-            return ResponseEntity.ok(billingAccount.get());
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
-
-    @RequestMapping(value = "", method = RequestMethod.GET)
-    public Iterable<BillingAccount> getAllBillingAcounts() {
-        return billingAccountService.getAllBillingAccounts();
+    public Iterable<BillingAccount> getBillingAccountsByUserId(@PathVariable(name = "id") Long id) {
+        return billingAccountService.getBillingAccountsByUserId(id);
     }
 
     @RequestMapping(method = RequestMethod.POST)

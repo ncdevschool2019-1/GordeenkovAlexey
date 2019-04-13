@@ -9,18 +9,15 @@ public class BillingAccount {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private String address;
-    private String username;
-    private String email;
+    private double balance;
 
-    public BillingAccount(String address, String username, String email) {
-        this.address = address;
-        this.username = username;
-        this.email = email;
-    }
+    @ManyToOne
+    @JoinColumn(name = "userId")
+    private User userByUserId;
 
-    public BillingAccount() {
 
+    public BillingAccount(double balance) {
+        this.balance = balance;
     }
 
     public long getId() {
@@ -31,54 +28,46 @@ public class BillingAccount {
         this.id = id;
     }
 
-    public String getAddress() {
-        return address;
+    public double getBalance() {
+        return balance;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setBalance(double balance) {
+        this.balance = balance;
     }
 
-    public String getUsername() {
-        return username;
+    public User getUserByUserId() {
+        return userByUserId;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserByUserId(User userByUserId) {
+        this.userByUserId = userByUserId;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        BillingAccount that = (BillingAccount) o;
-        return id == that.id &&
-                Objects.equals(address, that.address) &&
-                Objects.equals(username, that.username) &&
-                Objects.equals(email, that.email);
-    }
-
-    @Override
-    public int hashCode() {
-
-        return Objects.hash(id, address, username, email);
+    public BillingAccount() {
     }
 
     @Override
     public String toString() {
         return "BillingAccount{" +
-            "id=" + id +
-            ", address='" + address + '\'' +
-            ", username='" + username + '\'' +
-            ", email='" + email + '\'' +
-            '}';
+                "id=" + id +
+                ", balance=" + balance +
+                ", userByUserId=" + userByUserId +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof BillingAccount)) return false;
+        BillingAccount that = (BillingAccount) o;
+        return getId() == that.getId() &&
+                Double.compare(that.getBalance(), getBalance()) == 0 &&
+                getUserByUserId().equals(that.getUserByUserId());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getBalance(), getUserByUserId());
     }
 }

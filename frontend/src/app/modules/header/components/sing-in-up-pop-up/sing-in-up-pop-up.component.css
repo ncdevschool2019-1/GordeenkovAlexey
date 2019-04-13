@@ -13,3 +13,10 @@ button:hover {
   background-color: white;
   color: #16a086;
 }
+
+.close-button {
+  text-align: center;
+  padding: 0px;
+  width: 30px;
+  margin-left: auto;
+}

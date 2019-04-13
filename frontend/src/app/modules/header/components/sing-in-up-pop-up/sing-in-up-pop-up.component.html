@@ -3,6 +3,8 @@
     <!-- Modal content-->
     <div class="modal-content">
 
+      <button type="button" class="btn close-button" data-dismiss="modal">❌</button>
+
       <div *ngIf="singIn===true">
 
         <app-sing-in></app-sing-in>
@@ -14,8 +16,6 @@
         <app-sing-up></app-sing-up>
         <button type="button" class="btn btn-default float-right" (click)="singInClick()">SingIn</button>
       </div>
-
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 
 
     </div>

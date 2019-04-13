@@ -13,7 +13,7 @@ import {SubscriptionService} from "../../../../services/subscription.service";
 })
 export class CatalogComponent implements OnInit {
 
-  private catalog: Service[];
+  public catalog: Service[];
   private subscription: Subscription;
 
   constructor(private catalogService: CatalogService, private headerService: HeaderService, private subscriptionsService: SubscriptionService) {

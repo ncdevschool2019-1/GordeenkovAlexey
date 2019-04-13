@@ -45,7 +45,7 @@ public class BillingAccountServiceImpl implements BillingAccountService {
 
     @Override
     public Iterable<BillingAccount> getBillingAccountsByUserId(Long id) {
-        return null;// repository.findAllById();
+        return null;
     }
 
     @Override
