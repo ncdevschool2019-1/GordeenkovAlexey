@@ -4,16 +4,14 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "billing_account")
+@Table(name = "billingaccount")
 public class BillingAccount {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private double balance;
-
-    @ManyToOne
-    @JoinColumn(name = "userId")
-    private User userByUserId;
+    @Column(name = "user_id")
+    private int userId;
 
 
     public BillingAccount(double balance) {
@@ -36,13 +34,7 @@ public class BillingAccount {
         this.balance = balance;
     }
 
-    public User getUserByUserId() {
-        return userByUserId;
-    }
 
-    public void setUserByUserId(User userByUserId) {
-        this.userByUserId = userByUserId;
-    }
 
     public BillingAccount() {
     }
@@ -52,7 +44,6 @@ public class BillingAccount {
         return "BillingAccount{" +
                 "id=" + id +
                 ", balance=" + balance +
-                ", userByUserId=" + userByUserId +
                 '}';
     }
 
@@ -62,12 +53,11 @@ public class BillingAccount {
         if (!(o instanceof BillingAccount)) return false;
         BillingAccount that = (BillingAccount) o;
         return getId() == that.getId() &&
-                Double.compare(that.getBalance(), getBalance()) == 0 &&
-                getUserByUserId().equals(that.getUserByUserId());
+                Double.compare(that.getBalance(), getBalance()) == 0;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getBalance(), getUserByUserId());
+        return Objects.hash(getId(), getBalance());
     }
 }

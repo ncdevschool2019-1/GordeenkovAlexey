@@ -27,7 +27,7 @@ public class BillingAccountController {
 
     @RequestMapping(method = RequestMethod.POST)
     public BillingAccount saveBillingAccount(@RequestBody BillingAccount account) {
-        return billingAccountService.saveBillingAccount(account);
+        return billingAccountService.addBillingAccount(account);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)

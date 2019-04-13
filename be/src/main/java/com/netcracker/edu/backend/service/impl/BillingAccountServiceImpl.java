@@ -1,8 +1,10 @@
 package com.netcracker.edu.backend.service.impl;
 
 import com.netcracker.edu.backend.entity.BillingAccount;
+import com.netcracker.edu.backend.entity.User;
 import com.netcracker.edu.backend.repository.BillingAccountRepository;
 import com.netcracker.edu.backend.service.BillingAccountService;
+import com.netcracker.edu.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -18,20 +20,14 @@ public class BillingAccountServiceImpl implements BillingAccountService {
         this.repository = repository;
     }
 
-    @Override
-    public BillingAccount saveBillingAccount(BillingAccount account) {
-        return repository.save(account);
-    }
+    @Autowired
+    private UserService userService;
 
     @Override
     public Optional<BillingAccount> getBillingAccountById(Long id) {
         return repository.findById(id);
     }
 
-    @Override
-    public Iterable<BillingAccount> getAllBillingAccounts() {
-        return repository.findAll();
-    }
 
     @Override
     public void deleteBillingAccount(Long id) {
@@ -45,7 +41,7 @@ public class BillingAccountServiceImpl implements BillingAccountService {
 
     @Override
     public Iterable<BillingAccount> getBillingAccountsByUserId(Long id) {
-        return null;
+        return userService.getUserById(id).getBillingAccounts();
     }
 
     @Override

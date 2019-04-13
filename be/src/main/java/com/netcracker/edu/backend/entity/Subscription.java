@@ -12,6 +12,8 @@ public class Subscription {
     private int startDate;
     private int expireDate;
 
+    @Column(name = "user_id")
+    private int userId;
 
     @ManyToOne
     @JoinColumn(name = "statusId")
@@ -21,9 +23,7 @@ public class Subscription {
     @JoinColumn(name = "serviceId")
     private Service service;
 
-    @ManyToOne
-    @JoinColumn(name = "userId")
-    private User userByUserId;
+
 
     public Subscription() {
     }
@@ -33,7 +33,6 @@ public class Subscription {
         this.expireDate = expireDate;
         this.status = status;
         this.service = service;
-        this.userByUserId = userByUserId;
     }
 
     public Long getId() {
@@ -76,12 +75,16 @@ public class Subscription {
         this.service = service;
     }
 
-    public User getUserByUserId() {
-        return userByUserId;
-    }
-
-    public void setUserByUserId(User userByUserId) {
-        this.userByUserId = userByUserId;
+    @Override
+    public String toString() {
+        return "Subscription{" +
+                "id=" + id +
+                ", startDate=" + startDate +
+                ", expireDate=" + expireDate +
+                ", userId=" + userId +
+                ", status=" + status +
+                ", service=" + service +
+                '}';
     }
 
     @Override
@@ -91,26 +94,22 @@ public class Subscription {
         Subscription that = (Subscription) o;
         return getStartDate() == that.getStartDate() &&
                 getExpireDate() == that.getExpireDate() &&
+                getUserId() == that.getUserId() &&
                 Objects.equals(getId(), that.getId()) &&
                 Objects.equals(getStatus(), that.getStatus()) &&
-                Objects.equals(getService(), that.getService()) &&
-                Objects.equals(getUserByUserId(), that.getUserByUserId());
+                Objects.equals(getService(), that.getService());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getStartDate(), getExpireDate(), getStatus(), getService(), getUserByUserId());
+        return Objects.hash(getId(), getStartDate(), getExpireDate(), getUserId(), getStatus(), getService());
     }
 
-    @Override
-    public String toString() {
-        return "Subscription{" +
-                "id=" + id +
-                ", startDate=" + startDate +
-                ", expireDate=" + expireDate +
-                ", status=" + status +
-                ", service=" + service +
-                ", userByUserId=" + userByUserId +
-                '}';
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 }

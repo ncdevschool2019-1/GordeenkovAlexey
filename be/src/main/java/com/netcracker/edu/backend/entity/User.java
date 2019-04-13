@@ -12,6 +12,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @Column(name = "firstName")
     private String firstName;
     private String lastName;
     private String userName;
@@ -23,12 +24,26 @@ public class User {
     @JoinColumn(name = "roleId")
     private RoleId role;
 
-    @OneToMany(mappedBy = "userByUserId")
+    @OneToMany(mappedBy = "userId")
     private List<BillingAccount> billingAccounts;
 
-    @OneToMany(mappedBy = "userByUserId")
+    @OneToMany(mappedBy = "userId")
     private List<Subscription> subscriptions;
 
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", Email='" + Email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", role=" + role.getName() +
+                '}';
+    }
 
     public User() {
     }
@@ -43,6 +58,28 @@ public class User {
         this.role = role;
         this.billingAccounts = billingAccounts;
         this.subscriptions = subscriptions;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof User)) return false;
+        User user = (User) o;
+        return getId() == user.getId() &&
+                Objects.equals(getFirstName(), user.getFirstName()) &&
+                Objects.equals(getLastName(), user.getLastName()) &&
+                Objects.equals(getUserName(), user.getUserName()) &&
+                Objects.equals(getPassword(), user.getPassword()) &&
+                Objects.equals(getEmail(), user.getEmail()) &&
+                Objects.equals(getPhone(), user.getPhone()) &&
+                Objects.equals(getRole(), user.getRole()) &&
+                Objects.equals(getBillingAccounts(), user.getBillingAccounts()) &&
+                Objects.equals(getSubscriptions(), user.getSubscriptions());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getFirstName(), getLastName(), getUserName(), getPassword(), getEmail(), getPhone(), getRole(), getBillingAccounts(), getSubscriptions());
     }
 
     public long getId() {
@@ -123,43 +160,5 @@ public class User {
 
     public void setSubscriptions(List<Subscription> subscriptions) {
         this.subscriptions = subscriptions;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof User)) return false;
-        User user = (User) o;
-        return getId() == user.getId() &&
-                Objects.equals(getFirstName(), user.getFirstName()) &&
-                Objects.equals(getLastName(), user.getLastName()) &&
-                getUserName().equals(user.getUserName()) &&
-                getPassword().equals(user.getPassword()) &&
-                Objects.equals(getEmail(), user.getEmail()) &&
-                Objects.equals(getPhone(), user.getPhone()) &&
-                Objects.equals(getRole(), user.getRole()) &&
-                Objects.equals(getBillingAccounts(), user.getBillingAccounts()) &&
-                Objects.equals(getSubscriptions(), user.getSubscriptions());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getId(), getFirstName(), getLastName(), getUserName(), getPassword(), getEmail(), getPhone(), getRole(), getBillingAccounts(), getSubscriptions());
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", userName='" + userName + '\'' +
-                ", password='" + password + '\'' +
-                ", Email='" + Email + '\'' +
-                ", phone='" + phone + '\'' +
-                ", role=" + role +
-                ", billingAccounts=" + billingAccounts +
-                ", subscriptions=" + subscriptions +
-                '}';
     }
 }
