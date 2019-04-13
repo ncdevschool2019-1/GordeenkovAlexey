@@ -23,13 +23,13 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getUserByUserName(String userName) {
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.getForObject(backendServerUrl + "/api/users/" + userName, User.class);
+        return restTemplate.getForObject(backendServerUrl + "api/users/" + userName, User.class);
     }
 
     @Override
     public List<User> getUsers() {
         RestTemplate restTemplate = new RestTemplate();
-        User[] usersResponse = restTemplate.getForObject(backendServerUrl + "/api/users", User[].class);
+        User[] usersResponse = restTemplate.getForObject(backendServerUrl + "api/users", User[].class);
         return usersResponse == null ? Collections.emptyList() : Arrays.asList(usersResponse);
     }
 
@@ -37,7 +37,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User save(User user) {
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.postForEntity(backendServerUrl + "/api/users", user, User.class).getBody();
+        return restTemplate.postForEntity(backendServerUrl + "api/users", user, User.class).getBody();
     }
 
 

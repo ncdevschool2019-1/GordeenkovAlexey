@@ -4,7 +4,7 @@
   <ul>
     <li *ngFor="let acc of getBillingAccounts();index as i;">
       <p>Billing Account : id{{acc.id}}</p>
-      <p>Amount of money : ${{acc.money}}</p>
+      <p>Amount of money : ${{acc.balance}}</p>
 
 
       <form [formGroup]="addMoneyForms[i]" novalidate (ngSubmit)="addMoney(acc.id,i)">

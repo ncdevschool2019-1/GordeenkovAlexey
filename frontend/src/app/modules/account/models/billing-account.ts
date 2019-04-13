@@ -1,11 +1,11 @@
 export class BillingAccount {
   id: number;
-  money: number;
+  balance: number;
   userId: number;
 
-  constructor(id: number, money: number, userId: number) {
+  constructor(id: number, balance: number, userId: number) {
     this.id = id;
-    this.money = money;
+    this.balance = balance;
     this.userId = userId;
   }
 

@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class BillingAccountViewModel {
     private Long id;
-    private double money;
+    private double balance;
     private Long userId;
 
 
@@ -13,7 +13,7 @@ public class BillingAccountViewModel {
     public String toString() {
         return "BillingAccountViewModel{" +
                 "id=" + id +
-                ", money=" + money +
+                ", balance=" + balance +
                 ", userId=" + userId +
                 '}';
     }
@@ -26,12 +26,12 @@ public class BillingAccountViewModel {
         this.id = id;
     }
 
-    public double getMoney() {
-        return money;
+    public double getBalance() {
+        return balance;
     }
 
-    public void setMoney(double money) {
-        this.money = money;
+    public void setBalance(double balance) {
+        this.balance = balance;
     }
 
     public Long getUserId() {
@@ -44,13 +44,13 @@ public class BillingAccountViewModel {
 
     public BillingAccountViewModel(Long id, double money, Long userId) {
         this.id = id;
-        this.money = money;
+        this.balance = money;
         this.userId = userId;
     }
 
     public BillingAccountViewModel() {
         this.id = 1l;
-        this.money = 1l;
+        this.balance = 1l;
         this.userId = 1l;
     }
 }

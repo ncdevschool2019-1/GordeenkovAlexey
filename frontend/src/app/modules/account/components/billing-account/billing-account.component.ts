@@ -18,7 +18,7 @@ export class BillingAccountComponent implements OnInit, OnDestroy {
   addMoney(baId: number, indexOfForm: number) {
     let tmpBA = this.getBillingAccounts()[indexOfForm];
     this.subscriptions.push(
-      this.billingAccountService.addMoney(new BillingAccount(tmpBA.userId, tmpBA.money + this.addMoneyForms[indexOfForm].get("money").value, tmpBA.id))
+      this.billingAccountService.addMoney(new BillingAccount(tmpBA.userId, tmpBA.balance + this.addMoneyForms[indexOfForm].get("money").value, tmpBA.id))
         .subscribe(() => {
           this.billingAccountService.getBillingAccountsFromFapi();
         }))

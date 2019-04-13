@@ -21,25 +21,25 @@ public class BillingAccountDataServiceImpl implements BillingAccountDataService 
     @Override
     public List<BillingAccountViewModel> getBillingAccountsByUserId(Long id) {
         RestTemplate restTemplate = new RestTemplate();
-        BillingAccountViewModel[] billingAccountViewModelResponse = restTemplate.getForObject(backendServerUrl + "/api/billing-accounts/" + id.toString(), BillingAccountViewModel[].class);
+        BillingAccountViewModel[] billingAccountViewModelResponse = restTemplate.getForObject(backendServerUrl + "api/billing-accounts/" + id.toString(), BillingAccountViewModel[].class);
         return billingAccountViewModelResponse == null ? Collections.emptyList() : Arrays.asList(billingAccountViewModelResponse);
     }
 
     @Override
     public BillingAccountViewModel addBillingAccount(BillingAccountViewModel account) {
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.postForEntity(backendServerUrl + "/api/billing-accounts", account, BillingAccountViewModel.class).getBody();
+        return restTemplate.postForEntity(backendServerUrl + "api/billing-accounts", account, BillingAccountViewModel.class).getBody();
     }
 
     @Override
     public void addMoney(BillingAccountViewModel account, String id) {
           RestTemplate restTemplate = new RestTemplate();
-        restTemplate.put(backendServerUrl + "/api/billing-accounts" + id, account, BillingAccountViewModel.class);
+        restTemplate.put(backendServerUrl + "api/billing-accounts" + id, account, BillingAccountViewModel.class);
       }
 
     @Override
     public void deleteBillingAccount(Long id) {
         RestTemplate restTemplate = new RestTemplate();
-        restTemplate.delete(backendServerUrl + "/api/billing-accounts/" + id);
+        restTemplate.delete(backendServerUrl + "api/billing-accounts/" + id);
     }
 }

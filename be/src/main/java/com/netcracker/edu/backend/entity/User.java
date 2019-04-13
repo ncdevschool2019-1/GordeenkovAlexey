@@ -31,6 +31,7 @@ public class User {
     private List<Subscription> subscriptions;
 
 
+
     @Override
     public String toString() {
         return "User{" +
@@ -43,21 +44,6 @@ public class User {
                 ", phone='" + phone + '\'' +
                 ", role=" + role.getName() +
                 '}';
-    }
-
-    public User() {
-    }
-
-    public User(String firstName, String lastName, String userName, String password, String email, String phone, RoleId role, List<BillingAccount> billingAccounts, List<Subscription> subscriptions) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.userName = userName;
-        this.password = password;
-        Email = email;
-        this.phone = phone;
-        this.role = role;
-        this.billingAccounts = billingAccounts;
-        this.subscriptions = subscriptions;
     }
 
     @Override
@@ -160,5 +146,20 @@ public class User {
 
     public void setSubscriptions(List<Subscription> subscriptions) {
         this.subscriptions = subscriptions;
+    }
+
+    public User(String firstName, String lastName, String userName, String password, String email, String phone, RoleId role, List<BillingAccount> billingAccounts, List<Subscription> subscriptions) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.userName = userName;
+        this.password = password;
+        Email = email;
+        this.phone = phone;
+        this.role = role;
+        this.billingAccounts = billingAccounts;
+        this.subscriptions = subscriptions;
+    }
+
+    public User() {
     }
 }
