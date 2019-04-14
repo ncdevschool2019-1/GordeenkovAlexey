@@ -6,7 +6,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "roles")
-public class RoleId {
+public class Role {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,10 +14,10 @@ public class RoleId {
 
     private String name;
 
-    public RoleId() {
+    public Role() {
     }
 
-    public RoleId(String name) {
+    public Role(String name) {
         this.name = name;
     }
 
@@ -40,10 +40,10 @@ public class RoleId {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof RoleId)) return false;
-        RoleId roleId = (RoleId) o;
-        return getId() == roleId.getId() &&
-                Objects.equals(getName(), roleId.getName());
+        if (!(o instanceof Role)) return false;
+        Role role = (Role) o;
+        return getId() == role.getId() &&
+                Objects.equals(getName(), role.getName());
     }
 
     @Override
@@ -53,7 +53,7 @@ public class RoleId {
 
     @Override
     public String toString() {
-        return "RoleId{" +
+        return "Role{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';

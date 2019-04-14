@@ -22,7 +22,7 @@ public class User {
 
     @ManyToOne
     @JoinColumn(name = "roleId")
-    private RoleId role;
+    private Role role;
 
     @OneToMany(mappedBy = "userId")
     private List<BillingAccount> billingAccounts;
@@ -124,11 +124,11 @@ public class User {
         this.phone = phone;
     }
 
-    public RoleId getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(RoleId role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 
@@ -148,7 +148,7 @@ public class User {
         this.subscriptions = subscriptions;
     }
 
-    public User(String firstName, String lastName, String userName, String password, String email, String phone, RoleId role, List<BillingAccount> billingAccounts, List<Subscription> subscriptions) {
+    public User(String firstName, String lastName, String userName, String password, String email, String phone, Role role, List<BillingAccount> billingAccounts, List<Subscription> subscriptions) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.userName = userName;

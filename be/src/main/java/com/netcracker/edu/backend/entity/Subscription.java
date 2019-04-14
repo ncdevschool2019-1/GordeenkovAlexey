@@ -13,7 +13,7 @@ public class Subscription {
     private int expireDate;
 
     @Column(name = "user_id")
-    private int userId;
+    private Long userId;
 
     @ManyToOne
     @JoinColumn(name = "statusId")
@@ -105,11 +105,11 @@ public class Subscription {
         return Objects.hash(getId(), getStartDate(), getExpireDate(), getUserId(), getStatus(), getService());
     }
 
-    public int getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 }
