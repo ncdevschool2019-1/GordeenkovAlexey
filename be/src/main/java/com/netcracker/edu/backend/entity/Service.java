@@ -14,13 +14,9 @@ public class Service {
 
     private double cost;
     private String name;
+    private String type;
 
     public Service() {
-    }
-
-    public Service(double cost, String name) {
-        this.cost = cost;
-        this.name = name;
     }
 
     @Override
@@ -29,6 +25,7 @@ public class Service {
                 "id=" + id +
                 ", cost=" + cost +
                 ", name='" + name + '\'' +
+                ", type='" + type + '\'' +
                 '}';
     }
 
@@ -39,12 +36,13 @@ public class Service {
         Service service = (Service) o;
         return Double.compare(service.getCost(), getCost()) == 0 &&
                 Objects.equals(getId(), service.getId()) &&
-                Objects.equals(getName(), service.getName());
+                Objects.equals(getName(), service.getName()) &&
+                Objects.equals(getType(), service.getType());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getCost(), getName());
+        return Objects.hash(getId(), getCost(), getName(), getType());
     }
 
     public Long getId() {
@@ -69,5 +67,19 @@ public class Service {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public Service(double cost, String name, String type) {
+        this.cost = cost;
+        this.name = name;
+        this.type = type;
     }
 }

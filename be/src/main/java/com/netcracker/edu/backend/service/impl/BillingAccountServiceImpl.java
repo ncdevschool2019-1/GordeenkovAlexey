@@ -7,10 +7,11 @@ import com.netcracker.edu.backend.service.BillingAccountService;
 import com.netcracker.edu.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
-@Component
+@Service
 public class BillingAccountServiceImpl implements BillingAccountService {
 
     private BillingAccountRepository repository;
