@@ -5,3 +5,7 @@
   flex-direction: column;
   /* display: none;*/
 }
+
+a {
+  cursor: pointer;
+}

@@ -17,7 +17,7 @@ public class SubscriptionController {
         return subscriptionService.getSubscriptionsByUserId(id);
     }
 
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(value = "/{id}", method = RequestMethod.POST)
     public Subscription saveSubscription(@RequestBody Subscription subscription) {
         return subscriptionService.addSubscription(subscription);
     }

@@ -29,7 +29,7 @@ export class CatalogComponent implements OnInit {
       .subscribe(catalog => this.catalog = catalog);
   }
 
-  subscribe(serv: Service) {
-    this.subscriptionsService.subscribe(serv);
+  subscribe(service: Service) {
+    this.subscriptionsService.subscribe(service);
   }
 }

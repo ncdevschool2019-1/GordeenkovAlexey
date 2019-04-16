@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
-import {Subscription} from "../modules/account/models/subscription";
+import {Sub} from "../modules/account/models/sub";
 
 import {HttpClient} from "@angular/common/http";
-import {Observable, of} from 'rxjs';
+import {Observable, of, Subscription} from 'rxjs';
 import {UsersService} from "./users.service";
 import {Service} from "../modules/catalog/models/service";
 
@@ -11,20 +11,33 @@ import {Service} from "../modules/catalog/models/service";
 })
 export class SubscriptionService {
 
+  private subscription: Subscription;
+
+  private subscriptions: Sub[] = [];
+
+  geSubscriptions(): Sub[] {
+    return this.subscriptions;
+  }
+
 
   private fapiServerUrl: string = 'http://localhost:8081/api/subscriptions/';
 
-  getSubscriptions(): Observable<Subscription[]> {
-    return this.http.get<Subscription[]>(this.fapiServerUrl + this.usersService.getActiveUser().id)
+  getSubscriptionsFromFapi() {
+    if (this.subscription) this.subscription.unsubscribe();
+    this.subscription = this.http.get<Sub[]>(this.fapiServerUrl + this.usersService.getActiveUser().id)
+      .subscribe(subscriptions => this.subscriptions = subscriptions);
   }
 
-  subscribe(serv: Service): Observable<Subscription> {
-    let sub: Subscription = new Subscription(-1, this.usersService.getActiveUser().id, serv.name, serv.cost, "");
-    return this.http.post<Subscription>(this.fapiServerUrl + this.usersService.getActiveUser().id, sub);
+  subscribe(service: Service): Observable<Sub> {
+    let sub: Sub = new Sub(null, this.usersService.getActiveUser().id, null, service);
+    console.log(sub);
+    return this.http.post<Sub>(this.fapiServerUrl + this.usersService.getActiveUser().id, sub);
   }
 
+  deleteSubscription(id: number) {
+    this.http.delete(this.fapiServerUrl + id);
+  }
   constructor(private usersService: UsersService, private http: HttpClient) {
 
   }
-
 }

@@ -2,6 +2,7 @@ package com.netcracker.edu.backend.service.impl;
 
 import com.netcracker.edu.backend.entity.Subscription;
 import com.netcracker.edu.backend.repository.ServiceRepository;
+import com.netcracker.edu.backend.repository.StatusRepository;
 import com.netcracker.edu.backend.repository.SubscriptionRepository;
 import com.netcracker.edu.backend.service.SubscriptionService;
 import com.netcracker.edu.backend.service.UserService;
@@ -17,10 +18,14 @@ public class SubscriptionServiceImpl implements SubscriptionService {
     private UserService userService;
 
     @Autowired
-    private SubscriptionRepository subscriptionRepository;
+    private StatusRepository statusRepository;
 
     @Autowired
-    ServiceRepository serviceRepository;
+    private ServiceRepository serviceRepository;
+
+    @Autowired
+    private SubscriptionRepository subscriptionRepository;
+
 
     @Override
     public List<Subscription> getSubscriptionsByUserId(Long id) {
@@ -29,19 +34,10 @@ public class SubscriptionServiceImpl implements SubscriptionService {
 
     @Override
     public Subscription addSubscription(Subscription subscription) {
+        subscription.setStatus(statusRepository.findByName("Active"));
         return subscriptionRepository.save(subscription);
     }
 
-    @Override
-    public Subscription addSubscription(Long userId, Long serviceId) {
-        Subscription subscription = new Subscription(
-        );
-        subscription.setUserId(userId);
-        subscription.setService(serviceRepository.findById(serviceId).get());
-
-
-        return null;
-    }
 
     @Override
     public void deleteSubscription(Long id) {

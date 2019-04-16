@@ -11,6 +11,7 @@ import {UserInfoComponent} from "./components/user-info/user-info.component";
 import {UsersListComponent} from "./components/users-list/users-list.component";
 import {UsersService} from "../../services/users.service";
 import {SubscriptionService} from "../../services/subscription.service";
+import {BillingAccountService} from "../../services/billing-account.service";
 
 @NgModule({
   declarations: [
@@ -30,7 +31,7 @@ import {SubscriptionService} from "../../services/subscription.service";
 
   ],
 
-  providers: [UsersService, SubscriptionService],
+  providers: [UsersService, SubscriptionService, BillingAccountService],
   exports: [
     AddBillingAccountComponent,
     BillingAccountComponent,

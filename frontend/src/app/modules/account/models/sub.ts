@@ -1,10 +1,9 @@
 import {Status} from "./status";
 import {Service} from "../../catalog/models/service";
 
-export class Subscription {
+export class Sub {
   private _id: number;
   private _userId: number;
-  private _cost: number;
   private _status: Status;
   private _service: Service;
 
@@ -24,13 +23,6 @@ export class Subscription {
     this._userId = value;
   }
 
-  get cost(): number {
-    return this._cost;
-  }
-
-  set cost(value: number) {
-    this._cost = value;
-  }
 
   get status(): Status {
     return this._status;
@@ -48,10 +40,9 @@ export class Subscription {
     this._service = value;
   }
 
-  constructor(id: number, userId: number, cost: number, status: Status, service: Service) {
+  constructor(id: number, userId: number, status: Status, service: Service) {
     this._id = id;
     this._userId = userId;
-    this._cost = cost;
     this._status = status;
     this._service = service;
   }

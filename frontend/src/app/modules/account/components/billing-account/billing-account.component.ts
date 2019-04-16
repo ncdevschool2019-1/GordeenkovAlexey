@@ -3,7 +3,6 @@ import {BillingAccount} from "../../models/billing-account";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {BillingAccountService} from "../../../../services/billing-account.service";
 import {Subscription} from "rxjs";
-import {forEach} from "@angular/router/src/utils/collection";
 
 @Component({
   selector: 'app-billing-account',
@@ -18,7 +17,7 @@ export class BillingAccountComponent implements OnInit, OnDestroy {
   addMoney(baId: number, indexOfForm: number) {
     let tmpBA = this.getBillingAccounts()[indexOfForm];
     this.subscriptions.push(
-      this.billingAccountService.addMoney(new BillingAccount(tmpBA.userId, tmpBA.balance + this.addMoneyForms[indexOfForm].get("money").value, tmpBA.id))
+      this.billingAccountService.addMoney(new BillingAccount(tmpBA.id, tmpBA.balance + Number(this.addMoneyForms[indexOfForm].get("money").value), tmpBA.userId))
         .subscribe(() => {
           this.billingAccountService.getBillingAccountsFromFapi();
         }))
@@ -42,6 +41,12 @@ export class BillingAccountComponent implements OnInit, OnDestroy {
       );
     }
   }
+
+  deleteBillingAccount(id: number) {
+    this.billingAccountService.deleteBillingAccount(id);
+    this.billingAccountService.getBillingAccountsFromFapi();
+  }
+
   constructor(private billingAccountService: BillingAccountService) {
   }
 

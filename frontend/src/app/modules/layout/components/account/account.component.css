@@ -29,3 +29,8 @@
 footer {
   margin-top: auto;
 }
+
+.add_billing_account_button {
+  margin-left: auto;
+  margin-right: auto;
+}

@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 
 import {Observable, of, Subscription} from 'rxjs';
 import {User} from "../modules/account/models/user";
-import {USERS} from "../modules/account/models/mock-users";
 import {HttpClient} from "@angular/common/http";
 
 
@@ -16,7 +15,6 @@ export class UsersService {
   private subscriptions: Subscription[] = [];
 
   getUsersFromFapi() {
-    console.log("usersfromfapi");
 
     this.subscriptions.push(this.http.get<User[]>('http://localhost:8081/api/users')
       .subscribe(users => this.users = users));

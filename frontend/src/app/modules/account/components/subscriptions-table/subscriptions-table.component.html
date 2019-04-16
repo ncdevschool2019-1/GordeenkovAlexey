@@ -4,13 +4,17 @@
     <th>Service</th>
     <th>Cost</th>
     <th>Status</th>
+    <th>Delete</th>
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let sub of subscriptions">
+  <tr *ngFor="let sub of getSubscriptions()">
     <td>{{sub.service.name}}</td>
     <td>${{sub.service.cost}}/day</td>
     <td>{{sub.status.name}}</td>
+    <td>
+      <button type="button" class="btn close-button" (click)="deleteSubscription(sub.id)">❌</button>
+    </td>
   </tr>
   </tbody>
 </table>

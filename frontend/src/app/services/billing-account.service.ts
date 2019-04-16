@@ -33,6 +33,9 @@ export class BillingAccountService {
     return this.http.put<BillingAccount>(this.fapiServerUrl + account.id, account);
   }
 
+  deleteBillingAccount(id: number) {
+    this.http.delete(this.fapiServerUrl + id);
+  }
 
   getBillingAccounts(): BillingAccount[] {
     return this.billingAccounts;

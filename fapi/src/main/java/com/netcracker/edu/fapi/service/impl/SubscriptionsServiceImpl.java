@@ -18,20 +18,20 @@ public class SubscriptionsServiceImpl implements SubscriptionsService {
 
 
     @Override
-    public List<SubscriptionViewModel> getSubscriptions(int userId) {
+    public List<SubscriptionViewModel> getSubscriptions(Long userId) {
         RestTemplate restTemplate = new RestTemplate();
         SubscriptionViewModel[] subscriptionViewModelsResponse = restTemplate.getForObject(backendServerUrl + "api/subscriptions/" + userId, SubscriptionViewModel[].class);
         return subscriptionViewModelsResponse == null ? Collections.emptyList() : Arrays.asList(subscriptionViewModelsResponse);
     }
 
     @Override
-    public SubscriptionViewModel addSubscription(int userId, SubscriptionViewModel subscription) {
+    public SubscriptionViewModel addSubscription(Long userId, SubscriptionViewModel subscription) {
         RestTemplate restTemplate = new RestTemplate();
         return restTemplate.postForEntity(backendServerUrl + "api/subscriptions/" + userId, subscription, SubscriptionViewModel.class).getBody();
     }
 
     @Override
-    public void deleteSubscription(int id) {
+    public void deleteSubscription(Long id) {
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.delete(backendServerUrl + "api/subscriptions/" + id);
     }

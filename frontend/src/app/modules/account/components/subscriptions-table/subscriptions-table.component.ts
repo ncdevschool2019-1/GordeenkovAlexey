@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Subscription} from "../../models/subscription";
+import {Sub} from "../../models/sub";
 import {SubscriptionService} from "../../../../services/subscription.service";
 
 @Component({
@@ -9,20 +9,21 @@ import {SubscriptionService} from "../../../../services/subscription.service";
 })
 export class SubscriptionsTableComponent implements OnInit {
 
-  subscriptions: Subscription[];
 
   constructor(private subscriptionService: SubscriptionService) {
   }
 
-  getSubscriptions(): Subscription[] {
-
-    this.subscriptionService.getSubscriptions()
-      .subscribe(subscriptions => this.subscriptions = subscriptions);
-    return this.subscriptions;
+  getSubscriptions(): Sub[] {
+    return this.subscriptionService.geSubscriptions();
   }
 
   ngOnInit() {
     this.getSubscriptions();
+  }
+
+  deleteSubscription(id: number) {
+    this.subscriptionService.deleteSubscription(id);
+    this.subscriptionService.getSubscriptionsFromFapi();
   }
 
 }

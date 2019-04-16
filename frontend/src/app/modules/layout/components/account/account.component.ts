@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {UsersService} from "../../../../services/users.service";
+import {SubscriptionService} from "../../../../services/subscription.service";
 
 @Component({
   selector: 'app-account',
@@ -8,11 +9,12 @@ import {UsersService} from "../../../../services/users.service";
 })
 export class AccountComponent implements OnInit {
 
-  constructor(private usersService: UsersService) {
+  constructor(private usersService: UsersService, private subscriptionsService: SubscriptionService) {
   }
 
   ngOnInit() {
     this.usersService.getUsersFromFapi();
+    this.subscriptionsService.getSubscriptionsFromFapi();
   }
 
 }

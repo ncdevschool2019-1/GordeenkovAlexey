@@ -9,8 +9,6 @@ public interface SubscriptionService {
 
     Subscription addSubscription(Subscription subscription);
 
-    Subscription addSubscription(Long userId, Long serviceId);
-
     void deleteSubscription(Long id);
 
     Subscription changeSubscriptionStatus(Subscription subscription);

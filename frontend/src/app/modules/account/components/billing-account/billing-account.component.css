@@ -1,3 +1,15 @@
 #billingAccount {
   /*margin-top: 30%;*/
 }
+
+.close_button_container {
+  display: flex;
+}
+
+.close-button {
+  margin-left: auto;
+}
+
+li {
+  margin-bottom: 60px;
+}
