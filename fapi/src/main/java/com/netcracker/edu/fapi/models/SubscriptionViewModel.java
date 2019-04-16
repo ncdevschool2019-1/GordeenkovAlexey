@@ -2,75 +2,81 @@ package com.netcracker.edu.fapi.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import java.util.Objects;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class SubscriptionViewModel {
-    private int id;
-    private int userId;
-    private String serviceName;
-    private double cost;
-    private String status;
-
-    public SubscriptionViewModel(int id) {
-        this.id = id;
-    }
+    private Long id;
+    private Long userId;
+    private Status status;
+    private Service service;
 
     @Override
     public String toString() {
         return "SubscriptionViewModel{" +
                 "id=" + id +
                 ", userId=" + userId +
-                ", serviceName='" + serviceName + '\'' +
-                ", cost=" + cost +
-                ", status='" + status + '\'' +
+                ", status=" + status +
+                ", service=" + service +
                 '}';
     }
 
-    public SubscriptionViewModel(int id, int userId, String serviceName, double cost, String status) {
-        this.id = id;
-        this.userId = userId;
-        this.serviceName = serviceName;
-        this.cost = cost;
-        this.status = status;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof SubscriptionViewModel)) return false;
+        SubscriptionViewModel that = (SubscriptionViewModel) o;
+        return Objects.equals(getId(), that.getId()) &&
+                Objects.equals(getUserId(), that.getUserId()) &&
+                Objects.equals(getStatus(), that.getStatus()) &&
+                Objects.equals(getService(), that.getService());
     }
 
-    public int getId() {
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getUserId(), getStatus(), getService());
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public int getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
-    public String getServiceName() {
-        return serviceName;
-    }
-
-    public void setServiceName(String serviceName) {
-        this.serviceName = serviceName;
-    }
-
-    public double getCost() {
-        return cost;
-    }
-
-    public void setCost(double cost) {
-        this.cost = cost;
-    }
-
-    public String getStatus() {
+    public Status getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Status status) {
         this.status = status;
+    }
+
+    public Service getService() {
+        return service;
+    }
+
+    public void setService(Service service) {
+        this.service = service;
+    }
+
+    public SubscriptionViewModel(Long id, Long userId, Status status, Service service) {
+        this.id = id;
+        this.userId = userId;
+        this.status = status;
+        this.service = service;
+    }
+
+    public SubscriptionViewModel() {
     }
 }
 

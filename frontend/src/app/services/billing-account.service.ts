@@ -3,7 +3,6 @@ import {Observable, of, Subscription} from "rxjs";
 import {BillingAccount} from "../modules/account/models/billing-account";
 import {HttpClient} from "@angular/common/http";
 import {UsersService} from "./users.service";
-import {BILLINGACCOUNTS} from "../modules/account/models/mock-billing-accounts";
 
 @Injectable({
   providedIn: 'root'
@@ -37,7 +36,6 @@ export class BillingAccountService {
 
   getBillingAccounts(): BillingAccount[] {
     return this.billingAccounts;
-    //  return BILLINGACCOUNTS;
   }
 
 }

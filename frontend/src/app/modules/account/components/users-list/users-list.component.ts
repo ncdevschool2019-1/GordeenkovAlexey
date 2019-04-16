@@ -10,28 +10,20 @@ import {BillingAccountService} from "../../../../services/billing-account.servic
 })
 export class UsersListComponent implements OnInit {
 
-  users: User[];
+
 
   constructor(private usersService: UsersService, private billingAccount: BillingAccountService) {
   }
 
   ngOnInit() {
-    this.getUsers();
   }
 
-  getUsers() {
-    this.usersService.getUsers()
-      .subscribe(users => this.users = users);
+  getUsers(): User[] {
+    return this.usersService.getUsers();
   }
 
   getActiveUser(): User {
-    if (this.usersService.getActiveUser() != undefined) {
-      return this.usersService.getActiveUser();
-    } else {
-      this.usersService.setActiveUser(this.users[0]);
-      return this.users[0];
-    }
-
+    return this.usersService.getActiveUser();
   }
 
   onSelect(user: User) {

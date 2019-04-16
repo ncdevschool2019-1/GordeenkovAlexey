@@ -1,16 +1,10 @@
-package com.netcracker.edu.backend.entity;
+package com.netcracker.edu.fapi.models;
 
-import javax.persistence.*;
 import java.util.Objects;
 
-@Entity
-@Table(name = "statuses")
 public class Status {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private short id;
-
-    private String name;
+    Long id;
+    String name;
 
     @Override
     public String toString() {
@@ -25,7 +19,7 @@ public class Status {
         if (this == o) return true;
         if (!(o instanceof Status)) return false;
         Status status = (Status) o;
-        return getId() == status.getId() &&
+        return Objects.equals(getId(), status.getId()) &&
                 Objects.equals(getName(), status.getName());
     }
 
@@ -34,11 +28,11 @@ public class Status {
         return Objects.hash(getId(), getName());
     }
 
-    public short getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(short id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -50,7 +44,8 @@ public class Status {
         this.name = name;
     }
 
-    public Status(String name) {
+    public Status(Long id, String name) {
+        this.id = id;
         this.name = name;
     }
 

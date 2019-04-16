@@ -23,7 +23,13 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getUserByUserName(String userName) {
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.getForObject(backendServerUrl + "api/users/" + userName, User.class);
+        return restTemplate.getForObject(backendServerUrl + "api/users/username/" + userName, User.class);
+    }
+
+    @Override
+    public User getUserById(Long id) {
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.getForObject(backendServerUrl + "api/users/id/" + id, User.class);
     }
 
     @Override

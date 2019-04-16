@@ -1,7 +1,8 @@
 <div class="content">
   <div *ngFor="let service of catalog">
-      <img src="{{service.img}}">
-      <p>
+    <img src="../../../../../../../resources/{{service.name.toLowerCase().replace(' ','')}}.png">
+
+    <p>
         {{service.text}}
       </p>
       <div>

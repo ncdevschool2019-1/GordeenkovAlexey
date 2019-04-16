@@ -20,11 +20,15 @@ public class UserController {
         return ResponseEntity.ok(userService.getUsers());
     }
 
-    @RequestMapping(value = "/{userName}", method = RequestMethod.GET)
-    public ResponseEntity<User> getUserByUserId(@PathVariable String userName) {
+    @RequestMapping(value = "/username/{userName}", method = RequestMethod.GET)
+    public ResponseEntity<User> getUserByUserName(@PathVariable String userName) {
         return ResponseEntity.ok(userService.getUserByUserName(userName));
     }
 
+    @RequestMapping(value = "/id/{id}", method = RequestMethod.GET)
+    public ResponseEntity<User> getUserByUserId(@PathVariable String id) {
+        return ResponseEntity.ok(userService.getUserById(Long.valueOf(id)));
+    }
 
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<User> addUser(@RequestBody User user /*todo server validation*/) {

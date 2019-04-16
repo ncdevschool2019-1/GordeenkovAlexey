@@ -18,17 +18,8 @@ public class CatalogController {
     @Autowired
     private CatalogService catalogService;
 
-    /*   @RequestMapping(value = "/{type}",method = RequestMethod.GET)
+    @RequestMapping(value = "/{type}", method = RequestMethod.GET)
        public ResponseEntity<List<CatalogViewModel>> getCatalog(@PathVariable String type) {
            return ResponseEntity.ok(catalogService.getCatalog(type));
        }
-       */
-    @RequestMapping(value = "/{type}", method = RequestMethod.GET)
-    public List<CatalogViewModel> getCatalog(@PathVariable String type) {
-        List<CatalogViewModel> list = new ArrayList<>();
-        list.add(new CatalogViewModel(type));
-        return list;
-    }
-
-
 }

@@ -16,11 +16,11 @@ public class Subscription {
     private Long userId;
 
     @ManyToOne
-    @JoinColumn(name = "statusId")
+    @JoinColumn(name = "status_id")
     private Status status;
 
     @ManyToOne
-    @JoinColumn(name = "serviceId")
+    @JoinColumn(name = "service_id")
     private Service service;
 
 

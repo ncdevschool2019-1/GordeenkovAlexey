@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 
-import {Observable, of} from 'rxjs';
+import {Observable, of, Subscription} from 'rxjs';
 import {User} from "../modules/account/models/user";
 import {USERS} from "../modules/account/models/mock-users";
 import {HttpClient} from "@angular/common/http";
@@ -12,9 +12,23 @@ import {HttpClient} from "@angular/common/http";
 export class UsersService {
 
   private activeUser: User;
+  private users: User[] = [];
+  private subscriptions: Subscription[] = [];
 
-  getUsers(): Observable<User[]> {
-    return this.http.get<User[]>('http://localhost:8081/api/users')
+  getUsersFromFapi() {
+    console.log("usersfromfapi");
+
+    this.subscriptions.push(this.http.get<User[]>('http://localhost:8081/api/users')
+      .subscribe(users => this.users = users));
+    if (this.activeUser === undefined) {
+      this.subscriptions.push(this.http.get<User[]>('http://localhost:8081/api/users')
+        .subscribe(users => this.activeUser = users[0]));
+
+    }
+  }
+
+  getUsers(): User[] {
+    return this.users;
   }
 
   setActiveUser(user: User) {
@@ -22,11 +36,11 @@ export class UsersService {
   }
 
   getActiveUser(): User {
+
     return this.activeUser;
   }
 
   constructor(private http: HttpClient) {
-    this.activeUser = USERS[0];
   }
 
 }

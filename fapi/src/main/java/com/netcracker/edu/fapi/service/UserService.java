@@ -7,6 +7,8 @@ public interface UserService {
 
     User getUserByUserName(String userName);
 
+    User getUserById(Long id);
+
     List<User> getUsers();
 
     User save(User user);
