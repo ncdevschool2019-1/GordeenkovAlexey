@@ -43,8 +43,9 @@ export class BillingAccountComponent implements OnInit, OnDestroy {
   }
 
   deleteBillingAccount(id: number) {
-    this.billingAccountService.deleteBillingAccount(id);
-    this.billingAccountService.getBillingAccountsFromFapi();
+    this.subscriptions.push(
+      this.billingAccountService.deleteBillingAccount(id).subscribe(value =>
+        this.billingAccountService.getBillingAccountsFromFapi()));
   }
 
   constructor(private billingAccountService: BillingAccountService) {

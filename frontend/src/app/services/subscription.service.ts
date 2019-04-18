@@ -28,16 +28,18 @@ export class SubscriptionService {
       .subscribe(subscriptions => this.subscriptions = subscriptions);
   }
 
-  subscribe(service: Service): Observable<Sub> {
+  subscribeToService(service: Service): Observable<Sub> {
     let sub: Sub = new Sub(null, this.usersService.getActiveUser().id, null, service);
     console.log(sub);
-    return this.http.post<Sub>(this.fapiServerUrl + this.usersService.getActiveUser().id, sub);
+    return this.http.post<Sub>(this.fapiServerUrl, sub);
+
   }
 
-  deleteSubscription(id: number) {
-    this.http.delete(this.fapiServerUrl + id);
+  deleteSubscription(id: number): Observable<void> {
+    return this.http.delete<void>(this.fapiServerUrl + id);
   }
-  constructor(private usersService: UsersService, private http: HttpClient) {
+
+  constructor(private http: HttpClient, private usersService: UsersService) {
 
   }
 }

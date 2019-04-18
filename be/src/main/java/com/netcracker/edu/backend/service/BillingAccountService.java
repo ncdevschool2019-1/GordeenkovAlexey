@@ -15,4 +15,8 @@ public interface BillingAccountService {
     Iterable<BillingAccount> getBillingAccountsByUserId(Long id);
 
     BillingAccount addMoney(BillingAccount account);
+
+    double getTotalSum(Long id);
+
+    void withdraw(Long id, double amount);
 }

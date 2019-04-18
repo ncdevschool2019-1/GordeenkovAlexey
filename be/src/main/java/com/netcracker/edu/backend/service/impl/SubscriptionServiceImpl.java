@@ -1,5 +1,6 @@
 package com.netcracker.edu.backend.service.impl;
 
+import com.netcracker.edu.backend.entity.Status;
 import com.netcracker.edu.backend.entity.Subscription;
 import com.netcracker.edu.backend.repository.ServiceRepository;
 import com.netcracker.edu.backend.repository.StatusRepository;
@@ -49,5 +50,10 @@ public class SubscriptionServiceImpl implements SubscriptionService {
         Subscription tmp = subscriptionRepository.findById(subscription.getId()).get();
         tmp.setStatus(subscription.getStatus());
         return subscriptionRepository.save(tmp);
+    }
+
+
+    public Subscription findTheNearestExpiringSubscription() {
+        return subscriptionRepository.findFirstByExpireDate(new Status("Active"));
     }
 }

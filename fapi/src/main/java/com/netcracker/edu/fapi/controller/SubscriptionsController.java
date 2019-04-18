@@ -21,10 +21,10 @@ public class SubscriptionsController {
         return ResponseEntity.ok(subscriptionsService.getSubscriptions(Long.valueOf(id)));
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.POST)
-    public ResponseEntity<SubscriptionViewModel> addSubscription(@PathVariable String id, @RequestBody SubscriptionViewModel subscription) {
+    @RequestMapping(method = RequestMethod.POST)
+    public ResponseEntity<SubscriptionViewModel> addSubscription(@RequestBody SubscriptionViewModel subscription) {
         if (subscription != null) {
-            return ResponseEntity.ok(subscriptionsService.addSubscription(Long.valueOf(id), subscription));
+            return ResponseEntity.ok(subscriptionsService.addSubscription(subscription));
         }
         return ResponseEntity.badRequest().build();
     }

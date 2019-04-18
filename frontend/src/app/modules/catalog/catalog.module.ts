@@ -6,6 +6,7 @@ import {FormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
 import {CatalogComponent} from "./components/catalog/catalog.component";
 import {CatalogService} from "../../services/catalog.service";
+import {SubscriptionService} from "../../services/subscription.service";
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import {CatalogService} from "../../services/catalog.service";
 
   ],
 
-  providers: [CatalogService],
+  providers: [CatalogService, SubscriptionService],
   exports: [CatalogComponent]
 })
 export class CatalogModule {

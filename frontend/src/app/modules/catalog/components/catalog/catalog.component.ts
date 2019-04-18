@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {CatalogService} from "../../../../services/catalog.service";
 import {Service} from "../../models/service";
 import {HeaderService} from "../../../../services/header.service";
@@ -11,10 +11,10 @@ import {SubscriptionService} from "../../../../services/subscription.service";
   templateUrl: './catalog.component.html',
   styleUrls: ['./catalog.component.css']
 })
-export class CatalogComponent implements OnInit {
+export class CatalogComponent implements OnInit, OnDestroy {
 
   public catalog: Service[];
-  private subscription: Subscription;
+  private subscriptions: Subscription[] = [];
 
   constructor(private catalogService: CatalogService, private headerService: HeaderService, private subscriptionsService: SubscriptionService) {
   }
@@ -24,12 +24,17 @@ export class CatalogComponent implements OnInit {
   }
 
   getCatalog() {
-    if (this.subscription) this.subscription.unsubscribe();
-    this.catalogService.getCatalog(this.headerService.getSelectedLink().name)
-      .subscribe(catalog => this.catalog = catalog);
+    this.subscriptions.push(this.catalogService.getCatalog(this.headerService.getSelectedLink().name)
+      .subscribe(catalog => this.catalog = catalog));
   }
 
-  subscribe(service: Service) {
-    this.subscriptionsService.subscribe(service);
+  subscribeToService(service: Service) {
+    this.subscriptions.push(
+      this.subscriptionsService.subscribeToService(service).subscribe(value =>
+        this.subscriptionsService.getSubscriptionsFromFapi()));
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(s => s.unsubscribe());
   }
 }

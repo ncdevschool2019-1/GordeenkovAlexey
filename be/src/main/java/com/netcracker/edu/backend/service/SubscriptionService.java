@@ -12,4 +12,6 @@ public interface SubscriptionService {
     void deleteSubscription(Long id);
 
     Subscription changeSubscriptionStatus(Subscription subscription);
+
+    Subscription findTheNearestExpiringSubscription();
 }

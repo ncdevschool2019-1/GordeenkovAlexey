@@ -1,13 +1,13 @@
 <div class="content">
   <div *ngFor="let service of catalog">
-    <img src="../../../../../../../resources/{{service.name.toLowerCase().replace(' ','')}}.png">
+    <img src="../../../../../assets/images/{{service.name.toLowerCase().replace(' ','')}}.png">
 
     <p>
         {{service.text}}
       </p>
       <div>
         <p>${{service.cost}}/day</p>
-        <button (click)="subscribe(service)">SUBSCRIBE</button>
+        <button (click)="subscribeToService(service)">SUBSCRIBE</button>
       </div>
     </div>
   </div>

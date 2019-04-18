@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -56,5 +57,24 @@ public class BillingAccountServiceImpl implements BillingAccountService {
             }
         }
         return null;
+    }
+
+    @Override
+    public double getTotalSum(Long id) {
+        return repository.getBalanceByUserId(id.toString());
+    }
+
+    @Override
+    public void withdraw(Long id, double amount) {
+        Iterable<BillingAccount> accounts = repository.findAllByUserId(id);
+        for (BillingAccount account : accounts) {
+            if (amount == 0) break;
+            if (account.getBalance() >= amount) {
+                account.withdraw(amount);
+            } else {
+                amount -= account.getBalance();
+                account.setBalance(0);
+            }
+        }
     }
 }

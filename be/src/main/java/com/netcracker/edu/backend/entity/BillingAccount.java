@@ -14,6 +14,13 @@ public class BillingAccount {
     private int userId;
 
 
+    public void withdraw(double amount) {
+        if (balance >= amount) {
+            balance -= amount;
+        }
+    }
+
+
     public int getUserId() {
         return userId;
     }
