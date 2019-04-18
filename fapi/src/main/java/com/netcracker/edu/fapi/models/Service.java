@@ -3,18 +3,21 @@ package com.netcracker.edu.fapi.models;
 import java.util.Objects;
 
 public class Service {
-    Long id;
-    String name;
-    int expireDate;
-    double cost;
+    private Long id;
+
+    private Double cost;
+    private String name;
+    private String type;
+    private String text;
 
     @Override
     public String toString() {
         return "Service{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
-                ", expireDate=" + expireDate +
                 ", cost=" + cost +
+                ", name='" + name + '\'' +
+                ", type='" + type + '\'' +
+                ", text='" + text + '\'' +
                 '}';
     }
 
@@ -23,15 +26,16 @@ public class Service {
         if (this == o) return true;
         if (!(o instanceof Service)) return false;
         Service service = (Service) o;
-        return getExpireDate() == service.getExpireDate() &&
-                Double.compare(service.getCost(), getCost()) == 0 &&
-                Objects.equals(getId(), service.getId()) &&
-                Objects.equals(getName(), service.getName());
+        return Objects.equals(getId(), service.getId()) &&
+                Objects.equals(getCost(), service.getCost()) &&
+                Objects.equals(getName(), service.getName()) &&
+                Objects.equals(getType(), service.getType()) &&
+                Objects.equals(getText(), service.getText());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getName(), getExpireDate(), getCost());
+        return Objects.hash(getId(), getCost(), getName(), getType(), getText());
     }
 
     public Long getId() {
@@ -42,6 +46,14 @@ public class Service {
         this.id = id;
     }
 
+    public Double getCost() {
+        return cost;
+    }
+
+    public void setCost(Double cost) {
+        this.cost = cost;
+    }
+
     public String getName() {
         return name;
     }
@@ -50,27 +62,28 @@ public class Service {
         this.name = name;
     }
 
-    public int getExpireDate() {
-        return expireDate;
+    public String getType() {
+        return type;
     }
 
-    public void setExpireDate(int expireDate) {
-        this.expireDate = expireDate;
+    public void setType(String type) {
+        this.type = type;
     }
 
-    public double getCost() {
-        return cost;
+    public String getText() {
+        return text;
     }
 
-    public void setCost(double cost) {
-        this.cost = cost;
+    public void setText(String text) {
+        this.text = text;
     }
 
-    public Service(Long id, String name, int expireDate, double cost) {
+    public Service(Long id, Double cost, String name, String type, String text) {
         this.id = id;
-        this.name = name;
-        this.expireDate = expireDate;
         this.cost = cost;
+        this.name = name;
+        this.type = type;
+        this.text = text;
     }
 
     public Service() {

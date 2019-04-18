@@ -35,8 +35,10 @@ public class SubscriptionServiceImpl implements SubscriptionService {
 
     @Override
     public Subscription addSubscription(Subscription subscription) {
-        subscription.setStatus(statusRepository.findByName("Active"));
-        return subscriptionRepository.save(subscription);
+        Subscription tmp =
+                new Subscription(600l, subscription.getUserId(),
+                        statusRepository.findByName("Active"), subscription.getService());
+        return subscriptionRepository.save(tmp);
     }
 
 
@@ -55,5 +57,10 @@ public class SubscriptionServiceImpl implements SubscriptionService {
 
     public Subscription findTheNearestExpiringSubscription() {
         return subscriptionRepository.findFirstByExpireDate(new Status("Active"));
+    }
+
+    @Override
+    public Subscription updateSubscription(Subscription subscription) {
+        return subscriptionRepository.save(subscription);
     }
 }

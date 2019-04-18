@@ -7,8 +7,9 @@ import org.springframework.stereotype.Repository;
 
 public interface BillingAccountRepository extends CrudRepository<BillingAccount, Long> {
 
-    @Query(value = "SELECT SUM(balance) from billingaccount where user_id = ?1", nativeQuery = true)
-    double getBalanceByUserId(String id);
+    @Query(value = "SELECT SUM(balance) from billingaccount where user_id = ?", nativeQuery = true)
+    Double getBalanceByUserId(String id);
 
-    Iterable<BillingAccount> findAllByUserId(Long id);
+    @Query(value = "select *from billingaccount where user_id = ?", nativeQuery = true)
+    Iterable<BillingAccount> findByUserId(Long id);
 }

@@ -10,17 +10,17 @@ public class Subscription {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private long startDate;
-    private long expireDate;
+    private Long startDate;
+    private Long expireDate;
 
     @Column(name = "user_id")
     private Long userId;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "status_id")
     private Status status;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.MERGE})
     @JoinColumn(name = "service_id")
     private Service service;
 
@@ -54,7 +54,7 @@ public class Subscription {
     public Subscription() {
     }
 
-    public Subscription(long expireDate, Long userId, Status status, Service service) {
+    public Subscription(Long expireDate, Long userId, Status status, Service service) {
         this.startDate = (new Date()).getTime();
         this.expireDate = this.startDate + expireDate;
         this.userId = userId;
@@ -62,7 +62,7 @@ public class Subscription {
         this.service = service;
     }
 
-    public Subscription(long startDate, long expireDate, Long userId, Status status, Service service) {
+    public Subscription(Long startDate, Long expireDate, Long userId, Status status, Service service) {
         this.startDate = startDate;
         this.expireDate = expireDate;
         this.userId = userId;
@@ -78,19 +78,19 @@ public class Subscription {
         this.id = id;
     }
 
-    public long getStartDate() {
+    public Long getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(long startDate) {
+    public void setStartDate(Long startDate) {
         this.startDate = startDate;
     }
 
-    public long getExpireDate() {
+    public Long getExpireDate() {
         return expireDate;
     }
 
-    public void setExpireDate(long expireDate) {
+    public void setExpireDate(Long expireDate) {
         this.expireDate = expireDate;
     }
 

@@ -60,21 +60,26 @@ public class BillingAccountServiceImpl implements BillingAccountService {
     }
 
     @Override
-    public double getTotalSum(Long id) {
+    public Double getTotalSum(Long id) {
+        if (repository.getBalanceByUserId(id.toString()) != null)
         return repository.getBalanceByUserId(id.toString());
+        return 0d;
     }
 
     @Override
     public void withdraw(Long id, double amount) {
-        Iterable<BillingAccount> accounts = repository.findAllByUserId(id);
+        Iterable<BillingAccount> accounts = repository.findByUserId(id);
         for (BillingAccount account : accounts) {
-            if (amount == 0) break;
+
             if (account.getBalance() >= amount) {
                 account.withdraw(amount);
+                amount = 0;
             } else {
                 amount -= account.getBalance();
                 account.setBalance(0);
             }
+
+            repository.save(account);
         }
     }
 }

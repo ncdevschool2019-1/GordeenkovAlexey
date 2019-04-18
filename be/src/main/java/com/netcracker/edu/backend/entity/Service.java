@@ -12,7 +12,7 @@ public class Service {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private double cost;
+    private Double cost;
     private String name;
     private String type;
     private String text;
@@ -56,11 +56,11 @@ public class Service {
         this.id = id;
     }
 
-    public double getCost() {
+    public Double getCost() {
         return cost;
     }
 
-    public void setCost(double cost) {
+    public void setCost(Double cost) {
         this.cost = cost;
     }
 
@@ -88,7 +88,7 @@ public class Service {
         this.text = text;
     }
 
-    public Service(double cost, String name, String type, String text) {
+    public Service(Double cost, String name, String type, String text) {
         this.cost = cost;
         this.name = name;
         this.type = type;

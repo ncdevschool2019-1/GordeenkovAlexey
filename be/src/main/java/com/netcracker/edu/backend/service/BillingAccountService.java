@@ -16,7 +16,7 @@ public interface BillingAccountService {
 
     BillingAccount addMoney(BillingAccount account);
 
-    double getTotalSum(Long id);
+    Double getTotalSum(Long id);
 
     void withdraw(Long id, double amount);
 }

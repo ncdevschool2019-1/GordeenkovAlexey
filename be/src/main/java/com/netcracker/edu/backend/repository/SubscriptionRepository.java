@@ -7,7 +7,7 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface SubscriptionRepository extends CrudRepository<Subscription, Long> {
 
-    @Query(value = "select * from subscriptions where expire_date=(SELECT min(expire_date) from subscriptions)"
+    @Query(value = "select * from subscriptions where id = (select min(id) from subscriptions where expire_date=(SELECT min(expire_date) from subscriptions))"
             , nativeQuery = true)
     Subscription findFirstByExpireDate(Status status);
 }

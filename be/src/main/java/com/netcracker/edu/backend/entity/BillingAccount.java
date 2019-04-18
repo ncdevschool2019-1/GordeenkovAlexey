@@ -8,10 +8,10 @@ import java.util.Objects;
 public class BillingAccount {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     private double balance;
     @Column(name = "user_id")
-    private int userId;
+    private Long userId;
 
 
     public void withdraw(double amount) {
@@ -21,24 +21,24 @@ public class BillingAccount {
     }
 
 
-    public int getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
-    public BillingAccount(double balance, int userId) {
+    public BillingAccount(double balance, Long userId) {
         this.balance = balance;
         this.userId = userId;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
