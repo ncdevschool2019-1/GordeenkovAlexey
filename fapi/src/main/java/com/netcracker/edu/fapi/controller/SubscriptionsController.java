@@ -29,6 +29,16 @@ public class SubscriptionsController {
         return ResponseEntity.badRequest().build();
     }
 
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<SubscriptionViewModel> changeStatus(@PathVariable String id, @RequestBody SubscriptionViewModel subscription) {
+        if (subscription != null) {
+            subscriptionsService.changeStatus(id, subscription);
+            return ResponseEntity.ok(subscription);
+        }
+
+        return ResponseEntity.badRequest().build();
+    }
+
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity deleteSubscription(@PathVariable String id) {
         subscriptionsService.deleteSubscription(Long.valueOf(id));

@@ -26,6 +26,12 @@ public class BillingAccountDataServiceImpl implements BillingAccountDataService 
     }
 
     @Override
+    public Double getTotalBalance(Long id) {
+        RestTemplate restTemplate = new RestTemplate();
+        return null;//restTemplate.getForObject();
+    }
+
+    @Override
     public BillingAccountViewModel addBillingAccount(BillingAccountViewModel account) {
         RestTemplate restTemplate = new RestTemplate();
         return restTemplate.postForEntity(backendServerUrl + "api/billing-accounts", account, BillingAccountViewModel.class).getBody();

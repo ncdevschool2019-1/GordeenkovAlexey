@@ -7,6 +7,8 @@ import java.util.Objects;
 @Entity
 @Table(name = "subscriptions")
 public class Subscription {
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -16,38 +18,42 @@ public class Subscription {
     @Column(name = "user_id")
     private Long userId;
 
-    @ManyToOne(cascade = {CascadeType.ALL})
+    @ManyToOne
     @JoinColumn(name = "status_id")
     private Status status;
 
-    @ManyToOne(cascade = {CascadeType.MERGE})
+    @ManyToOne
     @JoinColumn(name = "service_id")
     private Service service;
 
 
     public void charge() {
-        long tmp = expireDate;
-        expireDate += expireDate - startDate;
-        startDate = tmp;
+        long tmp = expireDate - startDate;
+        startDate = (new Date()).getTime();
+        expireDate = startDate + tmp;
     }
 
     public void pause() {
         Date date = new Date();
         startDate = date.getTime();
-        status = new Status("Paused");
+        status.setId((short) 2);
+        status.setName("Paused");
     }
 
     public void block() {
         Date date = new Date();
-        startDate = date.getTime();
-        status = new Status("Blocked");
+        status.setId((short) 3);
+        status.setName("Blocked");
+        System.out.println(this);
     }
 
     public void activate() {
         Date date = new Date();
         this.startDate += date.getTime();
         this.expireDate += date.getTime();
-        status = new Status("Active");
+
+        status.setId((short) 3);
+        status.setName("Active");
     }
 
 

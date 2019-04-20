@@ -29,6 +29,22 @@ export class SubscriptionsTableComponent implements OnInit, OnDestroy {
         this.subscriptionService.getSubscriptionsFromFapi()));
   }
 
+  continueSubscription(sub: Sub) {
+    sub.status.id = 1;
+    sub.status.name = "Active";
+    this.subscriptions.push(
+      this.subscriptionService.continueSubscription(sub).subscribe(value =>
+        this.subscriptionService.getSubscriptionsFromFapi()));
+  }
+
+  pauseSubscription(sub: Sub) {
+    sub.status.id = 2;
+    sub.status.name = "Paused";
+    this.subscriptions.push(
+      this.subscriptionService.pauseSubscription(sub).subscribe(value =>
+        this.subscriptionService.getSubscriptionsFromFapi()));
+  }
+
   ngOnDestroy(): void {
     this.subscriptions.forEach(s => s.unsubscribe());
   }

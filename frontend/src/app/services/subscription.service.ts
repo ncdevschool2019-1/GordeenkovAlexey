@@ -5,6 +5,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable, of, Subscription} from 'rxjs';
 import {UsersService} from "./users.service";
 import {Service} from "../modules/catalog/models/service";
+import {BillingAccount} from "../modules/account/models/billing-account";
 
 @Injectable({
   providedIn: 'root'
@@ -30,9 +31,15 @@ export class SubscriptionService {
 
   subscribeToService(service: Service): Observable<Sub> {
     let sub: Sub = new Sub(null, this.usersService.getActiveUser().id, null, service);
-    console.log(sub);
     return this.http.post<Sub>(this.fapiServerUrl, sub);
+  }
 
+  continueSubscription(sub: Sub): Observable<Sub> {
+    return this.http.put<Sub>(this.fapiServerUrl + sub.id, sub);
+  }
+
+  pauseSubscription(sub: Sub): Observable<Sub> {
+    return this.http.put<Sub>(this.fapiServerUrl + sub.id, sub);
   }
 
   deleteSubscription(id: number): Observable<void> {

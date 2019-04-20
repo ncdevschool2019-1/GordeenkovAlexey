@@ -30,8 +30,13 @@ export class CatalogComponent implements OnInit, OnDestroy {
 
   subscribeToService(service: Service) {
     this.subscriptions.push(
-      this.subscriptionsService.subscribeToService(service).subscribe(value =>
-        this.subscriptionsService.getSubscriptionsFromFapi()));
+      this.subscriptionsService.subscribeToService(service).subscribe(value => {
+        if (value.id == null) {
+          alert("Subscription error")
+        }
+        ;
+        this.subscriptionsService.getSubscriptionsFromFapi()
+      }));
   }
 
   ngOnDestroy(): void {

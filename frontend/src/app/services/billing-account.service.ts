@@ -41,6 +41,10 @@ export class BillingAccountService {
     return this.billingAccounts;
   }
 
+  getTotalBalanse(): Observable<number> {
+    return this.http.get<number>(this.fapiServerUrl + "balance/" + this.userService.getActiveUser().id);
+  }
+
 }
 
 

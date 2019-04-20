@@ -20,14 +20,14 @@ public class User {
     private String Email;
     private String phone;
 
-    @ManyToOne(cascade = {CascadeType.ALL})
+    @ManyToOne
     @JoinColumn(name = "roleId")
     private Role role;
 
-    @OneToMany(mappedBy = "userId", cascade = {CascadeType.ALL})
+    @OneToMany(mappedBy = "userId")
     private List<BillingAccount> billingAccounts;
 
-    @OneToMany(mappedBy = "userId", cascade = {CascadeType.ALL})
+    @OneToMany(mappedBy = "userId")
     private List<Subscription> subscriptions;
 
 

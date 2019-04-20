@@ -23,6 +23,11 @@ public class BillingAccountDataController {
            return ResponseEntity.ok(billingAccountDataService.getBillingAccountsByUserId(Long.valueOf(id)));
        }
 
+    @RequestMapping(value = "balance/{id}", method = RequestMethod.GET)
+    public ResponseEntity<Double> getTotalBalance(@PathVariable String id) {
+        return ResponseEntity.ok(billingAccountDataService.getTotalBalance(Long.valueOf(id)));
+    }
+
 
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<BillingAccountViewModel> addBillingAccount(@RequestBody BillingAccountViewModel billingAccount /*todo server validation*/) {
