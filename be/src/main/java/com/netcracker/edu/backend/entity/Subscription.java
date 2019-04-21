@@ -14,9 +14,18 @@ public class Subscription {
     private Long id;
     private Long startDate;
     private Long expireDate;
+    private Long duration;
 
     @Column(name = "user_id")
     private Long userId;
+
+    public Long getDuration() {
+        return duration;
+    }
+
+    public void setDuration(Long duration) {
+        this.duration = duration;
+    }
 
     @ManyToOne
     @JoinColumn(name = "status_id")
@@ -28,9 +37,8 @@ public class Subscription {
 
 
     public void charge() {
-        long tmp = expireDate - startDate;
         startDate = (new Date()).getTime();
-        expireDate = startDate + tmp;
+        expireDate = startDate + duration;
     }
 
     public void pause() {
@@ -42,16 +50,15 @@ public class Subscription {
 
     public void block() {
         Date date = new Date();
+        startDate = date.getTime();
         status.setId((short) 3);
         status.setName("Blocked");
-        System.out.println(this);
     }
 
     public void activate() {
         Date date = new Date();
-        this.startDate += date.getTime();
-        this.expireDate += date.getTime();
-
+        this.expireDate = date.getTime() + this.expireDate - this.startDate;
+        this.startDate = date.getTime();
         status.setId((short) 3);
         status.setName("Active");
     }
@@ -60,9 +67,10 @@ public class Subscription {
     public Subscription() {
     }
 
-    public Subscription(Long expireDate, Long userId, Status status, Service service) {
+    public Subscription(Long duration, Long userId, Status status, Service service) {
+        this.duration = duration;
         this.startDate = (new Date()).getTime();
-        this.expireDate = this.startDate + expireDate;
+        this.expireDate = this.startDate + duration;
         this.userId = userId;
         this.status = status;
         this.service = service;
@@ -148,6 +156,7 @@ public class Subscription {
                 "id=" + id +
                 ", startDate=" + startDate +
                 ", expireDate=" + expireDate +
+                ", duration=" + duration +
                 ", userId=" + userId +
                 ", status=" + status +
                 ", service=" + service +

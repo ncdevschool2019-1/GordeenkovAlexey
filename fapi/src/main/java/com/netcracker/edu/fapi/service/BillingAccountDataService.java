@@ -8,13 +8,13 @@ import java.util.List;
 public interface BillingAccountDataService {
 
 
-    List<BillingAccountViewModel> getBillingAccountsByUserId(Long id);
+    List<BillingAccountViewModel> getBillingAccountsByUserId(String id);
 
-    Double getTotalBalance(Long id);
+    Double getTotalBalance(String id);
 
     BillingAccountViewModel addBillingAccount(BillingAccountViewModel account);
 
     void addMoney(BillingAccountViewModel account, String id);
 
-    void deleteBillingAccount(Long id);
+    void deleteBillingAccount(String id);
 }

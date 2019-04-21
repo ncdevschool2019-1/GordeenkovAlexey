@@ -15,7 +15,6 @@ public class BillingAccountController {
     @Autowired
     private BillingAccountService billingAccountService;
 
-
     public BillingAccountController(BillingAccountService billingAccountService) {
         this.billingAccountService = billingAccountService;
     }
@@ -23,6 +22,11 @@ public class BillingAccountController {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Iterable<BillingAccount> getBillingAccountsByUserId(@PathVariable(name = "id") Long id) {
         return billingAccountService.getBillingAccountsByUserId(id);
+    }
+
+    @RequestMapping(value = "balance/{id}", method = RequestMethod.GET)
+    public Double getTotalBalance(@PathVariable(name = "id") Long id) {
+        return billingAccountService.getTotalSum(id);
     }
 
     @RequestMapping(method = RequestMethod.POST)

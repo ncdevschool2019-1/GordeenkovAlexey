@@ -4,6 +4,7 @@ import {Service} from "../../models/service";
 import {HeaderService} from "../../../../services/header.service";
 import {Subscription} from "rxjs";
 import {SubscriptionService} from "../../../../services/subscription.service";
+import {BillingAccountService} from "../../../../services/billing-account.service";
 
 
 @Component({
@@ -16,27 +17,42 @@ export class CatalogComponent implements OnInit, OnDestroy {
   public catalog: Service[];
   private subscriptions: Subscription[] = [];
 
-  constructor(private catalogService: CatalogService, private headerService: HeaderService, private subscriptionsService: SubscriptionService) {
+  constructor(private catalogService: CatalogService, private headerService: HeaderService,
+              private subscriptionsService: SubscriptionService, private billingAccountService: BillingAccountService) {
   }
 
   ngOnInit() {
     this.getCatalog();
+    this.subscriptionsService.getSubscriptionsFromFapi();
   }
 
   getCatalog() {
     this.subscriptions.push(this.catalogService.getCatalog(this.headerService.getSelectedLink().name)
-      .subscribe(catalog => this.catalog = catalog));
+      .subscribe(catalog => this.catalog = catalog.filter(serv =>
+        !this.subscriptionsService.isThereSubscriptionToService(serv)
+      )));
+
   }
 
   subscribeToService(service: Service) {
-    this.subscriptions.push(
-      this.subscriptionsService.subscribeToService(service).subscribe(value => {
-        if (value.id == null) {
-          alert("Subscription error")
-        }
-        ;
-        this.subscriptionsService.getSubscriptionsFromFapi()
-      }));
+
+    this.subscriptions.push
+    (this.billingAccountService.getTotalBalanse().subscribe(value => {
+      if (service.cost > value) {
+        alert("Not enough money");
+      } else {
+
+
+        this.subscriptions.push(
+          this.subscriptionsService.subscribeToService(service).subscribe(value => {
+            this.subscriptionsService.getSubscriptionsFromFapi()
+
+
+          }));
+      }
+    }));
+
+
   }
 
   ngOnDestroy(): void {

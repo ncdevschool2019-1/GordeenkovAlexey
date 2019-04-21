@@ -15,7 +15,6 @@ export class CatalogService {
     return this.http.get<Service[]>('http://localhost:8081/api/catalog/' + type);
   }
 
-
   constructor(private http: HttpClient) {
   }
 }

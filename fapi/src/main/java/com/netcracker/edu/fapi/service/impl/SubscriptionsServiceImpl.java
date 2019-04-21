@@ -3,6 +3,7 @@ package com.netcracker.edu.fapi.service.impl;
 import com.netcracker.edu.fapi.models.SubscriptionViewModel;
 import com.netcracker.edu.fapi.service.SubscriptionsService;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -27,7 +28,11 @@ public class SubscriptionsServiceImpl implements SubscriptionsService {
     @Override
     public SubscriptionViewModel addSubscription(SubscriptionViewModel subscription) {
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.postForEntity(backendServerUrl + "api/subscriptions/", subscription, SubscriptionViewModel.class).getBody();
+        ResponseEntity subscriptionViewModelResponse = restTemplate.postForEntity(backendServerUrl + "api/subscriptions/", subscription, SubscriptionViewModel.class);
+        if (subscriptionViewModelResponse.getStatusCode().is2xxSuccessful()) {
+            return (SubscriptionViewModel) subscriptionViewModelResponse.getBody();
+        }
+        return null;
     }
 
     @Override

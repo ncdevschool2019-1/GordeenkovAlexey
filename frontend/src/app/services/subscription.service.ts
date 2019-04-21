@@ -5,7 +5,6 @@ import {HttpClient} from "@angular/common/http";
 import {Observable, of, Subscription} from 'rxjs';
 import {UsersService} from "./users.service";
 import {Service} from "../modules/catalog/models/service";
-import {BillingAccount} from "../modules/account/models/billing-account";
 
 @Injectable({
   providedIn: 'root'
@@ -14,10 +13,18 @@ export class SubscriptionService {
 
   private subscription: Subscription;
 
-  private subscriptions: Sub[] = [];
+  private subs: Sub[] = [];
 
-  geSubscriptions(): Sub[] {
-    return this.subscriptions;
+  getSubscriptions(): Sub[] {
+    return this.subs;
+  }
+
+  isThereSubscriptionToService(servise: Service): boolean {
+    let f = false;
+    this.subs.forEach(sub => {
+      if (sub.service.id === servise.id) f = true;
+    });
+    return f;
   }
 
 
@@ -26,11 +33,11 @@ export class SubscriptionService {
   getSubscriptionsFromFapi() {
     if (this.subscription) this.subscription.unsubscribe();
     this.subscription = this.http.get<Sub[]>(this.fapiServerUrl + this.usersService.getActiveUser().id)
-      .subscribe(subscriptions => this.subscriptions = subscriptions);
+      .subscribe(subscriptions => this.subs = subscriptions);
   }
 
   subscribeToService(service: Service): Observable<Sub> {
-    let sub: Sub = new Sub(null, this.usersService.getActiveUser().id, null, service);
+    let sub: Sub = new Sub(null, this.usersService.getActiveUser().id, null, null, service);
     return this.http.post<Sub>(this.fapiServerUrl, sub);
   }
 

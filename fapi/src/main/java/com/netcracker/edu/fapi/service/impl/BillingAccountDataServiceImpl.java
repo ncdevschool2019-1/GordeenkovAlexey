@@ -19,16 +19,17 @@ public class BillingAccountDataServiceImpl implements BillingAccountDataService 
 
 
     @Override
-    public List<BillingAccountViewModel> getBillingAccountsByUserId(Long id) {
+    public List<BillingAccountViewModel> getBillingAccountsByUserId(String id) {
         RestTemplate restTemplate = new RestTemplate();
-        BillingAccountViewModel[] billingAccountViewModelResponse = restTemplate.getForObject(backendServerUrl + "api/billing-accounts/" + id.toString(), BillingAccountViewModel[].class);
+        BillingAccountViewModel[] billingAccountViewModelResponse = restTemplate.getForObject(backendServerUrl + "api/billing-accounts/" + id, BillingAccountViewModel[].class);
         return billingAccountViewModelResponse == null ? Collections.emptyList() : Arrays.asList(billingAccountViewModelResponse);
     }
 
     @Override
-    public Double getTotalBalance(Long id) {
+    public Double getTotalBalance(String id) {
         RestTemplate restTemplate = new RestTemplate();
-        return null;//restTemplate.getForObject();
+        Double balance = restTemplate.getForObject(backendServerUrl + "api/billing-accounts/balance/" + id, Double.class);
+        return balance == null ? 0d : balance;
     }
 
     @Override
@@ -44,7 +45,7 @@ public class BillingAccountDataServiceImpl implements BillingAccountDataService 
       }
 
     @Override
-    public void deleteBillingAccount(Long id) {
+    public void deleteBillingAccount(String id) {
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.delete(backendServerUrl + "api/billing-accounts/" + id);
     }

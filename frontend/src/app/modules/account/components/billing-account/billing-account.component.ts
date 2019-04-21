@@ -13,6 +13,7 @@ export class BillingAccountComponent implements OnInit, OnDestroy {
 
   subscriptions: Subscription[] = [];
    addMoneyForms: FormGroup[] = [];
+  clearIntervalInstance: any;
 
   addMoney(baId: number, indexOfForm: number) {
     let tmpBA = this.getBillingAccounts()[indexOfForm];
@@ -52,10 +53,14 @@ export class BillingAccountComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.billingAccountService.getBillingAccountsFromFapi();
+    this.clearIntervalInstance =
+      setInterval(() => {
+        this.billingAccountService.getBillingAccountsFromFapi();
+      }, 2000);
   }
 
   ngOnDestroy(): void {
     this.subscriptions.forEach(s => s.unsubscribe());
+    clearInterval(this.clearIntervalInstance);
   }
 }

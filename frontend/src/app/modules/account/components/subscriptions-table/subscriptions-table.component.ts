@@ -2,6 +2,8 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Sub} from "../../models/sub";
 import {SubscriptionService} from "../../../../services/subscription.service";
 import {Subscription} from "rxjs";
+import DateTimeFormat = Intl.DateTimeFormat;
+import {absFloor} from "ngx-bootstrap/chronos/utils";
 
 @Component({
   selector: 'app-subscriptions-table',
@@ -11,16 +13,25 @@ import {Subscription} from "rxjs";
 export class SubscriptionsTableComponent implements OnInit, OnDestroy {
 
   subscriptions: Subscription[] = [];
+  clearIntervalInstance: any;
 
   constructor(private subscriptionService: SubscriptionService) {
   }
 
   getSubscriptions(): Sub[] {
-    return this.subscriptionService.geSubscriptions();
+    return this.subscriptionService.getSubscriptions();
+  }
+
+  timeLeft(subscription: Sub): number {
+    return absFloor(subscription.expireDate / 1000 - Date.now() / 1000);
   }
 
   ngOnInit() {
     this.getSubscriptions();
+    this.clearIntervalInstance =
+      setInterval(() => {
+        this.subscriptionService.getSubscriptionsFromFapi();
+      }, 1000)
   }
 
   deleteSubscription(id: number) {
@@ -47,6 +58,7 @@ export class SubscriptionsTableComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subscriptions.forEach(s => s.unsubscribe());
+    clearInterval(this.clearIntervalInstance);
   }
 
 }

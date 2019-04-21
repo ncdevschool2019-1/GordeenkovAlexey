@@ -47,7 +47,7 @@ public class SubscriptionServiceImpl implements SubscriptionService {
     @Override
     public Subscription addSubscription(Subscription subscription) {
         Subscription tmp =
-                new Subscription(600l, subscription.getUserId(),
+                new Subscription(60000l, subscription.getUserId(),
                         statusService.getStatus("Active"), subscription.getService());
         return subscriptionRepository.save(tmp);
     }

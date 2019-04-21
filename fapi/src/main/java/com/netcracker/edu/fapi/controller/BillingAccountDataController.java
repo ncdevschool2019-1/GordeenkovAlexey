@@ -20,12 +20,12 @@ public class BillingAccountDataController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
        public ResponseEntity<List<BillingAccountViewModel>> getBillingAccountsByUserId(@PathVariable String id) {
-           return ResponseEntity.ok(billingAccountDataService.getBillingAccountsByUserId(Long.valueOf(id)));
+        return ResponseEntity.ok(billingAccountDataService.getBillingAccountsByUserId(id));
        }
 
     @RequestMapping(value = "balance/{id}", method = RequestMethod.GET)
     public ResponseEntity<Double> getTotalBalance(@PathVariable String id) {
-        return ResponseEntity.ok(billingAccountDataService.getTotalBalance(Long.valueOf(id)));
+        return ResponseEntity.ok(billingAccountDataService.getTotalBalance(id));
     }
 
 
@@ -49,7 +49,7 @@ public class BillingAccountDataController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity deleteBillingAccount(@PathVariable String id) {
-        billingAccountDataService.deleteBillingAccount(Long.valueOf(id));
+        billingAccountDataService.deleteBillingAccount(id);
         return ResponseEntity.ok().build();
     }
 
