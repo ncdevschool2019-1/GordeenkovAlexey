@@ -23,7 +23,10 @@ export class SubscriptionsTableComponent implements OnInit, OnDestroy {
   }
 
   timeLeft(subscription: Sub): number {
-    return absFloor(subscription.expireDate / 1000 - Date.now() / 1000);
+    if (subscription.status.name === "Paused") {
+      return absFloor(subscription.expireDate / 1000 - subscription.startDate / 1000);
+    } else if (subscription.status.name === "Active") return absFloor(subscription.expireDate / 1000 - Date.now() / 1000);
+    return 0;
   }
 
   ngOnInit() {

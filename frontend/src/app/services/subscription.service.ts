@@ -37,7 +37,7 @@ export class SubscriptionService {
   }
 
   subscribeToService(service: Service): Observable<Sub> {
-    let sub: Sub = new Sub(null, this.usersService.getActiveUser().id, null, null, service);
+    let sub: Sub = new Sub(null, this.usersService.getActiveUser().id, null, null, null, service);
     return this.http.post<Sub>(this.fapiServerUrl, sub);
   }
 

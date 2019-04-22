@@ -11,6 +11,7 @@ import com.netcracker.edu.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ConcurrentModificationException;
 import java.util.List;
 
 @Service
@@ -61,7 +62,17 @@ public class SubscriptionServiceImpl implements SubscriptionService {
     @Override
     public Subscription changeSubscriptionStatus(Subscription subscription) {
         Subscription tmp = subscriptionRepository.findById(subscription.getId()).get();
-        tmp.setStatus(subscription.getStatus());
+        switch (subscription.getStatus().getName()) {
+            case "Active":
+                tmp.activate(subscription.getStatus());
+                break;
+            case "Paused":
+                tmp.pause(subscription.getStatus());
+                break;
+            default:
+                tmp.block(subscription.getStatus());
+                break;
+        }
         return subscriptionRepository.save(tmp);
     }
 

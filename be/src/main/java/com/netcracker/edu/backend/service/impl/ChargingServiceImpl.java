@@ -5,6 +5,7 @@ import com.netcracker.edu.backend.entity.Subscription;
 import com.netcracker.edu.backend.repository.StatusRepository;
 import com.netcracker.edu.backend.service.BillingAccountService;
 import com.netcracker.edu.backend.service.ChargingService;
+import com.netcracker.edu.backend.service.StatusService;
 import com.netcracker.edu.backend.service.SubscriptionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -17,9 +18,8 @@ public class ChargingServiceImpl implements ChargingService {
 
     @Autowired
     SubscriptionService subscriptionService;
-
     @Autowired
-    StatusRepository statusRepository;
+    StatusService statusService;
 
     @Autowired
     BillingAccountService billingAccountService;
@@ -40,7 +40,7 @@ public class ChargingServiceImpl implements ChargingService {
         charge = false;
     }
 
-    @Scheduled(fixedDelay = 10000)
+    @Scheduled(fixedDelay = 1000)
     private void doCharge() {
 
 
@@ -54,7 +54,7 @@ public class ChargingServiceImpl implements ChargingService {
                 if (subscription.getExpireDate() <= (new Date()).getTime()) {
                     if (subscription.getService().getCost() > billingAccountService.getTotalSum(subscription.getUserId())) {
                         System.out.println(3);
-                        subscription.block();
+                        subscription.block(statusService.getStatus("Blocked"));
                         subscriptionService.updateSubscription(subscription);
 
                     } else {

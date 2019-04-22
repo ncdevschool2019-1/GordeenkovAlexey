@@ -8,7 +8,6 @@ import java.util.Objects;
 @Table(name = "subscriptions")
 public class Subscription {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -41,26 +40,24 @@ public class Subscription {
         expireDate = startDate + duration;
     }
 
-    public void pause() {
+    public void pause(Status status) {
         Date date = new Date();
         startDate = date.getTime();
-        status.setId((short) 2);
-        status.setName("Paused");
+        setStatus(status);
+        System.out.println(Math.floor((expireDate - startDate) / 1000));
     }
 
-    public void block() {
+    public void block(Status status) {
         Date date = new Date();
         startDate = date.getTime();
-        status.setId((short) 3);
-        status.setName("Blocked");
+        setStatus(status);
     }
 
-    public void activate() {
+    public void activate(Status status) {
         Date date = new Date();
         this.expireDate = date.getTime() + this.expireDate - this.startDate;
         this.startDate = date.getTime();
-        status.setId((short) 3);
-        status.setName("Active");
+        setStatus(status);
     }
 
 

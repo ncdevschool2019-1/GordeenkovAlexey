@@ -1,8 +1,9 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit, TemplateRef} from '@angular/core';
 import {BillingAccount} from "../../models/billing-account";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {BillingAccountService} from "../../../../services/billing-account.service";
 import {Subscription} from "rxjs";
+import {BsModalRef, BsModalService} from "ngx-bootstrap";
 
 @Component({
   selector: 'app-billing-account',
@@ -14,6 +15,18 @@ export class BillingAccountComponent implements OnInit, OnDestroy {
   subscriptions: Subscription[] = [];
    addMoneyForms: FormGroup[] = [];
   clearIntervalInstance: any;
+
+  public modalRef: BsModalRef;
+
+  public closeModal() {
+    this.modalRef.hide();
+  }
+
+  public openModal(template: TemplateRef<any>, billingAccount: BillingAccount): void {
+
+    this.modalRef = this.modalService.show(template); // and when the user clicks on the button to open the popup
+                                                      // we keep the modal reference and pass the template local name to the modalService.
+  }
 
   addMoney(baId: number, indexOfForm: number) {
     let tmpBA = this.getBillingAccounts()[indexOfForm];
@@ -28,7 +41,10 @@ export class BillingAccountComponent implements OnInit, OnDestroy {
   getBillingAccounts(): BillingAccount[] {
     let acc = this.billingAccountService.getBillingAccounts();
     if (acc.length
-      != this.addMoneyForms.length) this.updateForms(acc.length);
+      != this.addMoneyForms.length) {
+      this.updateForms(acc.length);
+      console.log(acc.length);
+    }
     return acc;
   }
 
@@ -49,7 +65,7 @@ export class BillingAccountComponent implements OnInit, OnDestroy {
         this.billingAccountService.getBillingAccountsFromFapi()));
   }
 
-  constructor(private billingAccountService: BillingAccountService) {
+  constructor(private billingAccountService: BillingAccountService, private modalService: BsModalService) {
   }
 
   ngOnInit() {

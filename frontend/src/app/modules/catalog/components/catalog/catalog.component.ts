@@ -45,9 +45,10 @@ export class CatalogComponent implements OnInit, OnDestroy {
 
         this.subscriptions.push(
           this.subscriptionsService.subscribeToService(service).subscribe(value => {
-            this.subscriptionsService.getSubscriptionsFromFapi()
-
-
+            this.subscriptionsService.getSubscriptionsFromFapi();
+            setTimeout(() => {
+              this.getCatalog();
+            }, 1000);
           }));
       }
     }));
