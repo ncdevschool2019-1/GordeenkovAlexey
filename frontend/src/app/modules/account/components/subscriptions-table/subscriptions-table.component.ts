@@ -47,7 +47,7 @@ export class SubscriptionsTableComponent implements OnInit, OnDestroy {
     sub.status.id = 1;
     sub.status.name = "Active";
     this.subscriptions.push(
-      this.subscriptionService.continueSubscription(sub).subscribe(value =>
+      this.subscriptionService.changeSubscriptionStatus(sub).subscribe(value =>
         this.subscriptionService.getSubscriptionsFromFapi()));
   }
 
@@ -55,7 +55,7 @@ export class SubscriptionsTableComponent implements OnInit, OnDestroy {
     sub.status.id = 2;
     sub.status.name = "Paused";
     this.subscriptions.push(
-      this.subscriptionService.pauseSubscription(sub).subscribe(value =>
+      this.subscriptionService.changeSubscriptionStatus(sub).subscribe(value =>
         this.subscriptionService.getSubscriptionsFromFapi()));
   }
 

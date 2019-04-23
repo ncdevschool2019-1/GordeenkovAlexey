@@ -2,6 +2,7 @@
   <form [formGroup]="SingUpForm" novalidate (ngSubmit)="singUpSubmit()">
 
     <p>SingUp</p>
+
     <div class="form-group">
       <input class="form-control" formControlName="userName" placeholder="Username" type="text">
       <div class="alert alert-danger"
@@ -11,9 +12,9 @@
     </div>
 
     <div class="form-group">
-      <input class="form-control" formControlName="Email" placeholder="Email" type="text">
+      <input class="form-control" formControlName="email" placeholder="email" type="text">
       <div class="alert alert-danger"
-           *ngIf="SingUpForm.controls['Email'].invalid && SingUpForm.controls['Email'].touched">
+           *ngIf="SingUpForm.controls['email'].invalid && SingUpForm.controls['email'].touched">
         <p>It is necessary to fill the field</p>
       </div>
     </div>
@@ -26,6 +27,29 @@
       </div>
     </div>
 
+    <div class="form-group">
+      <input class="form-control" formControlName="password" placeholder="password" type="password">
+      <div class="alert alert-danger"
+           *ngIf="SingUpForm.controls['password'].invalid &&SingUpForm.controls['password'].touched">
+        <p>It is necessary to fill the field</p>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <input class="form-control" formControlName="password" placeholder="password" type="password">
+      <div class="alert alert-danger"
+           *ngIf="SingUpForm.controls['password'].invalid &&SingUpForm.controls['password'].touched">
+        <p>It is necessary to fill the field</p>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <input class="form-control" formControlName="password" placeholder="password" type="password">
+      <div class="alert alert-danger"
+           *ngIf="SingUpForm.controls['password'].invalid &&SingUpForm.controls['password'].touched">
+        <p>It is necessary to fill the field</p>
+      </div>
+    </div>
 
     <div class="form-group">
       <button class="btn btn-default" [disabled]="SingUpForm.invalid">
@@ -33,5 +57,4 @@
       </button>
     </div>
   </form>
-
 </div>

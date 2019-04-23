@@ -28,9 +28,11 @@ export class CatalogComponent implements OnInit, OnDestroy {
 
   getCatalog() {
     this.subscriptions.push(this.catalogService.getCatalog(this.headerService.getSelectedLink().name)
-      .subscribe(catalog => this.catalog = catalog.filter(serv =>
-        !this.subscriptionsService.isThereSubscriptionToService(serv)
-      )));
+      .subscribe(catalog => {
+          this.catalog = catalog.filter(serv =>
+            !this.subscriptionsService.isThereSubscriptionToService(serv))
+        }
+      ));
 
   }
 

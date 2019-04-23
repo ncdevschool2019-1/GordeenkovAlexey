@@ -21,9 +21,11 @@ export class SubscriptionService {
 
   isThereSubscriptionToService(servise: Service): boolean {
     let f = false;
-    this.subs.forEach(sub => {
-      if (sub.service.id === servise.id) f = true;
-    });
+    if (this.subs != undefined) {
+      this.subs.forEach(sub => {
+        if (sub.service.id === servise.id) f = true;
+      });
+    }
     return f;
   }
 
@@ -41,11 +43,7 @@ export class SubscriptionService {
     return this.http.post<Sub>(this.fapiServerUrl, sub);
   }
 
-  continueSubscription(sub: Sub): Observable<Sub> {
-    return this.http.put<Sub>(this.fapiServerUrl + sub.id, sub);
-  }
-
-  pauseSubscription(sub: Sub): Observable<Sub> {
+  changeSubscriptionStatus(sub: Sub): Observable<Sub> {
     return this.http.put<Sub>(this.fapiServerUrl + sub.id, sub);
   }
 

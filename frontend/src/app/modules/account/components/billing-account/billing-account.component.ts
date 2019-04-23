@@ -22,7 +22,7 @@ export class BillingAccountComponent implements OnInit, OnDestroy {
     this.modalRef.hide();
   }
 
-  public openModal(template: TemplateRef<any>, billingAccount: BillingAccount): void {
+  public openModal(template: TemplateRef<any>): void {
 
     this.modalRef = this.modalService.show(template); // and when the user clicks on the button to open the popup
                                                       // we keep the modal reference and pass the template local name to the modalService.
