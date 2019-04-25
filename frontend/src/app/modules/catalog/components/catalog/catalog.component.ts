@@ -17,23 +17,11 @@ export class CatalogComponent implements OnInit, OnDestroy {
 
   public catalog: Service[];
   private subscriptions: Subscription[] = [];
-  public modalRef: BsModalRef;
+  public subscribeModalRef: BsModalRef;
+  public unSubscribeModalRef: BsModalRef;
+  public notEnoughMoneyModalRef: BsModalRef;
 
 
-  public onSelect(name: string) {
-    this.closeModal();
-    this.headerService.setSelectedLinkByName(name);
-  }
-
-  public closeModal() {
-    this.modalRef.hide();
-  }
-
-  public openModal(template: TemplateRef<any>): void {
-
-    this.modalRef = this.modalService.show(template); // and when the user clicks on the button to open the popup
-                                                      // we keep the modal reference and pass the template local name to the modalService.
-  }
 
   constructor(private catalogService: CatalogService, private headerService: HeaderService,
               private subscriptionsService: SubscriptionService, private billingAccountService: BillingAccountService,
@@ -55,14 +43,12 @@ export class CatalogComponent implements OnInit, OnDestroy {
   }
 
   subscribeToService(service: Service, template: TemplateRef<any>) {
-
     this.subscriptions.push
     (this.billingAccountService.getTotalBalanse().subscribe(value => {
+      this.closeSubscribeModal();
       if (service.cost > value) {
-        this.openModal(template);
+        this.openNotEnoughMoneyModal(template);
       } else {
-
-
         this.subscriptions.push(
           this.subscriptionsService.subscribeToService(service).subscribe(value => {
             this.subscriptionsService.getSubscriptionsFromFapi();
@@ -73,6 +59,48 @@ export class CatalogComponent implements OnInit, OnDestroy {
       }
     }));
   }
+
+  unsubscribeFromService(service: Service) {
+    this.subscriptions.push(
+      this.subscriptionsService.deleteSubscriptionByServiceId(service.id).subscribe(value => {
+        this.subscriptionsService.getSubscriptionsFromFapi();
+        this.closeUnsubscribeModal();
+        setTimeout(() => {
+          this.getCatalog();
+        }, 1000);
+      }));
+  }
+
+  public openUnsubscribeModal(template: TemplateRef<any>) {
+    this.unSubscribeModalRef = this.modalService.show(template);
+  }
+
+  public openSubscribeModal(template: TemplateRef<any>) {
+    this.subscribeModalRef = this.modalService.show(template);
+  }
+
+  public openNotEnoughMoneyModal(template: TemplateRef<any>): void {
+    this.notEnoughMoneyModalRef = this.modalService.show(template); // and when the user clicks on the button to open the popup
+    // we keep the modal reference and pass the template local name to the modalService.
+  }
+
+  public closeUnsubscribeModal() {
+    this.unSubscribeModalRef.hide();
+  }
+
+  public closeSubscribeModal() {
+    this.subscribeModalRef.hide();
+  }
+
+  public closeNotEnoughMoneyModal() {
+    this.notEnoughMoneyModalRef.hide();
+  }
+
+  public onSelect(name: string) {
+    this.closeNotEnoughMoneyModal();
+    this.headerService.setSelectedLinkByName(name);
+  }
+
 
   isThereSubscriptionToService(sevice: Service): boolean {
     return this.subscriptionsService.isThereSubscriptionToService(sevice);

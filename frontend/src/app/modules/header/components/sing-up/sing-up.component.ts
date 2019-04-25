@@ -11,6 +11,7 @@ export class SingUpComponent implements OnInit {
 
   formControls: FormControl[];
 
+
   SingUpForm: FormGroup = new FormGroup({
     userName: new FormControl("", [
       Validators.required,
@@ -43,8 +44,13 @@ export class SingUpComponent implements OnInit {
 
   }
 
+  test() {
+    this.SingUpForm;
+  }
+
   singUpSubmit() {
     console.log(this.SingUpForm.value);
+
     ;
   }
 

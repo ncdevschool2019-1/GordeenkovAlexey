@@ -51,6 +51,11 @@ export class SubscriptionService {
     return this.http.delete<void>(this.fapiServerUrl + id);
   }
 
+  deleteSubscriptionByServiceId(id: number): Observable<void> {
+    let sub = this.getSubscriptions().find(value => value.userId === this.usersService.getActiveUser().id && value.service.id === id);
+    return this.deleteSubscription(sub.id);
+  }
+
   constructor(private http: HttpClient, private usersService: UsersService) {
 
   }

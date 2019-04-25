@@ -10,8 +10,7 @@ export class SingInComponent implements OnInit {
 
   logInForm: FormGroup = new FormGroup({
     userName: new FormControl("", [
-      Validators.required,
-      Validators.pattern('^[a-zA-Z][a-zA-Z0-9-_\\.]{1,20}$')
+      Validators.required
     ]),
     password: new FormControl("", [
       Validators.required,

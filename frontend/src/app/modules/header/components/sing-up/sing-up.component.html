@@ -7,7 +7,12 @@
       <input class="form-control" formControlName="firstName" placeholder="First name" type="text">
       <div class="alert alert-warning"
            *ngIf="SingUpForm.controls['firstName'].invalid &&SingUpForm.controls['firstName'].touched">
-        <p>It is necessary to fill the field</p>
+        <ng-container *ngIf="SingUpForm.controls['firstName'].errors['required']">
+          <p>It is necessary to fill the field</p>
+        </ng-container>
+        <ng-container *ngIf="SingUpForm.controls['firstName'].errors['pattern']">
+          <p>Only letters required</p>
+        </ng-container>
       </div>
     </div>
 
@@ -15,23 +20,39 @@
       <input class="form-control" formControlName="lastName" placeholder="Last name" type="text">
       <div class="alert alert-warning"
            *ngIf="SingUpForm.controls['lastName'].invalid &&SingUpForm.controls['lastName'].touched">
-        <p>It is necessary to fill the field</p>
+        <ng-container *ngIf="SingUpForm.controls['lastName'].errors['required']">
+          <p>It is necessary to fill the field</p>
+        </ng-container>
+        <ng-container *ngIf="SingUpForm.controls['lastName'].errors['pattern']">
+          <p>Only letters required</p>
+        </ng-container>
       </div>
     </div>
-
     <div class="form-group">
       <input class="form-control" formControlName="userName" placeholder="Username" type="text">
       <div class="alert alert-warning"
            *ngIf="SingUpForm.controls['userName'].invalid && SingUpForm.controls['userName'].touched">
-        <p>It is necessary to fill the field</p>
+        <ng-container *ngIf="SingUpForm.controls['userName'].errors['required']">
+          <p>It is necessary to fill the field</p>
+        </ng-container>
+        <ng-container *ngIf="SingUpForm.controls['userName'].errors['pattern']">
+          <p>Restriction of 2-20 characters, which can be letters and numbers, the first character is necessarily a
+            letter</p>
+        </ng-container>
       </div>
+
     </div>
 
     <div class="form-group">
       <input class="form-control" formControlName="email" placeholder="Email" type="text">
       <div class="alert alert-warning"
            *ngIf="SingUpForm.controls['email'].invalid && SingUpForm.controls['email'].touched">
-        <p>It is necessary to fill the field</p>
+        <ng-container *ngIf="SingUpForm.controls['email'].errors['required']">
+          <p>It is necessary to fill the field</p>
+        </ng-container>
+        <ng-container *ngIf="SingUpForm.controls['email'].errors['pattern']">
+          <p>Email required(example@mail.com)</p>
+        </ng-container>
       </div>
     </div>
 
@@ -39,7 +60,12 @@
       <input class="form-control" formControlName="password" placeholder="password" type="password">
       <div class="alert alert-warning"
            *ngIf="SingUpForm.controls['password'].invalid &&SingUpForm.controls['password'].touched">
-        <p>The password must contain: lowercase and uppercase Latin letters, numbers. Minimum 8 characters</p>
+        <ng-container *ngIf="SingUpForm.controls['password'].errors['required']">
+          <p>It is necessary to fill the field</p>
+        </ng-container>
+        <ng-container *ngIf="SingUpForm.controls['password'].errors['pattern']">
+          <p>The password must contain: lowercase and uppercase Latin letters, numbers. Minimum 8 characters</p>
+        </ng-container>
       </div>
     </div>
 
@@ -48,7 +74,12 @@
       <input class="form-control" formControlName="phone" placeholder="phone" type="text">
       <div class="alert alert-warning"
            *ngIf="SingUpForm.controls['phone'].invalid &&SingUpForm.controls['phone'].touched">
-        <p>It is necessary to fill the field</p>
+        <ng-container *ngIf="SingUpForm.controls['phone'].errors['required']">
+          <p>It is necessary to fill the field</p>
+        </ng-container>
+        <ng-container *ngIf="SingUpForm.controls['phone'].errors['pattern']">
+          <p>Incorrect phone</p>
+        </ng-container>
       </div>
     </div>
 
