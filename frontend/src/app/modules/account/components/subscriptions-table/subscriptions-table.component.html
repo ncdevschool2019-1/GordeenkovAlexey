@@ -14,7 +14,16 @@
   </thead>
   <tbody>
   <tr *ngFor="let sub of getSubscriptions()">
-    <td>{{sub.service.name}}</td>
+    <td>
+      <ng-container *ngIf="sub.status.name!='Active'">
+        {{sub.service.name}}
+      </ng-container>
+      <ng-container *ngIf="sub.status.name==='Active'">
+        <a href="{{sub.service.link}}">
+          {{sub.service.name}}
+        </a>
+      </ng-container>
+    </td>
     <td>${{sub.service.cost}}/day</td>
     <td>{{sub.status.name}}</td>
     <td>{{timeLeft(sub)}}</td>

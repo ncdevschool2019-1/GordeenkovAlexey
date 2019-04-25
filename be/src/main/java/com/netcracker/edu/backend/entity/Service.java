@@ -16,9 +16,7 @@ public class Service {
     private String name;
     private String type;
     private String text;
-
-    public Service() {
-    }
+    private String link;
 
     @Override
     public String toString() {
@@ -28,6 +26,7 @@ public class Service {
                 ", name='" + name + '\'' +
                 ", type='" + type + '\'' +
                 ", text='" + text + '\'' +
+                ", link='" + link + '\'' +
                 '}';
     }
 
@@ -36,16 +35,17 @@ public class Service {
         if (this == o) return true;
         if (!(o instanceof Service)) return false;
         Service service = (Service) o;
-        return Double.compare(service.getCost(), getCost()) == 0 &&
-                Objects.equals(getId(), service.getId()) &&
+        return Objects.equals(getId(), service.getId()) &&
+                Objects.equals(getCost(), service.getCost()) &&
                 Objects.equals(getName(), service.getName()) &&
                 Objects.equals(getType(), service.getType()) &&
-                Objects.equals(getText(), service.getText());
+                Objects.equals(getText(), service.getText()) &&
+                Objects.equals(getLink(), service.getLink());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getCost(), getName(), getType(), getText());
+        return Objects.hash(getId(), getCost(), getName(), getType(), getText(), getLink());
     }
 
     public Long getId() {
@@ -88,10 +88,22 @@ public class Service {
         this.text = text;
     }
 
-    public Service(Double cost, String name, String type, String text) {
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
+    }
+
+    public Service(Double cost, String name, String type, String text, String link) {
         this.cost = cost;
         this.name = name;
         this.type = type;
         this.text = text;
+        this.link = link;
+    }
+
+    public Service() {
     }
 }

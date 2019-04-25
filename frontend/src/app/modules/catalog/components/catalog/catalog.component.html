@@ -5,10 +5,34 @@
     <p>
         {{service.text}}
       </p>
-      <div>
+    <div *ngIf="!isThereSubscriptionToService(service)">
         <p>${{service.cost}}/day</p>
-        <button (click)="subscribeToService(service)">SUBSCRIBE</button>
+      <button (click)="subscribeToService(service,template)">SUBSCRIBE</button>
       </div>
+    <div class="mr" *ngIf="isThereSubscriptionToService(service)">
+
     </div>
+
+  </div>
   </div>
 
+
+<ng-template #template>
+
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Not enough money!</h4>
+    <button type="button" class="close pull-right"
+            aria-label="Close" (click)="closeModal()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>
+      Try adding funds to your
+      <a routerLink="/myaccount" (click)="onSelect('My Account')">account</a>
+    </p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeModal()">Close</button>
+  </div>
+</ng-template>

@@ -9,8 +9,14 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 export class SingInComponent implements OnInit {
 
   logInForm: FormGroup = new FormGroup({
-    "userName": new FormControl("", Validators.required),
-    "password": new FormControl("", Validators.required),
+    userName: new FormControl("", [
+      Validators.required,
+      Validators.pattern('^[a-zA-Z][a-zA-Z0-9-_\\.]{1,20}$')
+    ]),
+    password: new FormControl("", [
+      Validators.required,
+      Validators.pattern('(?=^.{8,}$)((?=.*\\d)|(?=.*\\W+))(?![.\\n])(?=.*[A-Z])(?=.*[a-z]).*$')
+    ]),
   });
 
 

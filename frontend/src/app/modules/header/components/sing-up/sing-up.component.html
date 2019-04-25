@@ -1,19 +1,35 @@
 <div class="logInForm">
   <form [formGroup]="SingUpForm" novalidate (ngSubmit)="singUpSubmit()">
 
-    <p>SingUp</p>
+    <h1>SingUp</h1>
+
+    <div class="form-group">
+      <input class="form-control" formControlName="firstName" placeholder="First name" type="text">
+      <div class="alert alert-warning"
+           *ngIf="SingUpForm.controls['firstName'].invalid &&SingUpForm.controls['firstName'].touched">
+        <p>It is necessary to fill the field</p>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <input class="form-control" formControlName="lastName" placeholder="Last name" type="text">
+      <div class="alert alert-warning"
+           *ngIf="SingUpForm.controls['lastName'].invalid &&SingUpForm.controls['lastName'].touched">
+        <p>It is necessary to fill the field</p>
+      </div>
+    </div>
 
     <div class="form-group">
       <input class="form-control" formControlName="userName" placeholder="Username" type="text">
-      <div class="alert alert-danger"
+      <div class="alert alert-warning"
            *ngIf="SingUpForm.controls['userName'].invalid && SingUpForm.controls['userName'].touched">
         <p>It is necessary to fill the field</p>
       </div>
     </div>
 
     <div class="form-group">
-      <input class="form-control" formControlName="email" placeholder="email" type="text">
-      <div class="alert alert-danger"
+      <input class="form-control" formControlName="email" placeholder="Email" type="text">
+      <div class="alert alert-warning"
            *ngIf="SingUpForm.controls['email'].invalid && SingUpForm.controls['email'].touched">
         <p>It is necessary to fill the field</p>
       </div>
@@ -21,32 +37,17 @@
 
     <div class="form-group">
       <input class="form-control" formControlName="password" placeholder="password" type="password">
-      <div class="alert alert-danger"
+      <div class="alert alert-warning"
            *ngIf="SingUpForm.controls['password'].invalid &&SingUpForm.controls['password'].touched">
-        <p>It is necessary to fill the field</p>
+        <p>The password must contain: lowercase and uppercase Latin letters, numbers. Minimum 8 characters</p>
       </div>
     </div>
 
-    <div class="form-group">
-      <input class="form-control" formControlName="password" placeholder="password" type="password">
-      <div class="alert alert-danger"
-           *ngIf="SingUpForm.controls['password'].invalid &&SingUpForm.controls['password'].touched">
-        <p>It is necessary to fill the field</p>
-      </div>
-    </div>
 
     <div class="form-group">
-      <input class="form-control" formControlName="password" placeholder="password" type="password">
-      <div class="alert alert-danger"
-           *ngIf="SingUpForm.controls['password'].invalid &&SingUpForm.controls['password'].touched">
-        <p>It is necessary to fill the field</p>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <input class="form-control" formControlName="password" placeholder="password" type="password">
-      <div class="alert alert-danger"
-           *ngIf="SingUpForm.controls['password'].invalid &&SingUpForm.controls['password'].touched">
+      <input class="form-control" formControlName="phone" placeholder="phone" type="text">
+      <div class="alert alert-warning"
+           *ngIf="SingUpForm.controls['phone'].invalid &&SingUpForm.controls['phone'].touched">
         <p>It is necessary to fill the field</p>
       </div>
     </div>

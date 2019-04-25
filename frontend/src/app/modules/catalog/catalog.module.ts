@@ -7,6 +7,8 @@ import {RouterModule} from '@angular/router';
 import {CatalogComponent} from "./components/catalog/catalog.component";
 import {CatalogService} from "../../services/catalog.service";
 import {SubscriptionService} from "../../services/subscription.service";
+import {HeaderService} from "../../services/header.service";
+import {BillingAccountService} from "../../services/billing-account.service";
 
 @NgModule({
   declarations: [
@@ -21,7 +23,7 @@ import {SubscriptionService} from "../../services/subscription.service";
 
   ],
 
-  providers: [CatalogService, SubscriptionService],
+  providers: [CatalogService, SubscriptionService, HeaderService, BillingAccountService],
   exports: [CatalogComponent]
 })
 export class CatalogModule {

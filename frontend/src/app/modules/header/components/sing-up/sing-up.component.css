@@ -11,7 +11,17 @@ form {
 
 form > div {
   margin-left: auto;
+  display: flex;
+  flex-direction: column;
   margin-right: auto;
+}
+
+form > div > div {
+  margin-left: auto;
+  margin-right: auto;
+  width: 300px;
+  text-align: center;
+  font-size: 14pt;
 }
 
 button {
@@ -30,6 +40,14 @@ button:hover {
 }
 
 p {
+
+  color: black;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+h1 {
+
   color: white;
   margin-right: auto;
   margin-left: auto;

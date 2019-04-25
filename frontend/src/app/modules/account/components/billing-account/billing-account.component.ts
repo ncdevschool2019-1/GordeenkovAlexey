@@ -53,7 +53,11 @@ export class BillingAccountComponent implements OnInit, OnDestroy {
     for (let i = 0; i < length; i++) {
       this.addMoneyForms.push(
         new FormGroup({
-          "money": new FormControl("", Validators.required)
+          "money": new FormControl("", [
+            Validators.required,
+            Validators.max(999999999),
+            Validators.pattern('^[0-9]+$')
+          ])
         })
       );
     }

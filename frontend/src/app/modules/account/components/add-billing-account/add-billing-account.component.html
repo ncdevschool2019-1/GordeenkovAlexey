@@ -1,36 +1,42 @@
 <button type="button" class="btn btn-secondary float-right" data-toggle="modal"
-        data-target="#addBillingAccountModal">
+        (click)="openModal(template)">
   Add BillingAccount
 </button>
 
+<ng-template #template>
 
-<div class="modal fade" id="addBillingAccountModal" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Add Billing Account</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Add Billing Account</h4>
+    <button type="button" class="close pull-right"
+            aria-label="Close" (click)="closeModal()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+    <form [formGroup]="addBillingAccountForm" novalidate (ngSubmit)="submit()">
+      <div class="form-group">
+
+        <label>If you want to add money, enter the amount below</label>
+        <input class="form-control" formControlName="money" placeholder="amount of money">
+
+        <div class="alert alert-warning"
+             *ngIf="addBillingAccountForm.controls['money'].invalid && addBillingAccountForm.controls['money'].touched">
+          <p>Only numbers required</p>
+        </div>
+
+      </div>
+
+
+      <div class="form-group">
+        <button type="submit" class="btn btn-secondary float-right" [disabled]="addBillingAccountForm.invalid">
+          Save
         </button>
       </div>
-      <div class="modal-body">
+    </form>
 
-        <form [formGroup]="addBillingAccountForm" novalidate (ngSubmit)="submit()">
-          <div class="form-group">
-            <label>If you want to add money, enter the amount below</label>
-            <input class="form-control" formControlName="money" type="number" placeholder="amount of money" min="1">
-          </div>
-          <div class="form-group">
-            <button type="submit" class="btn btn-primary" [disabled]="addBillingAccountForm.invalid">Save changes
-            </button>
-          </div>
-        </form>
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-
-      </div>
-    </div>
   </div>
-</div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeModal()">Close</button>
+  </div>
+</ng-template>

@@ -5,12 +5,14 @@
     <li *ngFor="let acc of getBillingAccounts();index as i;">
 
       <div class="close_button_container">
-        <button type="button" class="btn close-button" (click)="deleteBillingAccount(acc.id)">❌</button>
+        <button type="button" class="btn close-button" (click)="deleteBillingAccount(acc.id)">
+          <img src="../../../../../assets/delete.png">
+        </button>
       </div>
       <p>Billing Account : id{{acc.id}}</p>
       <p>Amount of money : ${{acc.balance}}</p>
 
-      <button type="button" class="btn btn-secondary float-right" data-toggle="modal" data-target="#exampleModal"
+      <button type="button" class="btn btn-secondary float-right"
               (click)="openModal(template)">
         Add money
       </button>
@@ -31,6 +33,10 @@
               <label>If you want to add money, enter the amount below </label>
               <input class="form-control" placeholder="amount of money" min="1" formControlName="money">
             </div>
+            <div class="alert alert-warning"
+                 *ngIf="addMoneyForms[i].controls['money'].invalid && addMoneyForms[i].controls['money'].touched">
+              <p>Only numbers required</p>
+            </div>
 
             <div class="form-group">
               <button type="submit" class="btn btn-secondary float-right" [disabled]="addMoneyForms[i].invalid"
@@ -43,8 +49,6 @@
 
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" (click)="addMoney()">
-          </button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeModal()">Close</button>
 
         </div>

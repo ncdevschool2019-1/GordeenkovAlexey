@@ -22,7 +22,10 @@ export class HeaderService {
   }
 
   setSelectedLink(link: Link) {
-
     this.selectedLink = link;
+  }
+
+  setSelectedLinkByName(name: string) {
+    this.selectedLink = this.getLinks().find(value => value.name === name);
   }
 }

@@ -1,10 +1,10 @@
 <div class="logInForm">
   <form [formGroup]="logInForm" novalidate (ngSubmit)="loginSubmit()">
 
-    <p>SingIn</p>
+    <h1>SingIn</h1>
     <div class="form-group">
       <input class="form-control" formControlName="userName" placeholder="Username" type="text">
-      <div class="alert alert-danger"
+      <div class="alert alert-warning"
            *ngIf="logInForm.controls['userName'].invalid && logInForm.controls['userName'].touched">
         <p>It is necessary to fill the field</p>
       </div>
@@ -12,12 +12,11 @@
 
     <div class="form-group">
       <input class="form-control" formControlName="password" placeholder="password" type="password">
-      <div class="alert alert-danger"
+      <div class="alert alert-warning"
            *ngIf="logInForm.controls['password'].invalid &&logInForm.controls['password'].touched">
-        <p>It is necessary to fill the field</p>
+        <p>The password must contain: lowercase and uppercase Latin letters, numbers. Minimum 8 characters</p>
       </div>
     </div>
-
 
     <div class="form-group">
       <button type="submit" class="btn btn-default" [disabled]="logInForm.invalid">
