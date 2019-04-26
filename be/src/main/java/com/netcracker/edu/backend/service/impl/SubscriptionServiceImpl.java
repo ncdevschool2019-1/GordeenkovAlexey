@@ -5,6 +5,7 @@ import com.netcracker.edu.backend.entity.Subscription;
 import com.netcracker.edu.backend.repository.ServiceRepository;
 import com.netcracker.edu.backend.repository.StatusRepository;
 import com.netcracker.edu.backend.repository.SubscriptionRepository;
+import com.netcracker.edu.backend.service.BillingAccountService;
 import com.netcracker.edu.backend.service.StatusService;
 import com.netcracker.edu.backend.service.SubscriptionService;
 import com.netcracker.edu.backend.service.UserService;
@@ -21,9 +22,8 @@ public class SubscriptionServiceImpl implements SubscriptionService {
     private UserService userService;
     @Autowired
     private StatusService statusService;
-
     @Autowired
-    private ServiceRepository serviceRepository;
+    private BillingAccountService billingAccountService;
 
     @Autowired
     private SubscriptionRepository subscriptionRepository;
@@ -50,6 +50,7 @@ public class SubscriptionServiceImpl implements SubscriptionService {
         Subscription tmp =
                 new Subscription(60000l, subscription.getUserId(),
                         statusService.getStatus("Active"), subscription.getService());
+        billingAccountService.withdraw(tmp.getUserId(), tmp.getService().getCost());
         return subscriptionRepository.save(tmp);
     }
 
@@ -77,7 +78,7 @@ public class SubscriptionServiceImpl implements SubscriptionService {
     }
 
 
-    public Subscription findTheNearestExpiringSubscription() {
+    public Iterable<Subscription> findTheNearestExpiringSubscription() {
 
         return subscriptionRepository.findFirstByExpireDate(
                 String.valueOf(statusService.getStatus("Active").getId()));

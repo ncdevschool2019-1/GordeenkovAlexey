@@ -45,28 +45,27 @@ public class ChargingServiceImpl implements ChargingService {
 
 
         if (charge == true) {
-            Subscription subscription = subscriptionService.findTheNearestExpiringSubscription();
-            System.out.println(subscription);
+            Iterable<Subscription> subscriptions = subscriptionService.findTheNearestExpiringSubscription();
+            for (Subscription subscription : subscriptions) {
+                if (subscription != null) {
+                    System.out.println(2);
 
-            if (subscription != null) {
-                System.out.println(2);
+                    if (subscription.getExpireDate() <= (new Date()).getTime()) {
+                        if (subscription.getService().getCost() > billingAccountService.getTotalSum(subscription.getUserId())) {
+                            System.out.println(3);
+                            subscription.block(statusService.getStatus("Blocked"));
+                            subscriptionService.updateSubscription(subscription);
 
-                if (subscription.getExpireDate() <= (new Date()).getTime()) {
-                    if (subscription.getService().getCost() > billingAccountService.getTotalSum(subscription.getUserId())) {
-                        System.out.println(3);
-                        subscription.block(statusService.getStatus("Blocked"));
-                        subscriptionService.updateSubscription(subscription);
+                        } else {
+                            System.out.println(4);
+                            billingAccountService.withdraw(subscription.getUserId(), subscription.getService().getCost());
+                            subscription.charge();
+                            subscriptionService.updateSubscription(subscription);
 
-                    } else {
-                        System.out.println(4);
-                        billingAccountService.withdraw(subscription.getUserId(), subscription.getService().getCost());
-                        subscription.charge();
-                        subscriptionService.updateSubscription(subscription);
-
+                        }
                     }
                 }
             }
         }
     }
-
 }

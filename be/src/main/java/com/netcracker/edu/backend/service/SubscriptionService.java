@@ -18,7 +18,7 @@ public interface SubscriptionService {
 
     Subscription changeSubscriptionStatus(Subscription subscription);
 
-    Subscription findTheNearestExpiringSubscription();
+    Iterable<Subscription> findTheNearestExpiringSubscription();
 
     Subscription updateSubscription(Subscription subscription);
 }
