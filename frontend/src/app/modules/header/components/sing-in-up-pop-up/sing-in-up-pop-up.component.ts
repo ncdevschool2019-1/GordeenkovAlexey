@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {ModalService} from "../../../../services/modal.service";
 
 @Component({
   selector: 'app-sing-in-up-pop-up',
@@ -11,7 +12,11 @@ export class SingInUpPopUpComponent implements OnInit {
   singIn: boolean;
   singUp: boolean;
 
-  constructor() {
+  constructor(private modalService: ModalService) {
+  }
+
+  closeModal() {
+    this.modalService.closeModal();
   }
 
   ngOnInit() {

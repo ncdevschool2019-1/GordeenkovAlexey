@@ -1,22 +1,15 @@
-<div id="myModal" class="modal fade " role="dialog">
-  <div class="modal-dialog">
-    <!-- Modal content-->
-    <div class="modal-content">
+<div class="modal-content">
 
-      <button type="button" class="btn close-button" data-dismiss="modal">❌</button>
+  <button type="button" class="btn close-button" (click)="closeModal()">❌</button>
 
       <div *ngIf="singIn===true">
 
         <app-sing-in></app-sing-in>
-        <button type="button" class="btn btn-default float-right" (click)="singUpClick()">SingUp</button>
+        <button type="button" class="btn btn-default float-right" (click)="singUpClick()">SignUp</button>
       </div>
 
       <div *ngIf="singUp===true">
         <app-sing-up></app-sing-up>
-        <button type="button" class="btn btn-default float-right" (click)="singInClick()">SingIn</button>
+        <button type="button" class="btn btn-default float-right" (click)="singInClick()">SignIn</button>
       </div>
     </div>
-  </div>
-</div>
-
-

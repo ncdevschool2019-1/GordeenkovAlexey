@@ -1,20 +1,18 @@
-export class User {
-  id: number;
+export class RegUser {
   firstName: string;
   lastName: string;
   userName: string;
   email: string;
   phone: string;
-  role: string;
+  password: string;
 
 
-  constructor(id: number, firstName: string, lastName: string, userName: string, email: string, phone: string, role: string) {
-    this.id = id;
+  constructor(firstName: string, lastName: string, userName: string, email: string, phone: string, password: string) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.userName = userName;
     this.email = email;
     this.phone = phone;
-    this.role = role;
+    this.password = password;
   }
 }

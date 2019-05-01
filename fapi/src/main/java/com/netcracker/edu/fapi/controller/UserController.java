@@ -31,7 +31,7 @@ public class UserController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<User> addUser(@RequestBody User user /*todo server validation*/) {
+    public ResponseEntity<User> saveUser(@RequestBody User user) {
         if (user != null) {
             return ResponseEntity.ok(userService.save(user));
         }

@@ -1,6 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, TemplateRef} from '@angular/core';
 import {Link} from "../../models/link";
 import {HeaderService} from "../../../../services/header.service";
+import {ModalService} from "../../../../services/modal.service";
 
 @Component({
   selector: 'app-header',
@@ -11,7 +12,16 @@ export class HeaderComponent implements OnInit {
 
   links: Link[];
 
-  constructor(private headerService: HeaderService) {
+  constructor(private headerService: HeaderService, private modalService: ModalService) {
+  }
+
+
+  public openModal(template: TemplateRef<any>): void {
+    this.modalService.openModal(template);
+  }
+
+  public closeModal() {
+    this.modalService.closeModal();
   }
 
   ngOnInit() {

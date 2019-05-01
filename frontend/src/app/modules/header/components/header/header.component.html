@@ -11,7 +11,7 @@
            (click)="onSelect(link)">  {{link.name}}</a>
       </li>
       <li id="singUp" class="nav-item">
-        <button type="button" class="btn  text-light btn-lg" data-toggle="modal" data-target="#myModal">
+        <button type="button" class="btn  text-light btn-lg" (click)="openModal(template)">
           SingIn/Up
         </button>
       </li>
@@ -19,5 +19,6 @@
   </div>
 </nav>
 
-
+<ng-template #template>
 <app-sing-in-up-pop-up></app-sing-in-up-pop-up>
+</ng-template>

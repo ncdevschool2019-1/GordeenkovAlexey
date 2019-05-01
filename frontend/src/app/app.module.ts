@@ -15,6 +15,8 @@ import {AccountModule} from './modules/account/account.module';
 import {CatalogModule} from './modules/catalog/catalog.module';
 import {FooterModule} from './modules/footer/footer.module';
 import {HomePageModule} from './modules/home-page/home-page.module';
+import {ToastrModule} from 'ngx-toastr';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -25,6 +27,10 @@ import {HomePageModule} from './modules/home-page/home-page.module';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    ToastrModule.forRoot({
+      timeOut: 4000,
+      positionClass: 'toast-top-left'
+    }),
     Ng4LoadingSpinnerModule.forRoot(),
     BsDropdownModule.forRoot(),
     TooltipModule.forRoot(),
@@ -35,7 +41,8 @@ import {HomePageModule} from './modules/home-page/home-page.module';
     AccountModule,
     CatalogModule,
     FooterModule,
-    HomePageModule
+    HomePageModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

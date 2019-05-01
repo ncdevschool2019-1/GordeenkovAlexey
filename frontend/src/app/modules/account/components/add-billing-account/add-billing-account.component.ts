@@ -3,9 +3,9 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {BillingAccount} from "../../models/billing-account";
 import {UsersService} from "../../../../services/users.service";
 import {BillingAccountService} from "../../../../services/billing-account.service";
-import {BillingAccountComponent} from "../billing-account/billing-account.component";
 import {Subscription} from "rxjs";
 import {BsModalRef, BsModalService} from "ngx-bootstrap";
+import {ModalService} from "../../../../services/modal.service";
 
 @Component({
   selector: 'app-add-billing-account',
@@ -19,7 +19,7 @@ export class AddBillingAccountComponent implements OnInit {
   addBillingAccountForm: FormGroup;
 
 
-  constructor(private billingAccountService: BillingAccountService, private usersService: UsersService, private modalService: BsModalService) {
+  constructor(private billingAccountService: BillingAccountService, private usersService: UsersService, private modalService: ModalService) {
     this.addBillingAccountForm = new FormGroup({
         'money': new FormControl("", [
           Validators.required,
@@ -36,16 +36,12 @@ export class AddBillingAccountComponent implements OnInit {
   ngOnInit() {
   }
 
-  public modalRef: BsModalRef;
-
   public closeModal() {
-    this.modalRef.hide();
+    this.modalService.closeModal();
   }
 
   public openModal(template: TemplateRef<any>): void {
-
-    this.modalRef = this.modalService.show(template); // and when the user clicks on the button to open the popup
-                                                      // we keep the modal reference and pass the template local name to the modalService.
+    this.modalService.openModal(template);
   }
 
   submit() {

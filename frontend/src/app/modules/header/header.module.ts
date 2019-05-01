@@ -9,7 +9,8 @@ import {SingInUpPopUpComponent} from "./components/sing-in-up-pop-up/sing-in-up-
 import {HeaderService} from "../../services/header.service";
 import {SingUpComponent} from './components/sing-up/sing-up.component';
 import {SingInComponent} from "./components/sing-in/sing-in.component";
-
+import {ToastrModule} from "ngx-toastr";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 @NgModule({
   declarations: [
     HeaderComponent,
@@ -22,6 +23,11 @@ import {SingInComponent} from "./components/sing-in/sing-in.component";
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
+    ToastrModule.forRoot({
+      timeOut: 4000,
+      positionClass: 'toast-top-left'
+    }),
+    BrowserAnimationsModule,
     HttpClientModule,
     Ng4LoadingSpinnerModule.forRoot(),
 

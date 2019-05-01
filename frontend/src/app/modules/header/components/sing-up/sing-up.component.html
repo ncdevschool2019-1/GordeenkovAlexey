@@ -1,10 +1,11 @@
+<ng4-loading-spinner></ng4-loading-spinner>
 <div class="logInForm">
   <form [formGroup]="SingUpForm" novalidate (ngSubmit)="singUpSubmit()">
 
     <h1>SingUp</h1>
 
     <div class="form-group">
-      <input class="form-control" formControlName="firstName" placeholder="First name" type="text">
+      <input class="form-control" formControlName="firstName" placeholder="First name" type="text"/>
       <div class="alert alert-warning"
            *ngIf="SingUpForm.controls['firstName'].invalid &&SingUpForm.controls['firstName'].touched">
         <ng-container *ngIf="SingUpForm.controls['firstName'].errors['required']">

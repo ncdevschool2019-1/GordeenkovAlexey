@@ -17,6 +17,9 @@ import java.util.*;
 @Service
 public class UserServiceImpl implements UserService {
 
+    @Autowired
+    BCryptPasswordEncoder bCryptPasswordEncoder;
+
     @Value("${backend.server.url}")
     private String backendServerUrl;
 
@@ -43,6 +46,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User save(User user) {
         RestTemplate restTemplate = new RestTemplate();
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         return restTemplate.postForEntity(backendServerUrl + "api/users", user, User.class).getBody();
     }
 

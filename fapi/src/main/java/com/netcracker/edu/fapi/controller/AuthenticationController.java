@@ -1,38 +1,31 @@
 package com.netcracker.edu.fapi.controller;
 
-import com.netcracker.edu.fapi.security.TokenProvider;
-import com.netcracker.edu.fapi.models.AuthToken;
-import com.netcracker.edu.fapi.models.LoginUser;
+import com.netcracker.edu.fapi.models.User;
+import com.netcracker.edu.fapi.service.AuthService;
+import com.netcracker.edu.fapi.service.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
-//AuthenticationController has API exposed to generate JWT token
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/token")
+@RequestMapping("/api/auth")
 public class AuthenticationController {
 
     @Autowired
-    private AuthenticationManager authenticationManager;
-
+    private TokenService tokenService;
     @Autowired
-    private TokenProvider tokenProvider;
+    private AuthService authService;
 
-    @RequestMapping(value = "/generate-token", method = RequestMethod.POST)
-    public ResponseEntity register(@RequestBody LoginUser loginUser){
-        final Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        loginUser.getUsername(),
-                        loginUser.getPassword()
-                )
-        );
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-        final String token = tokenProvider.generateToken(authentication);
-        return ResponseEntity.ok(new AuthToken(token));
+
+    @RequestMapping(value = "/signin", method = RequestMethod.POST)
+    public ResponseEntity register(@RequestBody User user) {
+        if (authService.authenticate(user)) {
+            return ResponseEntity.ok(this.tokenService.generateToken(user));
+        }
+        return ResponseEntity.badRequest().body("Incorrect UserName or Password");
     }
+
+
+
 }

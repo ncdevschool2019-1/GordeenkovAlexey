@@ -1,15 +1,21 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {PhoneValidator} from "../../../../Validators/phoneValidator";
+import {ToastrService} from 'ngx-toastr';
+import {Ng4LoadingSpinnerService} from "ng4-loading-spinner";
+import {UsersService} from "../../../../services/users.service";
+import {RegUser} from "../../models/RegUser";
+import {Subscription} from "rxjs";
+import {ActivatedRoute} from "@angular/router";
+import {ModalService} from "../../../../services/modal.service";
 
 @Component({
   selector: 'app-sing-up',
   templateUrl: './sing-up.component.html',
   styleUrls: ['./sing-up.component.css']
 })
-export class SingUpComponent implements OnInit {
+export class SingUpComponent implements OnInit, OnDestroy {
 
-  formControls: FormControl[];
+  subscriptions: Subscription[] = [];
 
 
   SingUpForm: FormGroup = new FormGroup({
@@ -37,7 +43,8 @@ export class SingUpComponent implements OnInit {
     email: new FormControl("", [Validators.email, Validators.required])
   });
 
-  constructor() {
+  constructor(private userService: UsersService, private toastr: ToastrService,
+              private loadingService: Ng4LoadingSpinnerService, private modalService: ModalService) {
   }
 
   ngOnInit() {
@@ -49,9 +56,23 @@ export class SingUpComponent implements OnInit {
   }
 
   singUpSubmit() {
-    console.log(this.SingUpForm.value);
+    this.loadingService.show();
 
-    ;
+    let user = new RegUser(this.SingUpForm.get("firstName").value, this.SingUpForm.get("lastName").value, this.SingUpForm.get("userName").value, this.SingUpForm.get("email").value, this.SingUpForm.get("phone").value, this.SingUpForm.get("password").value);
+
+    this.subscriptions.push(
+      this.userService.saveUser(user).subscribe(value => {
+        this.toastr.success('Account created successfully!', user.firstName);
+        this.modalService.closeModal();
+      }, error => {
+        this.toastr.error(error.error, 'Error');
+        this.loadingService.hide();
+      }, () => this.loadingService.hide()));
+
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(value => value.unsubscribe());
   }
 
 }

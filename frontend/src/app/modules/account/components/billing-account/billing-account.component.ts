@@ -4,6 +4,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {BillingAccountService} from "../../../../services/billing-account.service";
 import {Subscription} from "rxjs";
 import {BsModalRef, BsModalService} from "ngx-bootstrap";
+import {ModalService} from "../../../../services/modal.service";
 
 @Component({
   selector: 'app-billing-account',
@@ -19,13 +20,11 @@ export class BillingAccountComponent implements OnInit, OnDestroy {
   public modalRef: BsModalRef;
 
   public closeModal() {
-    this.modalRef.hide();
+    this.modalService.closeModal();
   }
 
   public openModal(template: TemplateRef<any>): void {
-
-    this.modalRef = this.modalService.show(template); // and when the user clicks on the button to open the popup
-                                                      // we keep the modal reference and pass the template local name to the modalService.
+    this.modalService.openModal(template);
   }
 
   addMoney(baId: number, indexOfForm: number) {
@@ -69,7 +68,7 @@ export class BillingAccountComponent implements OnInit, OnDestroy {
         this.billingAccountService.getBillingAccountsFromFapi()));
   }
 
-  constructor(private billingAccountService: BillingAccountService, private modalService: BsModalService) {
+  constructor(private billingAccountService: BillingAccountService, private modalService: ModalService) {
   }
 
   ngOnInit() {

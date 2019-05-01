@@ -7,10 +7,10 @@
       </p>
     <div *ngIf="!isThereSubscriptionToService(service)">
         <p>${{service.cost}}/day</p>
-      <button (click)="openSubscribeModal(subscribeTemplate)">SUBSCRIBE</button>
+      <button (click)="openModal(subscribeTemplate)">SUBSCRIBE</button>
       </div>
     <div class="mr" *ngIf="isThereSubscriptionToService(service)">
-      <button (click)="openUnsubscribeModal(unsubscribeTemplate)">UNSUBSCRIBE</button>
+      <button (click)="openModal(unsubscribeTemplate)">UNSUBSCRIBE</button>
     </div>
 
 
@@ -18,7 +18,7 @@
       <div class="modal-header">
         <h4 class="modal-title pull-left">Unsubscribe from {{service.name}}</h4>
         <button type="button" class="close pull-right"
-                aria-label="Close" (click)="closeUnsubscribeModal()">
+                aria-label="Close" (click)="closeModal()">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -31,7 +31,7 @@
         <button type="submit" class="btn btn-secondary" data-dismiss="modal" (click)="unsubscribeFromService(service)">
           Unsubscribe
         </button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeUnsubscribeModal()">Close
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeModal()">Close
         </button>
       </div>
     </ng-template>
@@ -40,7 +40,7 @@
       <div class="modal-header">
         <h4 class="modal-title pull-left">Subscribe to {{service.name}}</h4>
         <button type="button" class="close pull-right"
-                aria-label="Close" (click)="closeSubscribeModal()">
+                aria-label="Close" (click)="closeModal()">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -53,7 +53,7 @@
         <button type="submit" class="btn btn-secondary" data-dismiss="modal"
                 (click)="subscribeToService(service,notEnoughMoneyTemplate)">Subscribe
         </button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeSubscribeModal()">Close
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeModal()">Close
         </button>
       </div>
     </ng-template>
@@ -67,7 +67,7 @@
   <div class="modal-header">
     <h4 class="modal-title pull-left">Not enough money!</h4>
     <button type="button" class="close pull-right"
-            aria-label="Close" (click)="closeNotEnoughMoneyModal()">
+            aria-label="Close" (click)="closeModal()">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
@@ -78,7 +78,7 @@
     </p>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeNotEnoughMoneyModal()">Close
+    <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeModal()">Close
     </button>
   </div>
 </ng-template>
