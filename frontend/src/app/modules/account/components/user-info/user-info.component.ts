@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {UsersService} from "../../../../services/users.service";
 import {User} from "../../models/user";
+import {AuthorizationService} from "../../../../services/authorization.service";
 
 @Component({
   selector: 'app-user-info',
@@ -9,7 +10,21 @@ import {User} from "../../models/user";
 })
 export class UserInfoComponent implements OnInit {
 
-  constructor(private usersService: UsersService) {
+  isAuthorized(): boolean {
+    return this.authService.getAuthorizedUser() === null ? false : true;
+  }
+
+  isUser(): boolean {
+    if (!this.isAuthorized()) return false;
+    return this.authService.getAuthorizedUser().role.name === "User";
+  }
+
+  isAdmin(): boolean {
+    if (!this.isAuthorized()) return false;
+    return this.authService.getAuthorizedUser().role.name === "Admin";
+  }
+
+  constructor(private authService: AuthorizationService, private usersService: UsersService) {
   }
 
   ngOnInit() {

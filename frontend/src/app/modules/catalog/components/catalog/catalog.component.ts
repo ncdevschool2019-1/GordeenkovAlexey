@@ -6,6 +6,7 @@ import {Subscription} from "rxjs";
 import {SubscriptionService} from "../../../../services/subscription.service";
 import {BillingAccountService} from "../../../../services/billing-account.service";
 import {ModalService} from "../../../../services/modal.service";
+import {AuthorizationService} from "../../../../services/authorization.service";
 
 @Component({
   selector: 'app-catalog',
@@ -21,8 +22,19 @@ export class CatalogComponent implements OnInit, OnDestroy {
 
   constructor(private catalogService: CatalogService, private headerService: HeaderService,
               private subscriptionsService: SubscriptionService, private billingAccountService: BillingAccountService,
-              private modalService: ModalService) {
+              private modalService: ModalService, private authService: AuthorizationService) {
   }
+
+
+  isAuthorized(): boolean {
+    return this.authService.getAuthorizedUser() === null ? false : true;
+  }
+
+  isUser(): boolean {
+    if (!this.isAuthorized()) return false;
+    return this.authService.getAuthorizedUser().role.name === "User";
+  }
+
 
   ngOnInit() {
     this.getCatalog();

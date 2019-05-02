@@ -2,6 +2,7 @@ import {Component, OnInit, TemplateRef} from '@angular/core';
 import {Link} from "../../models/link";
 import {HeaderService} from "../../../../services/header.service";
 import {ModalService} from "../../../../services/modal.service";
+import {AuthorizationService} from "../../../../services/authorization.service";
 
 @Component({
   selector: 'app-header',
@@ -12,7 +13,16 @@ export class HeaderComponent implements OnInit {
 
   links: Link[];
 
-  constructor(private headerService: HeaderService, private modalService: ModalService) {
+  isAuthorized(): boolean {
+    return this.authService.getAuthorizedUser() === null ? false : true;
+  }
+
+
+  signOut() {
+    this.authService.leaveAccount();
+  }
+
+  constructor(private headerService: HeaderService, private modalService: ModalService, private authService: AuthorizationService) {
   }
 
 

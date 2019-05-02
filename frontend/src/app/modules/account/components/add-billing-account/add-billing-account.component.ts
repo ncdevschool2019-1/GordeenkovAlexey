@@ -6,6 +6,7 @@ import {BillingAccountService} from "../../../../services/billing-account.servic
 import {Subscription} from "rxjs";
 import {BsModalRef, BsModalService} from "ngx-bootstrap";
 import {ModalService} from "../../../../services/modal.service";
+import {AuthorizationService} from "../../../../services/authorization.service";
 
 @Component({
   selector: 'app-add-billing-account',
@@ -18,8 +19,21 @@ export class AddBillingAccountComponent implements OnInit {
 
   addBillingAccountForm: FormGroup;
 
+  isAuthorized(): boolean {
+    return this.authService.getAuthorizedUser() === null ? false : true;
+  }
 
-  constructor(private billingAccountService: BillingAccountService, private usersService: UsersService, private modalService: ModalService) {
+  isUser(): boolean {
+    if (!this.isAuthorized()) return false;
+    return this.authService.getAuthorizedUser().role.name === "User";
+  }
+
+  isAdmin(): boolean {
+    if (!this.isAuthorized()) return false;
+    return this.authService.getAuthorizedUser().role.name === "Admin";
+  }
+
+  constructor(private authService: AuthorizationService, private billingAccountService: BillingAccountService, private usersService: UsersService, private modalService: ModalService) {
     this.addBillingAccountForm = new FormGroup({
         'money': new FormControl("", [
           Validators.required,

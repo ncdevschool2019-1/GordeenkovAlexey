@@ -1,4 +1,4 @@
-<button type="button" class="btn btn-secondary float-right" data-toggle="modal"
+<button *ngIf="isUser()" type="button" class="btn btn-secondary float-right" data-toggle="modal"
         (click)="openModal(template)">
   Add BillingAccount
 </button>

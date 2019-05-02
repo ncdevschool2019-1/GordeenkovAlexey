@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {UsersService} from "../../../../services/users.service";
 import {SubscriptionService} from "../../../../services/subscription.service";
+import {AuthorizationService} from "../../../../services/authorization.service";
 
 @Component({
   selector: 'app-account',
@@ -9,7 +10,7 @@ import {SubscriptionService} from "../../../../services/subscription.service";
 })
 export class AccountComponent implements OnInit {
 
-  constructor(private usersService: UsersService, private subscriptionsService: SubscriptionService) {
+  constructor(private usersService: UsersService, private subscriptionsService: SubscriptionService, private authService: AuthorizationService) {
   }
 
   ngOnInit() {
@@ -17,4 +18,7 @@ export class AccountComponent implements OnInit {
     this.subscriptionsService.getSubscriptionsFromFapi();
   }
 
+  isAuthorized(): boolean {
+    return this.authService.getAuthorizedUser() === null ? false : true;
+  }
 }

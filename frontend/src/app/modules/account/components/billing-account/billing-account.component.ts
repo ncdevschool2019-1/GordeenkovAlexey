@@ -1,10 +1,11 @@
-import {Component, OnDestroy, OnInit, TemplateRef} from '@angular/core';
+import {Component, OnDestroy, OnInit, TemplateRef, ɵViewFlags} from '@angular/core';
 import {BillingAccount} from "../../models/billing-account";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {BillingAccountService} from "../../../../services/billing-account.service";
 import {Subscription} from "rxjs";
 import {BsModalRef, BsModalService} from "ngx-bootstrap";
 import {ModalService} from "../../../../services/modal.service";
+import {AuthorizationService} from "../../../../services/authorization.service";
 
 @Component({
   selector: 'app-billing-account',
@@ -16,8 +17,24 @@ export class BillingAccountComponent implements OnInit, OnDestroy {
   subscriptions: Subscription[] = [];
    addMoneyForms: FormGroup[] = [];
   clearIntervalInstance: any;
+  totalBalance: number;
 
   public modalRef: BsModalRef;
+
+  isAuthorized(): boolean {
+    return this.authService.getAuthorizedUser() === null ? false : true;
+  }
+
+  isUser(): boolean {
+    if (!this.isAuthorized()) return false;
+    return this.authService.getAuthorizedUser().role.name === "User";
+  }
+
+  isAdmin(): boolean {
+    if (!this.isAuthorized()) return false;
+    return this.authService.getAuthorizedUser().role.name === "Admin";
+  }
+
 
   public closeModal() {
     this.modalService.closeModal();
@@ -68,14 +85,30 @@ export class BillingAccountComponent implements OnInit, OnDestroy {
         this.billingAccountService.getBillingAccountsFromFapi()));
   }
 
-  constructor(private billingAccountService: BillingAccountService, private modalService: ModalService) {
+  getTotalBalane() {
+    this.subscriptions.push(
+      this.billingAccountService.getTotalBalanse().subscribe(value => {
+        this.totalBalance = value;
+      }));
+  }
+
+  constructor(private authService: AuthorizationService, private billingAccountService: BillingAccountService, private modalService: ModalService) {
   }
 
   ngOnInit() {
-    this.clearIntervalInstance =
-      setInterval(() => {
-        this.billingAccountService.getBillingAccountsFromFapi();
-      }, 2000);
+    if (this.isUser()) {
+      this.clearIntervalInstance =
+        setInterval(() => {
+          this.billingAccountService.getBillingAccountsFromFapi();
+        }, 2000);
+    } else {
+      if (this.isAdmin()) {
+        this.clearIntervalInstance =
+          setInterval(() => {
+            this.getTotalBalane();
+          }, 2000);
+      }
+    }
   }
 
   ngOnDestroy(): void {

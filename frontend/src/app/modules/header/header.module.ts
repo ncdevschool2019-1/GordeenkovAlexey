@@ -25,7 +25,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     ReactiveFormsModule,
     ToastrModule.forRoot({
       timeOut: 4000,
-      positionClass: 'toast-top-left'
+      positionClass: 'toast-top-center'
     }),
     BrowserAnimationsModule,
     HttpClientModule,

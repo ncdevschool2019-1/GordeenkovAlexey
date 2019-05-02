@@ -1,9 +1,10 @@
 import {Injectable} from '@angular/core';
 import {Observable, Subject} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
-import {User} from "../modules/account/models/user";
 import {LogUser} from "../modules/header/models/LogUser";
 import {AuthorizationToken} from "../modules/header/models/AuthorizationToken";
+import {User} from "../modules/account/models/user";
+import {TokenService} from "./token.service";
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class AuthorizationService {
 
   private path = 'http://localhost:8081/api/auth';
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private tokenService: TokenService) {
 
   }
 
@@ -23,7 +24,7 @@ export class AuthorizationService {
   }
 
   public getAuthorizedUser() {
-
+    return this.authorizedUser;
   }
 
   attemptAuthorize(user: LogUser): Observable<AuthorizationToken> {
@@ -32,6 +33,7 @@ export class AuthorizationService {
 
   public leaveAccount() {
     this.authorizedUser = null;
+    this.tokenService.signOut();
   }
 
 

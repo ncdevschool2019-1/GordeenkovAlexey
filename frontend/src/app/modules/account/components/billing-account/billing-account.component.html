@@ -1,9 +1,9 @@
 
 
 <div id="billingAccount">
-  <ul>
-    <li *ngFor="let acc of getBillingAccounts();index as i;">
+  <ul *ngIf="isUser()">
 
+    <li *ngFor="let acc of getBillingAccounts();index as i;">
       <div class="close_button_container">
         <button type="button" class="btn close-button" (click)="deleteBillingAccount(acc.id)">
           <img src="../../../../../assets/delete.png">
@@ -16,7 +16,6 @@
               (click)="openModal(template)">
         Add money
       </button>
-
       <ng-template #template>
         <div class="modal-header">
           <h4 class="modal-title pull-left">Billing Account: id{{acc.id}}</h4>
@@ -57,6 +56,9 @@
 
     </li>
   </ul>
+  <div *ngIf="isAdmin()">
+    <p>Total balance : {{totalBalance}}</p>
+  </div>
 </div>
 
 

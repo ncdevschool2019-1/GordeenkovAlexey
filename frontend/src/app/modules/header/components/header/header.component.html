@@ -7,12 +7,24 @@
     <ul class="top_buttons navbar-nav ">
       <li *ngFor="let link of links" [class.selected]="link === getSelectedLink()"
           class="nav-item ">
-        <a class="nav-link" routerLink="/{{link.name.toLowerCase().replace(' ','')}}"
-           (click)="onSelect(link)">  {{link.name}}</a>
+        <ng-container *ngIf="!(link === links[4])">
+          <a class="nav-link" routerLink="/{{link.name.toLowerCase().replace(' ','')}}"
+             (click)="onSelect(link)">  {{link.name}}</a>
+        </ng-container>
+
+        <ng-container *ngIf="(link === links[4]) && (isAuthorized())">
+          <a class="nav-link" routerLink="/{{link.name.toLowerCase().replace(' ','')}}"
+             (click)="onSelect(link)">  {{link.name}}</a>
+        </ng-container>
       </li>
-      <li id="singUp" class="nav-item">
+
+      <li id="singUp" class="nav-item" *ngIf="!isAuthorized()">
         <button type="button" class="btn  text-light btn-lg" (click)="openModal(template)">
-          SingIn/Up
+          SignIn/Up
+        </button>
+      </li>
+      <li>
+        <button type="button" class="btn  text-light btn-lg" (click)="signOut()" *ngIf="isAuthorized()">Sign Out
         </button>
       </li>
     </ul>

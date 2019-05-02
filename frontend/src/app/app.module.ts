@@ -17,6 +17,7 @@ import {FooterModule} from './modules/footer/footer.module';
 import {HomePageModule} from './modules/home-page/home-page.module';
 import {ToastrModule} from 'ngx-toastr';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {httpInterceptorProviders} from "./services/interceptor.service";
 
 @NgModule({
   declarations: [
@@ -28,8 +29,8 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     ReactiveFormsModule,
     HttpClientModule,
     ToastrModule.forRoot({
-      timeOut: 4000,
-      positionClass: 'toast-top-left'
+      timeOut: 2000,
+      positionClass: 'toast-center-center'
     }),
     Ng4LoadingSpinnerModule.forRoot(),
     BsDropdownModule.forRoot(),
@@ -44,7 +45,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     HomePageModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

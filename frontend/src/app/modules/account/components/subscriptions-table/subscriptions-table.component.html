@@ -7,8 +7,7 @@
 
     <th>Time left</th>
 
-    <th>Continue</th>
-    <th>Pause</th>
+    <th>Continue/Pause</th>
     <th>Delete</th>
   </tr>
   </thead>
@@ -27,12 +26,12 @@
     <td>${{sub.service.cost}}/day</td>
     <td>{{sub.status.name}}</td>
     <td>{{timeLeft(sub)}}</td>
-    <td>
+    <td *ngIf="!(sub.status.name==='Active')">
       <button type="button" class="btn close-button" (click)="continueSubscription(sub)">
         <img src="../../../../../assets/active.png">
       </button>
     </td>
-    <td>
+    <td *ngIf="sub.status.name==='Active'">
       <button type="button" class="btn close-button" (click)="pauseSubscription(sub)">
         <img src="../../../../../assets/pause.png">
       </button>

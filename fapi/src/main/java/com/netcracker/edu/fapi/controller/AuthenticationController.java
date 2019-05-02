@@ -20,10 +20,9 @@ public class AuthenticationController {
 
     @RequestMapping(value = "/signin", method = RequestMethod.POST)
     public ResponseEntity register(@RequestBody User user) {
-        if (authService.authenticate(user)) {
             return ResponseEntity.ok(this.tokenService.generateToken(user));
-        }
-        return ResponseEntity.badRequest().body("Incorrect UserName or Password");
+
+        // return ResponseEntity.badRequest().body("Incorrect UserName or Password");
     }
 
 

@@ -2,6 +2,7 @@ package com.netcracker.edu.fapi.config.security;
 
 import com.netcracker.edu.fapi.security.JwtAuthenticationEntryPoint;
 import com.netcracker.edu.fapi.security.JwtAuthenticationFilter;
+import com.netcracker.edu.fapi.service.impl.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -27,6 +28,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private JwtAuthenticationEntryPoint unauthorizedHandler;
 
+    @Autowired
+    private UserDetailsServiceImpl userDetailsService;
+
+    @Override
+    public void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userDetailsService).passwordEncoder(encoder());
+    }
+
     @Override
     @Bean
     public AuthenticationManager authenticationManagerBean() throws Exception {
@@ -36,6 +45,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public JwtAuthenticationFilter authenticationTokenFilterBean(){
+
         return new JwtAuthenticationFilter();
     }
 

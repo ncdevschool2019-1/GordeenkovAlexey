@@ -1,3 +1,5 @@
+import {Role} from "./role";
+
 export class User {
   id: number;
   firstName: string;
@@ -5,10 +7,10 @@ export class User {
   userName: string;
   email: string;
   phone: string;
-  role: string;
+  role: Role;
 
 
-  constructor(id: number, firstName: string, lastName: string, userName: string, email: string, phone: string, role: string) {
+  constructor(id: number, firstName: string, lastName: string, userName: string, email: string, phone: string, role: Role) {
     this.id = id;
     this.firstName = firstName;
     this.lastName = lastName;
