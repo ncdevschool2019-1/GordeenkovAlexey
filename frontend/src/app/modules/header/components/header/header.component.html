@@ -24,8 +24,8 @@
         </button>
       </li>
       <li>
-        <button type="button" class="btn  text-light btn-lg" (click)="signOut()" *ngIf="isAuthorized()">Sign Out
-        </button>
+        <a class="nav-link" routerLink="/{{links[0].name.toLowerCase().replace(' ','')}}"
+           (click)="onSelect(links[0])" (click)="signOut()" *ngIf="isAuthorized()">Sign Out</a>
       </li>
     </ul>
   </div>

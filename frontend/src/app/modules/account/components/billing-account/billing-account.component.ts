@@ -6,6 +6,8 @@ import {Subscription} from "rxjs";
 import {BsModalRef, BsModalService} from "ngx-bootstrap";
 import {ModalService} from "../../../../services/modal.service";
 import {AuthorizationService} from "../../../../services/authorization.service";
+import {ToastrService} from "ngx-toastr";
+import {Ng4LoadingSpinnerService} from "ng4-loading-spinner";
 
 @Component({
   selector: 'app-billing-account',
@@ -45,12 +47,28 @@ export class BillingAccountComponent implements OnInit, OnDestroy {
   }
 
   addMoney(baId: number, indexOfForm: number) {
+    this.loadingService.show();
+
     let tmpBA = this.getBillingAccounts()[indexOfForm];
+
     this.subscriptions.push(
       this.billingAccountService.addMoney(new BillingAccount(tmpBA.id, tmpBA.balance + Number(this.addMoneyForms[indexOfForm].get("money").value), tmpBA.userId))
         .subscribe(() => {
+
           this.billingAccountService.getBillingAccountsFromFapi();
-        }))
+            this.modalService.closeModal();
+
+          }, error => {
+
+            this.loadingService.hide();
+            this.toastr.error(error.error.message, 'Error');
+
+          }, () => {
+
+            this.loadingService.hide();
+
+          }
+        ))
     ;
   }
 
@@ -72,6 +90,7 @@ export class BillingAccountComponent implements OnInit, OnDestroy {
           "money": new FormControl("", [
             Validators.required,
             Validators.max(999999999),
+            Validators.min(1),
             Validators.pattern('^[0-9]+$')
           ])
         })
@@ -92,23 +111,20 @@ export class BillingAccountComponent implements OnInit, OnDestroy {
       }));
   }
 
-  constructor(private authService: AuthorizationService, private billingAccountService: BillingAccountService, private modalService: ModalService) {
+  constructor(private toastr: ToastrService, private loadingService: Ng4LoadingSpinnerService, private authService: AuthorizationService, private billingAccountService: BillingAccountService, private modalService: ModalService) {
   }
 
   ngOnInit() {
-    if (this.isUser()) {
-      this.clearIntervalInstance =
-        setInterval(() => {
+    this.clearIntervalInstance =
+      setInterval(() => {
+        if (this.isUser()) {
           this.billingAccountService.getBillingAccountsFromFapi();
-        }, 2000);
-    } else {
-      if (this.isAdmin()) {
-        this.clearIntervalInstance =
-          setInterval(() => {
+        } else {
+          if (this.isAdmin()) {
             this.getTotalBalane();
-          }, 2000);
-      }
-    }
+          }
+        }
+      }, 1000);
   }
 
   ngOnDestroy(): void {

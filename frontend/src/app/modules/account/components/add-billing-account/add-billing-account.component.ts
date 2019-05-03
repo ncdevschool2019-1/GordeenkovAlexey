@@ -1,4 +1,4 @@
-import {Component, OnInit, TemplateRef} from '@angular/core';
+import {Component, OnDestroy, OnInit, TemplateRef} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {BillingAccount} from "../../models/billing-account";
 import {UsersService} from "../../../../services/users.service";
@@ -7,15 +7,17 @@ import {Subscription} from "rxjs";
 import {BsModalRef, BsModalService} from "ngx-bootstrap";
 import {ModalService} from "../../../../services/modal.service";
 import {AuthorizationService} from "../../../../services/authorization.service";
+import {Ng4LoadingSpinnerService} from "ng4-loading-spinner";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-add-billing-account',
   templateUrl: './add-billing-account.component.html',
   styleUrls: ['./add-billing-account.component.css']
 })
-export class AddBillingAccountComponent implements OnInit {
+export class AddBillingAccountComponent implements OnInit, OnDestroy {
 
-  subscription: Subscription;
+  subscriptions: Subscription[] = [];
 
   addBillingAccountForm: FormGroup;
 
@@ -33,11 +35,12 @@ export class AddBillingAccountComponent implements OnInit {
     return this.authService.getAuthorizedUser().role.name === "Admin";
   }
 
-  constructor(private authService: AuthorizationService, private billingAccountService: BillingAccountService, private usersService: UsersService, private modalService: ModalService) {
+  constructor(private toastr: ToastrService, private loadingService: Ng4LoadingSpinnerService, private authService: AuthorizationService, private billingAccountService: BillingAccountService, private usersService: UsersService, private modalService: ModalService) {
     this.addBillingAccountForm = new FormGroup({
         'money': new FormControl("", [
           Validators.required,
           Validators.max(999999999),
+          Validators.min(0),
           Validators.pattern('^[0-9]+$')
         ])
       }
@@ -59,13 +62,23 @@ export class AddBillingAccountComponent implements OnInit {
   }
 
   submit() {
-    if (this.subscription) this.subscription.unsubscribe();
-    this.subscription =
+    console.log("asdasda");
+    this.loadingService.show();
+
+    this.subscriptions.push(
       this.billingAccountService.addBillingAccount(new BillingAccount(null, this.addBillingAccountForm.get("money").value, this.usersService.getActiveUser().id))
         .subscribe(() => {
           this.billingAccountService.getBillingAccountsFromFapi();
           this.closeModal();
-        })
-    ;
+        }, error => {
+          this.loadingService.hide();
+          this.toastr.error(error.error.message, 'Error');
+        }, () => {
+          this.loadingService.hide();
+        }));
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(s => s.unsubscribe());
   }
 }

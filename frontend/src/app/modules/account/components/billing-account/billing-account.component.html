@@ -16,6 +16,7 @@
               (click)="openModal(template)">
         Add money
       </button>
+
       <ng-template #template>
         <div class="modal-header">
           <h4 class="modal-title pull-left">Billing Account: id{{acc.id}}</h4>
@@ -30,24 +31,21 @@
             <div class="form-group">
 
               <label>If you want to add money, enter the amount below </label>
-              <input class="form-control" placeholder="amount of money" min="1" formControlName="money">
+              <input class="form-control" placeholder="amount of money" min="1" formControlName="money" type="number">
             </div>
             <div class="alert alert-warning"
                  *ngIf="addMoneyForms[i].controls['money'].invalid && addMoneyForms[i].controls['money'].touched">
-              <p>Only numbers required</p>
+              <p>Only numbers between [1;999999999] required</p>
             </div>
 
-            <div class="form-group">
-              <button type="submit" class="btn btn-secondary float-right" [disabled]="addMoneyForms[i].invalid"
-                      (click)="closeModal()">
-                Submit
-              </button>
-
-            </div>
           </form>
 
         </div>
         <div class="modal-footer">
+          <button type="submit" class="btn btn-secondary float-right" [disabled]="addMoneyForms[i].invalid"
+                  (click)="addMoney(acc.id,i)">
+            Submit
+          </button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeModal()">Close</button>
 
         </div>
@@ -56,7 +54,7 @@
 
     </li>
   </ul>
-  <div *ngIf="isAdmin()">
+  <div *ngIf="isAdmin()" class="totalBalance">
     <p>Total balance : {{totalBalance}}</p>
   </div>
 </div>

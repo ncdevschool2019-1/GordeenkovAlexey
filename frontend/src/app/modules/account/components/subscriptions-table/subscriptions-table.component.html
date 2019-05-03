@@ -23,9 +23,9 @@
         </a>
       </ng-container>
     </td>
-    <td>${{sub.service.cost}}/day</td>
+    <td>${{sub.service.cost}}/minute</td>
     <td>{{sub.status.name}}</td>
-    <td>{{timeLeft(sub)}}</td>
+    <td>{{timeLeft(sub)}}s</td>
     <td *ngIf="!(sub.status.name==='Active')">
       <button type="button" class="btn close-button" (click)="continueSubscription(sub)">
         <img src="../../../../../assets/active.png">

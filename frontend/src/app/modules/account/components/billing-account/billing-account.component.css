@@ -1,7 +1,12 @@
 #billingAccount {
-  /*margin-top: 30%;*/
+  margin: auto;
+  display: flex;
 }
 
+ul {
+  margin: auto;
+  padding-left: 0px;
+}
 .close_button_container {
   display: flex;
 }
@@ -13,4 +18,13 @@
 li {
   margin-bottom: 60px;
   list-style-type: none;
+}
+
+.totalBalance {
+  display: flex;
+  width: 80%;
+  margin: auto;
+}
+
+.totalBalance > p {
 }

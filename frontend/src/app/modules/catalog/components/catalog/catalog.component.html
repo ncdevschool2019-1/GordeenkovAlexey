@@ -6,7 +6,7 @@
         {{service.text}}
       </p>
     <div *ngIf="!isThereSubscriptionToService(service)">
-        <p>${{service.cost}}/day</p>
+      <p>${{service.cost}}/minute</p>
       <button (click)="openModal(subscribeTemplate)" *ngIf="isUser()">SUBSCRIBE</button>
       </div>
     <div class="mr" *ngIf="isThereSubscriptionToService(service)">

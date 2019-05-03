@@ -1,3 +1,4 @@
+<ng4-loading-spinner></ng4-loading-spinner>
 <button *ngIf="isUser()" type="button" class="btn btn-secondary float-right" data-toggle="modal"
         (click)="openModal(template)">
   Add BillingAccount
@@ -18,25 +19,26 @@
       <div class="form-group">
 
         <label>If you want to add money, enter the amount below</label>
-        <input class="form-control" formControlName="money" placeholder="amount of money">
+        <input class="form-control" formControlName="money" placeholder="amount of money" type="number" min="0">
 
         <div class="alert alert-warning"
              *ngIf="addBillingAccountForm.controls['money'].invalid && addBillingAccountForm.controls['money'].touched">
-          <p>Only numbers required</p>
+          <p>Only numbers between [0;999999999] required</p>
         </div>
 
       </div>
 
 
-      <div class="form-group">
-        <button type="submit" class="btn btn-secondary float-right" [disabled]="addBillingAccountForm.invalid">
-          Save
-        </button>
-      </div>
     </form>
 
   </div>
   <div class="modal-footer">
+
+    <button type="submit" class="btn btn-secondary float-right" [disabled]="addBillingAccountForm.invalid"
+            (click)="submit()">
+      Save
+    </button>
+
     <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeModal()">Close</button>
   </div>
 </ng-template>
