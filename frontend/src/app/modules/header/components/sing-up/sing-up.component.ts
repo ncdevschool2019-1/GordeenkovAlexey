@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators} from "@angular/forms";
 import {ToastrService} from 'ngx-toastr';
 import {Ng4LoadingSpinnerService} from "ng4-loading-spinner";
 import {UsersService} from "../../../../services/users.service";
@@ -21,16 +21,19 @@ export class SingUpComponent implements OnInit, OnDestroy {
   SingUpForm: FormGroup = new FormGroup({
     userName: new FormControl("", [
       Validators.required,
-      Validators.pattern('^[a-zA-Z][a-zA-Z0-9-_\\.]{1,20}$')
+      Validators.pattern('^[a-zA-Z][a-zA-Z0-9-_\\.]{1,20}$'),
+      Validators.maxLength(20)
     ]),
     firstName: new FormControl("", [
       Validators.required,
-      Validators.pattern('^[a-zA-Zа-яёА-ЯЁ\\s\\-]+$')
+      Validators.pattern('^[a-zA-Zа-яёА-ЯЁ\\s\\-]+$'),
+      Validators.maxLength(20)
     ]),
     lastName: new FormControl("",
       [
         Validators.required,
-        Validators.pattern('^[a-zA-Zа-яёА-ЯЁ\\s\\-]+$')
+        Validators.pattern('^[a-zA-Zа-яёА-ЯЁ\\s\\-]+$'),
+        Validators.maxLength(20)
       ]),
     phone: new FormControl("", [
       Validators.required,
@@ -38,9 +41,19 @@ export class SingUpComponent implements OnInit, OnDestroy {
     ]),
     password: new FormControl("", [
       Validators.required,
-      Validators.pattern('(?=^.{8,}$)((?=.*\\d)|(?=.*\\W+))(?![.\\n])(?=.*[A-Z])(?=.*[a-z]).*$')
+      Validators.pattern('(?=^.{8,}$)((?=.*\\d)|(?=.*\\W+))(?![.\\n])(?=.*[A-Z])(?=.*[a-z]).*$'),
+      Validators.maxLength(20)
     ]),
-    email: new FormControl("", [Validators.email, Validators.required])
+    repeatPassword: new FormControl("", [
+      Validators.required,
+      Validators.pattern('(?=^.{8,}$)((?=.*\\d)|(?=.*\\W+))(?![.\\n])(?=.*[A-Z])(?=.*[a-z]).*$'),
+      Validators.maxLength(20)
+    ]),
+    email: new FormControl("", [
+      Validators.email,
+      Validators.required,
+      Validators.maxLength(20)
+    ])
   });
 
   constructor(private userService: UsersService, private toastr: ToastrService,
@@ -75,4 +88,9 @@ export class SingUpComponent implements OnInit, OnDestroy {
     this.subscriptions.forEach(value => value.unsubscribe());
   }
 
+  passwordsMatches(): boolean {
+    return this.SingUpForm.get('password') && this.SingUpForm.get('repeatPassword') && this.SingUpForm.get('password').value === this.SingUpForm.get('repeatPassword').value;
+  }
+
 }
+

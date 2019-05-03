@@ -7,7 +7,12 @@
       <input class="form-control" formControlName="userName" placeholder="Username" type="text">
       <div class="alert alert-warning"
            *ngIf="logInForm.controls['userName'].invalid && logInForm.controls['userName'].touched">
-        <p>It is necessary to fill the field</p>
+        <ng-container *ngIf="logInForm.controls['userName'].errors['required']">
+          <p>It is necessary to fill the field</p>
+        </ng-container>
+        <ng-container *ngIf="logInForm.controls['userName'].errors['maxlength']">
+          <p>Max length 20 symbols</p>
+        </ng-container>
       </div>
     </div>
 
@@ -15,7 +20,12 @@
       <input class="form-control" formControlName="password" placeholder="password" type="password">
       <div class="alert alert-warning"
            *ngIf="logInForm.controls['password'].invalid &&logInForm.controls['password'].touched">
-        <p>The password must contain: lowercase and uppercase Latin letters, numbers. Minimum 8 characters</p>
+        <ng-container *ngIf="logInForm.controls['password'].errors['required']">
+          <p>It is necessary to fill the field</p>
+        </ng-container>
+        <ng-container *ngIf="logInForm.controls['password'].errors['maxlength']">
+          <p>Max length 20 symbols</p>
+        </ng-container>
       </div>
     </div>
 

@@ -20,11 +20,13 @@ export class SingInComponent implements OnInit, OnDestroy {
 
   logInForm: FormGroup = new FormGroup({
     userName: new FormControl("", [
-      Validators.required
+      Validators.required,
+      Validators.maxLength(20)
     ]),
     password: new FormControl("", [
       Validators.required,
-      Validators.pattern('(?=^.{8,}$)((?=.*\\d)|(?=.*\\W+))(?![.\\n])(?=.*[A-Z])(?=.*[a-z]).*$')
+      Validators.pattern('(?=^.{8,}$)((?=.*\\d)|(?=.*\\W+))(?![.\\n])(?=.*[A-Z])(?=.*[a-z]).*$'),
+      Validators.maxLength(20)
     ]),
   });
 

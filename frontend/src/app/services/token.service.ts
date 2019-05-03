@@ -13,7 +13,6 @@ export class TokenService {
   private role: string = null;
 
   constructor() {
-    window.sessionStorage.clear();
   }
 
   signOut() {

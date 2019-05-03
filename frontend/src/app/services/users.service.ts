@@ -5,6 +5,7 @@ import {User} from "../modules/account/models/user";
 import {HttpClient} from "@angular/common/http";
 import {RegUser} from "../modules/header/models/RegUser";
 import {AuthorizationService} from "./authorization.service";
+import {TokenService} from "./token.service";
 
 
 @Injectable({
@@ -51,7 +52,16 @@ export class UsersService {
     return this.http.get<User>(this.path + '/username/' + username);
   }
 
-  constructor(private authService: AuthorizationService, private http: HttpClient) {
+  constructor(private authService: AuthorizationService, private http: HttpClient, private tokenService: TokenService) {
+    if (tokenService.getLogin() != null) {
+      this.subscriptions.push(
+        this.getUserByUsername(tokenService.getLogin()).subscribe(value => {
+          if (value != null) {
+            authService.setAuthorizedUser(value);
+          }
+        })
+      );
+    }
   }
 
   private isAuthorized(): boolean {

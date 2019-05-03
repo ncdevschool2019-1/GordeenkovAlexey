@@ -1,5 +1,6 @@
 package com.netcracker.edu.fapi.controller;
 
+import com.netcracker.edu.fapi.Validators.RegistrationValidator;
 import com.netcracker.edu.fapi.models.User;
 import com.netcracker.edu.fapi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,8 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private RegistrationValidator registrationValidator;
 
     @PreAuthorize("hasRole('Admin')")
     @RequestMapping(method = RequestMethod.GET)
@@ -35,11 +38,12 @@ public class UserController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<User> saveUser(@RequestBody User user) {
-        if (user != null) {
+    public ResponseEntity saveUser(@RequestBody User user) {
+        String answer = registrationValidator.validate(user, userService.getUsers());
+        if (user != null && answer.equals("ok")) {
             return ResponseEntity.ok(userService.save(user));
         }
-        return ResponseEntity.badRequest().build();
+        return ResponseEntity.badRequest().body(answer);
     }
 
 }

@@ -14,19 +14,29 @@
         <ng-container *ngIf="SingUpForm.controls['firstName'].errors['pattern']">
           <p>Only letters required</p>
         </ng-container>
+        <ng-container *ngIf="SingUpForm.controls['firstName'].errors['maxlength']">
+          <p>Max length 20 symbols</p>
+        </ng-container>
       </div>
     </div>
 
     <div class="form-group">
       <input class="form-control" formControlName="lastName" placeholder="Last name" type="text">
       <div class="alert alert-warning"
-           *ngIf="SingUpForm.controls['lastName'].invalid &&SingUpForm.controls['lastName'].touched">
+           *ngIf="SingUpForm.controls['lastName'].invalid && SingUpForm.controls['lastName'].touched">
+
         <ng-container *ngIf="SingUpForm.controls['lastName'].errors['required']">
           <p>It is necessary to fill the field</p>
         </ng-container>
+
         <ng-container *ngIf="SingUpForm.controls['lastName'].errors['pattern']">
           <p>Only letters required</p>
         </ng-container>
+
+        <ng-container *ngIf="SingUpForm.controls['lastName'].errors['maxlength']">
+          <p>Max length 20 symbols</p>
+        </ng-container>
+
       </div>
     </div>
     <div class="form-group">
@@ -39,6 +49,9 @@
         <ng-container *ngIf="SingUpForm.controls['userName'].errors['pattern']">
           <p>Restriction of 2-20 characters, which can be letters and numbers, the first character is necessarily a
             letter</p>
+        </ng-container>
+        <ng-container *ngIf="SingUpForm.controls['userName'].errors['maxlength']">
+          <p>Max length 20 symbols</p>
         </ng-container>
       </div>
 
@@ -54,6 +67,9 @@
         <ng-container *ngIf="SingUpForm.controls['email'].errors['pattern']">
           <p>Email required(example@mail.com)</p>
         </ng-container>
+        <ng-container *ngIf="SingUpForm.controls['email'].errors['maxlength']">
+          <p>Max length 20 symbols</p>
+        </ng-container>
       </div>
     </div>
 
@@ -67,9 +83,30 @@
         <ng-container *ngIf="SingUpForm.controls['password'].errors['pattern']">
           <p>The password must contain: lowercase and uppercase Latin letters, numbers. Minimum 8 characters</p>
         </ng-container>
+        <ng-container *ngIf="SingUpForm.controls['password'].errors['maxlength']">
+          <p>Max length 20 symbols</p>
+        </ng-container>
       </div>
     </div>
-
+    <div class="form-group">
+      <input class="form-control" formControlName="repeatPassword" placeholder="Repeat password" type="password">
+      <div class="alert alert-warning"
+           *ngIf="SingUpForm.controls['repeatPassword'].invalid&&SingUpForm.controls['repeatPassword'].touched">
+        <ng-container *ngIf="SingUpForm.controls['repeatPassword'].errors['required']">
+          <p>It is necessary to fill the field</p>
+        </ng-container>
+        <ng-container *ngIf="SingUpForm.controls['repeatPassword'].errors['pattern']">
+          <p>The password must contain: lowercase and uppercase Latin letters, numbers. Minimum 8 characters</p>
+        </ng-container>
+        <ng-container *ngIf="SingUpForm.controls['repeatPassword'].errors['maxlength']">
+          <p>Max length 20 symbols</p>
+        </ng-container>
+      </div>
+      <div *ngIf="SingUpForm.controls['repeatPassword'].touched&& !passwordsMatches() "
+           class="cross-validation-error-message alert alert-warning">
+        <p>Password mismatch</p>
+      </div>
+    </div>
 
     <div class="form-group">
       <input class="form-control" formControlName="phone" placeholder="phone" type="text">
@@ -85,7 +122,7 @@
     </div>
 
     <div class="form-group">
-      <button class="btn btn-default" [disabled]="SingUpForm.invalid">
+      <button class="btn btn-default" [disabled]="SingUpForm.invalid || !passwordsMatches() ">
         Submit
       </button>
     </div>

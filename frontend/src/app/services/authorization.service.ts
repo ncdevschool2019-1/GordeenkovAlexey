@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Observable, Subject} from 'rxjs';
+import {Observable, Subject, Subscription} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {LogUser} from "../modules/header/models/LogUser";
 import {AuthorizationToken} from "../modules/header/models/AuthorizationToken";
@@ -14,6 +14,7 @@ export class AuthorizationService {
   private authorizedUser: User = null;
 
   private path = 'http://localhost:8081/api/auth';
+
 
   constructor(private http: HttpClient, private tokenService: TokenService) {
 
