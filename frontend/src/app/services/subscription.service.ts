@@ -33,9 +33,11 @@ export class SubscriptionService {
   private fapiServerUrl: string = 'http://localhost:8081/api/subscriptions/';
 
   getSubscriptionsFromFapi() {
-    if (this.subscription) this.subscription.unsubscribe();
-    this.subscription = this.http.get<Sub[]>(this.fapiServerUrl + this.usersService.getActiveUser().id)
-      .subscribe(subscriptions => this.subs = subscriptions);
+    if (this.usersService.getActiveUser() != undefined) {
+      if (this.subscription) this.subscription.unsubscribe();
+      this.subscription = this.http.get<Sub[]>(this.fapiServerUrl + this.usersService.getActiveUser().id)
+        .subscribe(subscriptions => this.subs = subscriptions);
+    }
   }
 
   subscribeToService(service: Service): Observable<Sub> {

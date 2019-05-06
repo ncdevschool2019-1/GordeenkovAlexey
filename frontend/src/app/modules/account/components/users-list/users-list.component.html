@@ -2,7 +2,7 @@
 <div id="listOfUsers">
   <nav class="navbar navbar-light">
     <ul class="navbar-nav nav-tabs ">
-      <li *ngFor="let user of getUsers()" [class.selected]="user === getActiveUser()" class="nav-item"
+      <li *ngFor="let user of users" [class.selected]="user === getActiveUser()" class="nav-item"
           (click)="onSelect(user)">
         <a class="nav-link">{{user.userName}}</a>
       </li>

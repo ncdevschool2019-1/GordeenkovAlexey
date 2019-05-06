@@ -14,16 +14,6 @@ export class UserInfoComponent implements OnInit {
     return this.authService.getAuthorizedUser() === null ? false : true;
   }
 
-  isUser(): boolean {
-    if (!this.isAuthorized()) return false;
-    return this.authService.getAuthorizedUser().role.name === "User";
-  }
-
-  isAdmin(): boolean {
-    if (!this.isAuthorized()) return false;
-    return this.authService.getAuthorizedUser().role.name === "Admin";
-  }
-
   constructor(private authService: AuthorizationService, private usersService: UsersService) {
   }
 

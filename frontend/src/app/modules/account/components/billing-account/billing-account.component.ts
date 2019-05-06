@@ -20,7 +20,7 @@ export class BillingAccountComponent implements OnInit, OnDestroy {
    addMoneyForms: FormGroup[] = [];
   clearIntervalInstance: any;
   totalBalance: number;
-
+  billingAccounts: BillingAccount[];
   public modalRef: BsModalRef;
 
   isAuthorized(): boolean {
@@ -49,13 +49,13 @@ export class BillingAccountComponent implements OnInit, OnDestroy {
   addMoney(baId: number, indexOfForm: number) {
     this.loadingService.show();
 
-    let tmpBA = this.getBillingAccounts()[indexOfForm];
+    let tmpBA = this.billingAccounts[indexOfForm];
 
     this.subscriptions.push(
       this.billingAccountService.addMoney(new BillingAccount(tmpBA.id, tmpBA.balance + Number(this.addMoneyForms[indexOfForm].get("money").value), tmpBA.userId))
         .subscribe(() => {
 
-          this.billingAccountService.getBillingAccountsFromFapi();
+          this.getBillingAccounts();
             this.modalService.closeModal();
 
           }, error => {
@@ -72,14 +72,16 @@ export class BillingAccountComponent implements OnInit, OnDestroy {
     ;
   }
 
-  getBillingAccounts(): BillingAccount[] {
-    let acc = this.billingAccountService.getBillingAccounts();
-    if (acc.length
-      != this.addMoneyForms.length) {
-      this.updateForms(acc.length);
-      console.log(acc.length);
-    }
-    return acc;
+  getBillingAccounts() {
+    this.subscriptions.push(
+      this.billingAccountService.getBillingAccounts().subscribe(value => {
+        this.billingAccounts = value;
+        if (value.length
+          != this.addMoneyForms.length) {
+          this.updateForms(value.length);
+        }
+      })
+    );
   }
 
   updateForms(length: number) {
@@ -100,11 +102,14 @@ export class BillingAccountComponent implements OnInit, OnDestroy {
 
   deleteBillingAccount(id: number) {
     this.subscriptions.push(
-      this.billingAccountService.deleteBillingAccount(id).subscribe(value =>
-        this.billingAccountService.getBillingAccountsFromFapi()));
+      this.billingAccountService.deleteBillingAccount(id).subscribe(value => {
+          this.getBillingAccounts();
+        }
+      )
+    );
   }
 
-  getTotalBalane() {
+  getTotalBalance() {
     this.subscriptions.push(
       this.billingAccountService.getTotalBalanse().subscribe(value => {
         this.totalBalance = value;
@@ -118,10 +123,10 @@ export class BillingAccountComponent implements OnInit, OnDestroy {
     this.clearIntervalInstance =
       setInterval(() => {
         if (this.isUser()) {
-          this.billingAccountService.getBillingAccountsFromFapi();
+          this.getBillingAccounts();
         } else {
           if (this.isAdmin()) {
-            this.getTotalBalane();
+            this.getTotalBalance();
           }
         }
       }, 1000);

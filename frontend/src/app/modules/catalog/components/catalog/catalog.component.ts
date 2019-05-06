@@ -2,11 +2,12 @@ import {Component, OnDestroy, OnInit, TemplateRef} from '@angular/core';
 import {CatalogService} from "../../../../services/catalog.service";
 import {Service} from "../../models/service";
 import {HeaderService} from "../../../../services/header.service";
-import {Subscription} from "rxjs";
+import {Observable, Subscription} from "rxjs";
 import {SubscriptionService} from "../../../../services/subscription.service";
 import {BillingAccountService} from "../../../../services/billing-account.service";
 import {ModalService} from "../../../../services/modal.service";
 import {AuthorizationService} from "../../../../services/authorization.service";
+import {Ng4LoadingSpinnerService} from "ng4-loading-spinner";
 
 @Component({
   selector: 'app-catalog',
@@ -18,9 +19,24 @@ export class CatalogComponent implements OnInit, OnDestroy {
   public catalog: Service[];
   private subscriptions: Subscription[] = [];
 
+  asyncCatalog: Observable<Service[]>;
+  p: number = 1;
+  total: number;
 
 
-  constructor(private catalogService: CatalogService, private headerService: HeaderService,
+  getPage(page: number) {
+    this.loadingService.show();
+    this.asyncCatalog = this.catalogService.getPage(this.headerService.getSelectedLink().name, page)
+    this.subscriptions.push(
+      this.asyncCatalog.subscribe(value => {
+        this.loadingService.hide();
+        this.p = page;
+      })
+    );
+  }
+
+
+  constructor(private loadingService: Ng4LoadingSpinnerService, private catalogService: CatalogService, private headerService: HeaderService,
               private subscriptionsService: SubscriptionService, private billingAccountService: BillingAccountService,
               private modalService: ModalService, private authService: AuthorizationService) {
   }
@@ -37,7 +53,13 @@ export class CatalogComponent implements OnInit, OnDestroy {
 
 
   ngOnInit() {
-    this.getCatalog();
+    this.subscriptions.push(
+      this.catalogService.getNumberOfPages(this.headerService.getSelectedLink().name).subscribe(value => {
+        this.total = value;
+        console.log(value);
+        this.getPage(1);
+      })
+    );
     this.subscriptionsService.getSubscriptionsFromFapi();
   }
 

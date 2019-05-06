@@ -1,14 +1,16 @@
+<ng4-loading-spinner></ng4-loading-spinner>
 <div class="content">
-  <div *ngFor="let service of catalog">
+  <div
+    *ngFor="let service of asyncCatalog | async | paginate: { id: 'server', itemsPerPage: 2, currentPage: p, totalItems: total }">
     <img src="../../../../../assets/images/{{service.name.toLowerCase().replace(' ','')}}.png">
 
     <p>
-        {{service.text}}
-      </p>
+      {{service.text}}
+    </p>
     <div *ngIf="!isThereSubscriptionToService(service)">
       <p>${{service.cost}}/minute</p>
       <button (click)="openModal(subscribeTemplate)" *ngIf="isUser()">SUBSCRIBE</button>
-      </div>
+    </div>
     <div class="mr" *ngIf="isThereSubscriptionToService(service)">
       <button (click)="openModal(unsubscribeTemplate)" *ngIf="isUser()">UNSUBSCRIBE</button>
     </div>
@@ -60,7 +62,11 @@
 
 
   </div>
-  </div>
+
+
+  <pagination-controls class="pag" *ngIf="total>2" (pageChange)="getPage($event)" id="server"></pagination-controls>
+
+</div>
 
 
 <ng-template #notEnoughMoneyTemplate>

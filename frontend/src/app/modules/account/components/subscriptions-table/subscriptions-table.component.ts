@@ -30,7 +30,6 @@ export class SubscriptionsTableComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.getSubscriptions();
     this.clearIntervalInstance =
       setInterval(() => {
         this.subscriptionService.getSubscriptionsFromFapi();

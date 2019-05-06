@@ -3,7 +3,7 @@
 <div id="billingAccount">
   <ul *ngIf="isUser()">
 
-    <li *ngFor="let acc of getBillingAccounts();index as i;">
+    <li *ngFor="let acc of billingAccounts;index as i;">
       <div class="close_button_container">
         <button type="button" class="btn close-button" (click)="deleteBillingAccount(acc.id)">
           <img src="../../../../../assets/delete.png">

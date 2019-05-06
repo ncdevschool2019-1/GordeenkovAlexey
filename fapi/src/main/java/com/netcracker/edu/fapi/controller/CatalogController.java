@@ -18,8 +18,18 @@ public class CatalogController {
     @Autowired
     private CatalogService catalogService;
 
-    @RequestMapping(value = "/{type}", method = RequestMethod.GET)
+    @RequestMapping(value = "/type/{type}", method = RequestMethod.GET)
        public ResponseEntity<List<CatalogViewModel>> getCatalog(@PathVariable String type) {
            return ResponseEntity.ok(catalogService.getCatalog(type));
        }
+
+    @RequestMapping(value = "/pages/{type}", method = RequestMethod.GET)
+    public ResponseEntity<Integer> getNumberOfPages(@PathVariable String type) {
+        return ResponseEntity.ok(catalogService.getNumberOfPages(type));
+    }
+
+    @RequestMapping(method = RequestMethod.GET)
+    public ResponseEntity<List<CatalogViewModel>> getPage(@RequestParam String type, String page) {
+        return ResponseEntity.ok(catalogService.getCatalog(type, page));
+    }
 }

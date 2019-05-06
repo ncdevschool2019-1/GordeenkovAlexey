@@ -9,6 +9,8 @@ import {CatalogService} from "../../services/catalog.service";
 import {SubscriptionService} from "../../services/subscription.service";
 import {HeaderService} from "../../services/header.service";
 import {BillingAccountService} from "../../services/billing-account.service";
+import {NgxPaginationModule} from "ngx-pagination";
+import {PaginationModule} from "ngx-bootstrap";
 
 @NgModule({
   declarations: [
@@ -19,6 +21,8 @@ import {BillingAccountService} from "../../services/billing-account.service";
     RouterModule,
     FormsModule,
     HttpClientModule,
+    NgxPaginationModule,
+    PaginationModule,
     Ng4LoadingSpinnerModule.forRoot(),
 
   ],

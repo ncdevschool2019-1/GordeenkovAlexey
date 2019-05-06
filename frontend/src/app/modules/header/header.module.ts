@@ -11,6 +11,8 @@ import {SingUpComponent} from './components/sing-up/sing-up.component';
 import {SingInComponent} from "./components/sing-in/sing-in.component";
 import {ToastrModule} from "ngx-toastr";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {AuthorizationService} from "../../services/authorization.service";
+import {ModalService} from "../../services/modal.service";
 @NgModule({
   declarations: [
     HeaderComponent,
@@ -33,7 +35,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
   ],
 
-  providers: [HeaderService],
+  providers: [HeaderService, AuthorizationService, ModalService],
   exports: [HeaderComponent, SingInUpPopUpComponent]
 })
 export class HeaderModule {

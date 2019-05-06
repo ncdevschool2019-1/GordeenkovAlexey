@@ -6,4 +6,8 @@ import java.util.List;
 
 public interface CatalogService {
     List<CatalogViewModel> getCatalog(String type);
+
+    List<CatalogViewModel> getCatalog(String type, String page);
+
+    Integer getNumberOfPages(String type);
 }

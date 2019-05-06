@@ -14,24 +14,12 @@ import {TokenService} from "./token.service";
 export class UsersService {
 
   private activeUser: User;
-  private users: User[] = [];
-  private subscriptions: Subscription[] = [];
   private path: string = 'http://localhost:8081/api/users';
 
-  getUsersFromFapi() {
-    this.subscriptions.push(this.http.get<User[]>(this.path)
-      .subscribe(users => this.users = users));
-    if (this.activeUser === undefined) {
-      this.subscriptions.push(this.http.get<User[]>(this.path)
-        .subscribe(users => this.activeUser = users[0]));
-
-    }
+  getUsers(): Observable<User[]> {
+    return this.http.get<User[]>(this.path);
   }
 
-
-  getUsers(): User[] {
-    return this.users;
-  }
 
   setActiveUser(user: User) {
     this.activeUser = user;
@@ -53,15 +41,7 @@ export class UsersService {
   }
 
   constructor(private authService: AuthorizationService, private http: HttpClient, private tokenService: TokenService) {
-    if (tokenService.getLogin() != null) {
-      this.subscriptions.push(
-        this.getUserByUsername(tokenService.getLogin()).subscribe(value => {
-          if (value != null) {
-            authService.setAuthorizedUser(value);
-          }
-        })
-      );
-    }
+
   }
 
   private isAuthorized(): boolean {

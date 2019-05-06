@@ -18,6 +18,8 @@ import {HomePageModule} from './modules/home-page/home-page.module';
 import {ToastrModule} from 'ngx-toastr';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {httpInterceptorProviders} from "./services/interceptor.service";
+import {NgxPaginationModule} from "ngx-pagination";
+import {PaginationModule} from "ngx-bootstrap";
 
 @NgModule({
   declarations: [
@@ -27,6 +29,8 @@ import {httpInterceptorProviders} from "./services/interceptor.service";
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
+    NgxPaginationModule,
+    PaginationModule,
     HttpClientModule,
     ToastrModule.forRoot({
       timeOut: 2000,

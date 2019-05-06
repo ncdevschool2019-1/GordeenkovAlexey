@@ -68,7 +68,7 @@ export class AddBillingAccountComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.billingAccountService.addBillingAccount(new BillingAccount(null, this.addBillingAccountForm.get("money").value, this.usersService.getActiveUser().id))
         .subscribe(() => {
-          this.billingAccountService.getBillingAccountsFromFapi();
+
           this.closeModal();
         }, error => {
           this.loadingService.hide();

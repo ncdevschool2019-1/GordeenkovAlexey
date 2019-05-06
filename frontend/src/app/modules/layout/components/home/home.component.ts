@@ -8,11 +8,10 @@ import {UsersService} from "../../../../services/users.service";
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private usersService: UsersService) {
+  constructor() {
   }
 
   ngOnInit() {
-    this.usersService.getUsersFromFapi();
   }
 
 }

@@ -17,10 +17,21 @@ public class CatalogController {
     private ServiceRepository serviceRepository;
 
 
-    @RequestMapping(value = "/{type}", method = RequestMethod.GET)
+    @RequestMapping(value = "/type/{type}", method = RequestMethod.GET)
     public Iterable<Service> getCatalog(@PathVariable String type) {
         return catalogService.getCatalog(type);
     }
+
+    @RequestMapping(method = RequestMethod.GET)
+    public Iterable<Service> getPage(@RequestParam String type, String page) {
+        return catalogService.getCatalog(type, page);
+    }
+
+    @RequestMapping(value = "/pages/{type}", method = RequestMethod.GET)
+    public Integer getNumberOfPages(@PathVariable String type) {
+        return catalogService.getNumberOfServices(type);
+    }
+
 
     @RequestMapping(method = RequestMethod.POST)
     public Service addService(@RequestBody Service service) {

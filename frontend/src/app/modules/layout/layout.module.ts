@@ -9,6 +9,7 @@ import {HomeComponent} from './components/home/home.component';
 import {NotFoundComponent} from './components/not-found/not-found.component';
 import {AccountComponent} from './components/account/account.component';
 import {CatalogViewComponent} from './components/catalog-view/catalog-view.component';
+import {AuthorizationService} from "../../services/authorization.service";
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import {CatalogViewComponent} from './components/catalog-view/catalog-view.compo
     HomePageModule,
     RouterModule
   ],
-  providers: [],
+  providers: [AuthorizationService],
   exports: [HomeComponent, NotFoundComponent, AccountComponent, CatalogViewComponent]
 })
 export class LayoutModule {

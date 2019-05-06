@@ -11,18 +11,11 @@ export class BillingAccountService {
 
   private fapiServerUrl: string = 'http://localhost:8081/api/billing-accounts/';
 
-  billingAccounts: BillingAccount[] = [];
-
-  subscription: Subscription;
-
   constructor(private http: HttpClient, private userService: UsersService) {
   }
 
-  getBillingAccountsFromFapi() {
-    if (this.subscription) this.subscription.unsubscribe();
-    this.subscription =
-      this.http.get<BillingAccount[]>(this.fapiServerUrl + this.userService.getActiveUser().id)
-        .subscribe(billingAccounts => this.billingAccounts = billingAccounts);
+  getBillingAccounts(): Observable<BillingAccount[]> {
+    return this.http.get<BillingAccount[]>(this.fapiServerUrl + this.userService.getActiveUser().id);
   }
 
   addBillingAccount(account: BillingAccount): Observable<BillingAccount> {
@@ -37,9 +30,6 @@ export class BillingAccountService {
     return this.http.delete<void>(this.fapiServerUrl + id);
   }
 
-  getBillingAccounts(): BillingAccount[] {
-    return this.billingAccounts;
-  }
 
   getTotalBalanse(): Observable<number> {
     return this.http.get<number>(this.fapiServerUrl + "balance/" + this.userService.getActiveUser().id);
