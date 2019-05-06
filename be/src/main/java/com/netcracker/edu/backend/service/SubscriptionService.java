@@ -6,7 +6,7 @@ import com.netcracker.edu.backend.entity.Subscription;
 import java.util.List;
 
 public interface SubscriptionService {
-    List<Subscription> getSubscriptionsByUserId(Long id);
+    List<Subscription> getSubscriptionsByUserId(Long id, String compareBy, String trend);
 
     Subscription getSubscriptionById(Long id);
 

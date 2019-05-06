@@ -1,11 +1,31 @@
 <table class="table table-hover">
   <thead>
   <tr>
-    <th>Service</th>
-    <th>Cost</th>
-    <th>Status</th>
+    <th class="service" (click)="sort('byName')">Service
+      <ng-container *ngIf="sortBy==='byName'">
+        <ng-container *ngIf="trend==='up'">⏶</ng-container>
+        <ng-container *ngIf="trend==='down'">⏷</ng-container>
+      </ng-container>
+    </th>
+    <th (click)="sort('byCost')">Cost
+      <ng-container *ngIf="sortBy==='byCost'">
+        <ng-container *ngIf="trend==='up'">⏶</ng-container>
+        <ng-container *ngIf="trend==='down'">⏷</ng-container>
+      </ng-container>
+    </th>
+    <th (click)="sort('byStatus')">Status
+      <ng-container *ngIf="sortBy==='byStatus'">
+        <ng-container *ngIf="trend==='up'">⏶</ng-container>
+        <ng-container *ngIf="trend==='down'">⏷</ng-container>
+      </ng-container>
+    </th>
 
-    <th>Time left</th>
+    <th (click)="sort('byTimeLeft')">Time left
+      <ng-container *ngIf="sortBy==='byTimeLeft'">
+        <ng-container *ngIf="trend==='up'">⏶</ng-container>
+        <ng-container *ngIf="trend==='down'">⏷</ng-container>
+      </ng-container>
+    </th>
 
     <th>Continue/Pause</th>
     <th>Delete</th>
@@ -23,7 +43,7 @@
         </a>
       </ng-container>
     </td>
-    <td>${{sub.service.cost}}/minute</td>
+    <td>${{sub.service.cost}}/min</td>
     <td>{{sub.status.name}}</td>
     <td>{{timeLeft(sub)}}s</td>
     <td *ngIf="!(sub.status.name==='Active')">

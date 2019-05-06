@@ -5,7 +5,7 @@ import com.netcracker.edu.fapi.models.SubscriptionViewModel;
 import java.util.List;
 
 public interface SubscriptionsService {
-    List<SubscriptionViewModel> getSubscriptions(Long userId);
+    List<SubscriptionViewModel> getSubscriptions(String id, String sort, String trend);
 
     SubscriptionViewModel addSubscription(SubscriptionViewModel subscriptionViewModel);
 

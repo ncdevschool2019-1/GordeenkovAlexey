@@ -19,9 +19,9 @@ public class SubscriptionsServiceImpl implements SubscriptionsService {
 
 
     @Override
-    public List<SubscriptionViewModel> getSubscriptions(Long userId) {
+    public List<SubscriptionViewModel> getSubscriptions(String id, String sort, String trend) {
         RestTemplate restTemplate = new RestTemplate();
-        SubscriptionViewModel[] subscriptionViewModelsResponse = restTemplate.getForObject(backendServerUrl + "api/subscriptions/" + userId, SubscriptionViewModel[].class);
+        SubscriptionViewModel[] subscriptionViewModelsResponse = restTemplate.getForObject(backendServerUrl + "api/subscriptions?id=" + id + "&sort=" + sort + "&trend=" + trend, SubscriptionViewModel[].class);
         return subscriptionViewModelsResponse == null ? Collections.emptyList() : Arrays.asList(subscriptionViewModelsResponse);
     }
 

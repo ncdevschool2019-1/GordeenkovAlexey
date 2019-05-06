@@ -30,12 +30,12 @@ export class SubscriptionService {
   }
 
 
-  private fapiServerUrl: string = 'http://localhost:8081/api/subscriptions/';
+  private fapiServerUrl: string = 'http://localhost:8081/api/subscriptions';
 
-  getSubscriptionsFromFapi() {
+  getSubscriptionsFromFapi(sort: string = 'byName', trend: string = 'up') {
     if (this.usersService.getActiveUser() != undefined) {
       if (this.subscription) this.subscription.unsubscribe();
-      this.subscription = this.http.get<Sub[]>(this.fapiServerUrl + this.usersService.getActiveUser().id)
+      this.subscription = this.http.get<Sub[]>(this.fapiServerUrl + '?id=' + this.usersService.getActiveUser().id + '&sort=' + sort + '&trend=' + trend)
         .subscribe(subscriptions => this.subs = subscriptions);
     }
   }
@@ -46,11 +46,11 @@ export class SubscriptionService {
   }
 
   changeSubscriptionStatus(sub: Sub): Observable<Sub> {
-    return this.http.put<Sub>(this.fapiServerUrl + sub.id, sub);
+    return this.http.put<Sub>(this.fapiServerUrl + '/' + sub.id, sub);
   }
 
   deleteSubscription(id: number): Observable<void> {
-    return this.http.delete<void>(this.fapiServerUrl + id);
+    return this.http.delete<void>(this.fapiServerUrl + '/' + id);
   }
 
   deleteSubscriptionByServiceId(id: number): Observable<void> {

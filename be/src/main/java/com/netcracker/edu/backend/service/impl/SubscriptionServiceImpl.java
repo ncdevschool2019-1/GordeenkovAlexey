@@ -12,6 +12,7 @@ import com.netcracker.edu.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.ConcurrentModificationException;
 import java.util.List;
 
@@ -30,7 +31,51 @@ public class SubscriptionServiceImpl implements SubscriptionService {
 
 
     @Override
-    public List<Subscription> getSubscriptionsByUserId(Long id) {
+    public List<Subscription> getSubscriptionsByUserId(Long id, String compareBy, String trend) {
+
+        int tr = trend.equals("up") ? 1 : -1;
+        Comparator<Subscription> comparator;
+
+        switch (compareBy) {
+            case "byCost": {
+                comparator = new Comparator<Subscription>() {
+                    @Override
+                    public int compare(Subscription o1, Subscription o2) {
+                        return tr * (new Long(Math.round((o1.getService().getCost() - o2.getService().getCost()) * 100)).intValue());
+                    }
+                };
+                break;
+            }
+            case "byStatus": {
+                comparator = new Comparator<Subscription>() {
+                    @Override
+                    public int compare(Subscription o1, Subscription o2) {
+                        return tr * o1.getStatus().getName().compareTo(o2.getStatus().getName());
+                    }
+                };
+                break;
+            }
+            case "byTimeLeft": {
+                comparator = new Comparator<Subscription>() {
+                    @Override
+                    public int compare(Subscription o1, Subscription o2) {
+                        return tr * ((o1.getTimeLeft() - o2.getTimeLeft()));
+                    }
+                };
+
+                break;
+            }
+            default: {
+                comparator = new Comparator<Subscription>() {
+                    @Override
+                    public int compare(Subscription o1, Subscription o2) {
+                        return tr * o1.getService().getName().compareTo(o2.getService().getName());
+                    }
+                };
+                break;
+            }
+        }
+        userService.getUserById(id).getSubscriptions().sort(comparator);
         return userService.getUserById(id).getSubscriptions();
     }
 

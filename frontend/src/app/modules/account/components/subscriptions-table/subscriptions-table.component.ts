@@ -14,6 +14,28 @@ export class SubscriptionsTableComponent implements OnInit, OnDestroy {
 
   subscriptions: Subscription[] = [];
   clearIntervalInstance: any;
+  trend: string = 'up';
+  sortBy: string = 'byName';
+
+  sort(sortBy: string) {
+    if (sortBy === this.sortBy) {
+      if (this.trend === 'up') {
+        this.trend = 'down';
+      } else {
+        this.trend = 'up';
+      }
+    } else {
+      this.trend = 'up';
+      this.sortBy = sortBy;
+    }
+    this.subscriptionService.getSubscriptionsFromFapi(this.sortBy, this.trend);
+    clearInterval(this.clearIntervalInstance);
+    this.clearIntervalInstance =
+      setInterval(() => {
+        this.subscriptionService.getSubscriptionsFromFapi(this.sortBy, this.trend);
+      }, 1000)
+  }
+
 
   constructor(private subscriptionService: SubscriptionService) {
   }
@@ -32,7 +54,7 @@ export class SubscriptionsTableComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.clearIntervalInstance =
       setInterval(() => {
-        this.subscriptionService.getSubscriptionsFromFapi();
+        this.subscriptionService.getSubscriptionsFromFapi(this.sortBy, this.trend);
       }, 1000)
   }
 

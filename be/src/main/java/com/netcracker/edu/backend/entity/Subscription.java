@@ -34,6 +34,11 @@ public class Subscription {
     @JoinColumn(name = "service_id")
     private Service service;
 
+    public int getTimeLeft() {
+        if (status.getName().equals("Active")) return new Long(expireDate - (new Date()).getTime()).intValue();
+
+        return new Long(expireDate - startDate).intValue();
+    }
 
     public void charge() {
         startDate = (new Date()).getTime();

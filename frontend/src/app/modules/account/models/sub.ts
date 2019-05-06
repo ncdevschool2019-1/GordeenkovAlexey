@@ -1,5 +1,6 @@
 import {Status} from "./status";
-import {Service} from "../../catalog/models/service";
+import {Service} from "./service";
+
 
 export class Sub {
 

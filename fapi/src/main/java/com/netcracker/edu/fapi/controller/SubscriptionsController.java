@@ -18,9 +18,9 @@ public class SubscriptionsController {
     private SubscriptionsService subscriptionsService;
 
     @PreAuthorize("hasRole('User') or hasRole('Admin')")
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<List<SubscriptionViewModel>> getSubscriptionsByUserId(@PathVariable String id) {
-        return ResponseEntity.ok(subscriptionsService.getSubscriptions(Long.valueOf(id)));
+    @RequestMapping(method = RequestMethod.GET)
+    public ResponseEntity<List<SubscriptionViewModel>> getSubscriptionsByUserId(@RequestParam String id, String sort, String trend) {
+        return ResponseEntity.ok(subscriptionsService.getSubscriptions(id, sort, trend));
     }
 
     @PreAuthorize("hasRole('User')")

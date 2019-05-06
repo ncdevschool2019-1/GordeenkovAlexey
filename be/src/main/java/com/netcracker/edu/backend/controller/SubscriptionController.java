@@ -17,9 +17,9 @@ public class SubscriptionController {
     @Autowired
     private BillingAccountService billingAccountService;
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public Iterable<Subscription> getSubscriptionsByUserId(@PathVariable(name = "id") Long id) {
-        return subscriptionService.getSubscriptionsByUserId(id);
+    @RequestMapping(method = RequestMethod.GET)
+    public Iterable<Subscription> getSubscriptionsByUserId(@RequestParam(name = "id") Long id, String sort, String trend) {
+        return subscriptionService.getSubscriptionsByUserId(id, sort, trend);
     }
 
     @RequestMapping(method = RequestMethod.POST)
