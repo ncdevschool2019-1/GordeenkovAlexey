@@ -4,7 +4,6 @@ import {BillingAccount} from "../../models/billing-account";
 import {UsersService} from "../../../../services/users.service";
 import {BillingAccountService} from "../../../../services/billing-account.service";
 import {Subscription} from "rxjs";
-import {BsModalRef, BsModalService} from "ngx-bootstrap";
 import {ModalService} from "../../../../services/modal.service";
 import {AuthorizationService} from "../../../../services/authorization.service";
 import {Ng4LoadingSpinnerService} from "ng4-loading-spinner";
@@ -21,18 +20,13 @@ export class AddBillingAccountComponent implements OnInit, OnDestroy {
 
   addBillingAccountForm: FormGroup;
 
-  isAuthorized(): boolean {
-    return this.authService.getAuthorizedUser() === null ? false : true;
-  }
 
   isUser(): boolean {
-    if (!this.isAuthorized()) return false;
-    return this.authService.getAuthorizedUser().role.name === "User";
+    return this.authService.isUser();
   }
 
   isAdmin(): boolean {
-    if (!this.isAuthorized()) return false;
-    return this.authService.getAuthorizedUser().role.name === "Admin";
+    return this.authService.isAdmin();
   }
 
   constructor(private toastr: ToastrService, private loadingService: Ng4LoadingSpinnerService, private authService: AuthorizationService, private billingAccountService: BillingAccountService, private usersService: UsersService, private modalService: ModalService) {

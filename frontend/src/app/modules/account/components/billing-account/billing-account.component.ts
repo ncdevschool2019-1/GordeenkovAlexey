@@ -23,18 +23,13 @@ export class BillingAccountComponent implements OnInit, OnDestroy {
   billingAccounts: BillingAccount[];
   public modalRef: BsModalRef;
 
-  isAuthorized(): boolean {
-    return this.authService.getAuthorizedUser() === null ? false : true;
-  }
 
   isUser(): boolean {
-    if (!this.isAuthorized()) return false;
-    return this.authService.getAuthorizedUser().role.name === "User";
+    return this.authService.isUser();
   }
 
   isAdmin(): boolean {
-    if (!this.isAuthorized()) return false;
-    return this.authService.getAuthorizedUser().role.name === "Admin";
+    return this.authService.isAdmin();
   }
 
 

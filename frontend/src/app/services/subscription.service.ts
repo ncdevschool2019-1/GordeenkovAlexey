@@ -4,7 +4,7 @@ import {Sub} from "../modules/account/models/sub";
 import {HttpClient} from "@angular/common/http";
 import {Observable, of, Subscription} from 'rxjs';
 import {UsersService} from "./users.service";
-import {Service} from "../modules/catalog/models/service";
+import {Service} from "../modules/account/models/service";
 
 @Injectable({
   providedIn: 'root'
@@ -19,11 +19,11 @@ export class SubscriptionService {
     return this.subs;
   }
 
-  isThereSubscriptionToService(servise: Service): boolean {
+  isThereSubscriptionToService(service: Service): boolean {
     let f = false;
     if (this.subs != undefined) {
       this.subs.forEach(sub => {
-        if (sub.service.id === servise.id) f = true;
+        if (sub.service.id === service.id) f = true;
       });
     }
     return f;

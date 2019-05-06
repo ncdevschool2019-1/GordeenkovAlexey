@@ -8,8 +8,7 @@ import {Component} from "@angular/core";
 })
 export class AccountComponent {
 
-  constructor(private loadingService: Ng4LoadingSpinnerService) {
-    loadingService.show();
-    setTimeout(loadingService.hide(), 3000);
+  constructor() {
+
   }
 }

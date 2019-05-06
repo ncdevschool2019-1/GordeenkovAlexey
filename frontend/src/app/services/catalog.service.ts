@@ -3,8 +3,8 @@ import {Injectable} from '@angular/core';
 
 import {Observable, of} from 'rxjs';
 
-import {Service} from "../modules/catalog/models/service";
 import {HttpClient} from "@angular/common/http";
+import {Service} from "../modules/account/models/service";
 
 @Injectable({
   providedIn: 'root'

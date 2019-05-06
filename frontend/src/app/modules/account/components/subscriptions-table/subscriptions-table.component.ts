@@ -4,6 +4,7 @@ import {SubscriptionService} from "../../../../services/subscription.service";
 import {Subscription} from "rxjs";
 import DateTimeFormat = Intl.DateTimeFormat;
 import {absFloor} from "ngx-bootstrap/chronos/utils";
+import {AuthorizationService} from "../../../../services/authorization.service";
 
 @Component({
   selector: 'app-subscriptions-table',
@@ -37,7 +38,15 @@ export class SubscriptionsTableComponent implements OnInit, OnDestroy {
   }
 
 
-  constructor(private subscriptionService: SubscriptionService) {
+  isUser(): boolean {
+    return this.authService.isUser();
+  }
+
+  isAdmin(): boolean {
+    return this.authService.isAdmin();
+  }
+
+  constructor(private subscriptionService: SubscriptionService, private authService: AuthorizationService) {
   }
 
   getSubscriptions(): Sub[] {

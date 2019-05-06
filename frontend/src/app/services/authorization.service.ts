@@ -37,5 +37,18 @@ export class AuthorizationService {
     this.tokenService.signOut();
   }
 
+  isAuthorized(): boolean {
+    return this.getAuthorizedUser() != null ? true : false;
+  }
+
+  isUser(): boolean {
+    if (!this.isAuthorized()) return false;
+    return this.getAuthorizedUser().role.name === "User" ? true : false;
+  }
+
+  isAdmin(): boolean {
+    if (!this.isAuthorized()) return false;
+    return this.getAuthorizedUser().role.name === "Admin" ? true : false;
+  }
 
 }

@@ -1,6 +1,5 @@
 import {Component, OnDestroy, OnInit, TemplateRef} from '@angular/core';
 import {CatalogService} from "../../../../services/catalog.service";
-import {Service} from "../../models/service";
 import {HeaderService} from "../../../../services/header.service";
 import {Observable, Subscription} from "rxjs";
 import {SubscriptionService} from "../../../../services/subscription.service";
@@ -8,6 +7,7 @@ import {BillingAccountService} from "../../../../services/billing-account.servic
 import {ModalService} from "../../../../services/modal.service";
 import {AuthorizationService} from "../../../../services/authorization.service";
 import {Ng4LoadingSpinnerService} from "ng4-loading-spinner";
+import {Service} from "../../../account/models/service";
 
 @Component({
   selector: 'app-catalog',
@@ -42,13 +42,12 @@ export class CatalogComponent implements OnInit, OnDestroy {
   }
 
 
-  isAuthorized(): boolean {
-    return this.authService.getAuthorizedUser() === null ? false : true;
+  isUser(): boolean {
+    return this.authService.isUser()
   }
 
-  isUser(): boolean {
-    if (!this.isAuthorized()) return false;
-    return this.authService.getAuthorizedUser().role.name === "User";
+  isAdmin(): boolean {
+    return this.authService.isAdmin();
   }
 
 

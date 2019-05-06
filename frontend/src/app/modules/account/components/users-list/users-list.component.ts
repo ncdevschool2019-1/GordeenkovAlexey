@@ -16,18 +16,13 @@ export class UsersListComponent implements OnInit, OnDestroy {
   users: User[];
   subscriptions: Subscription[] = [];
 
-  isAuthorized(): boolean {
-    return this.authService.getAuthorizedUser() === null ? false : true;
-  }
 
   isUser(): boolean {
-    if (!this.isAuthorized()) return false;
-    return this.authService.getAuthorizedUser().role.name === "User";
+    return this.authService.isUser();
   }
 
   isAdmin(): boolean {
-    if (!this.isAuthorized()) return false;
-    return this.authService.getAuthorizedUser().role.name === "Admin";
+    return this.authService.isAdmin()
   }
 
   constructor(private authService: AuthorizationService, private usersService: UsersService, private billingAccount: BillingAccountService, private subscriptionService: SubscriptionService) {
@@ -60,6 +55,8 @@ export class UsersListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.getUsers();
+    setTimeout(() => this.getUsers(), 1000);
+
+
   }
 }

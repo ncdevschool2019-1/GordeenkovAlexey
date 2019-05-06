@@ -28,7 +28,7 @@
     </th>
 
     <th>Continue/Pause</th>
-    <th>Delete</th>
+    <th *ngIf="isUser()">Delete</th>
   </tr>
   </thead>
   <tbody>
@@ -56,7 +56,7 @@
         <img src="../../../../../assets/pause.png">
       </button>
     </td>
-    <td>
+    <td *ngIf="isUser()">
       <button type="button" class="btn close-button" (click)="deleteSubscription(sub.id)">
         <img src="../../../../../assets/delete.png"></button>
     </td>

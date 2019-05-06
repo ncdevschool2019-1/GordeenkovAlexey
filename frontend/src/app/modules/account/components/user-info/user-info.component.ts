@@ -10,10 +10,6 @@ import {AuthorizationService} from "../../../../services/authorization.service";
 })
 export class UserInfoComponent implements OnInit {
 
-  isAuthorized(): boolean {
-    return this.authService.getAuthorizedUser() === null ? false : true;
-  }
-
   constructor(private authService: AuthorizationService, private usersService: UsersService) {
   }
 
