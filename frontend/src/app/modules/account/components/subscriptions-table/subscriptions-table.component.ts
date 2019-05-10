@@ -1,10 +1,11 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit, TemplateRef} from '@angular/core';
 import {Sub} from "../../models/sub";
 import {SubscriptionService} from "../../../../services/subscription.service";
 import {Subscription} from "rxjs";
 import DateTimeFormat = Intl.DateTimeFormat;
 import {absFloor} from "ngx-bootstrap/chronos/utils";
 import {AuthorizationService} from "../../../../services/authorization.service";
+import {ModalService} from "../../../../services/modal.service";
 
 @Component({
   selector: 'app-subscriptions-table',
@@ -17,6 +18,20 @@ export class SubscriptionsTableComponent implements OnInit, OnDestroy {
   clearIntervalInstance: any;
   trend: string = 'up';
   sortBy: string = 'byName';
+
+
+  constructor(private subscriptionService: SubscriptionService, private authService: AuthorizationService, private modalService: ModalService) {
+  }
+
+
+  public closeModal() {
+    this.modalService.closeModal();
+  }
+
+  public openModal(template: TemplateRef<any>): void {
+    this.modalService.openModal(template);
+  }
+
 
   sort(sortBy: string) {
     if (sortBy === this.sortBy) {
@@ -46,8 +61,6 @@ export class SubscriptionsTableComponent implements OnInit, OnDestroy {
     return this.authService.isAdmin();
   }
 
-  constructor(private subscriptionService: SubscriptionService, private authService: AuthorizationService) {
-  }
 
   getSubscriptions(): Sub[] {
     return this.subscriptionService.getSubscriptions();
@@ -69,8 +82,10 @@ export class SubscriptionsTableComponent implements OnInit, OnDestroy {
 
   deleteSubscription(id: number) {
     this.subscriptions.push(
-      this.subscriptionService.deleteSubscription(id).subscribe(value =>
-        this.subscriptionService.getSubscriptionsFromFapi()));
+      this.subscriptionService.deleteSubscription(id).subscribe(value => {
+        this.subscriptionService.getSubscriptionsFromFapi();
+        this.closeModal();
+      }));
   }
 
   continueSubscription(sub: Sub) {

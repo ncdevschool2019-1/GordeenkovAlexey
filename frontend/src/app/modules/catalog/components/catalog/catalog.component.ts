@@ -26,11 +26,11 @@ export class CatalogComponent implements OnInit, OnDestroy {
 
   getPage(page: number) {
     this.loadingService.show();
-    this.asyncCatalog = this.catalogService.getPage(this.headerService.getSelectedLink().name, page)
+    this.asyncCatalog = this.catalogService.getPage(this.headerService.getSelectedLink().name, page);
+    this.p = page;
     this.subscriptions.push(
-      this.asyncCatalog.subscribe(value => {
+      this.asyncCatalog.subscribe(() => {
         this.loadingService.hide();
-        this.p = page;
       })
     );
   }

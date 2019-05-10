@@ -57,9 +57,31 @@
       </button>
     </td>
     <td *ngIf="isUser()">
-      <button type="button" class="btn close-button" (click)="deleteSubscription(sub.id)">
+      <button type="button" class="btn close-button" (click)="openModal(deleteSubscriptionTemplate)">
         <img src="../../../../../assets/delete.png"></button>
     </td>
+
+    <ng-template #deleteSubscriptionTemplate>
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Delete Subscription to {{sub.service.name}}</h4>
+        <button type="button" class="close pull-right"
+                aria-label="Close" (click)="closeModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>
+          Are you sure?
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-secondary" data-dismiss="modal" (click)="deleteSubscription(sub.id)">
+          Delete
+        </button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeModal()">Close
+        </button>
+      </div>
+    </ng-template>
   </tr>
   </tbody>
 </table>

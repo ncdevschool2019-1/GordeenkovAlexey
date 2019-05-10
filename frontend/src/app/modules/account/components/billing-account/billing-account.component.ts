@@ -99,6 +99,7 @@ export class BillingAccountComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.billingAccountService.deleteBillingAccount(id).subscribe(value => {
           this.getBillingAccounts();
+        this.closeModal();
         }
       )
     );
