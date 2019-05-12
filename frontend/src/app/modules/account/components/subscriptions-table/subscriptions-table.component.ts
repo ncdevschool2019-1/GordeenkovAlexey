@@ -104,6 +104,14 @@ export class SubscriptionsTableComponent implements OnInit, OnDestroy {
         this.subscriptionService.getSubscriptionsFromFapi()));
   }
 
+  blockSubscription(sub: Sub) {
+    sub.status.id = 3;
+    sub.status.name = "Blocked";
+    this.subscriptions.push(
+      this.subscriptionService.changeSubscriptionStatus(sub).subscribe(value =>
+        this.subscriptionService.getSubscriptionsFromFapi()));
+  }
+
   ngOnDestroy(): void {
     this.subscriptions.forEach(s => s.unsubscribe());
     clearInterval(this.clearIntervalInstance);

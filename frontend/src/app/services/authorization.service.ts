@@ -16,6 +16,29 @@ export class AuthorizationService {
   private path = 'http://localhost:8081/api/auth';
 
 
+  private readySubject: Subject<any> = new Subject<any>();
+
+  private ready = false;
+
+  public setReady() {
+    this.ready = true;
+    this.readySubject.next(this.ready);
+  }
+
+  public clearSubject() {
+    this.readySubject.next();
+  }
+
+  public getSubject(): Observable<any> {
+    if (this.ready) {
+      setTimeout(() => {
+        this.readySubject.next(this.ready)
+      }, 100);
+    }
+    return this.readySubject.asObservable();
+  }
+
+
   constructor(private http: HttpClient, private tokenService: TokenService) {
 
   }

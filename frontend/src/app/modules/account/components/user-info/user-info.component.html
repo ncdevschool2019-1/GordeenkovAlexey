@@ -1,4 +1,4 @@
-<div id="userAccount">
+<div id="userAccount" *ngIf="ready">
   <p>Name : {{getUser().firstName}}</p>
   <p>Surname : {{getUser().lastName}}</p>
   <p>UserName : {{getUser().userName}}</p>

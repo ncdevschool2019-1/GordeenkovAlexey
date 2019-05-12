@@ -27,35 +27,57 @@
       </ng-container>
     </th>
 
-    <th>Continue/Pause</th>
+    <th *ngIf="isUser()">Continue/Pause</th>
+
+    <th *ngIf="isAdmin()">Block</th>
+
     <th *ngIf="isUser()">Delete</th>
   </tr>
   </thead>
   <tbody>
   <tr *ngFor="let sub of getSubscriptions()">
     <td>
-      <ng-container *ngIf="sub.status.name!='Active'">
+      <ng-container *ngIf="sub.status.name!='Active'||isAdmin()">
         {{sub.service.name}}
       </ng-container>
-      <ng-container *ngIf="sub.status.name==='Active'">
+      <ng-container *ngIf="sub.status.name==='Active'&&isUser()">
         <a href="{{sub.service.link}}">
           {{sub.service.name}}
         </a>
       </ng-container>
     </td>
+
     <td>${{sub.service.cost}}/min</td>
+
     <td>{{sub.status.name}}</td>
+
     <td>{{timeLeft(sub)}}s</td>
-    <td *ngIf="!(sub.status.name==='Active')">
-      <button type="button" class="btn close-button" (click)="continueSubscription(sub)">
-        <img src="../../../../../assets/active.png">
-      </button>
-    </td>
-    <td *ngIf="sub.status.name==='Active'">
-      <button type="button" class="btn close-button" (click)="pauseSubscription(sub)">
-        <img src="../../../../../assets/pause.png">
-      </button>
-    </td>
+
+    <ng-container *ngIf="isUser()">
+
+      <td *ngIf="!(sub.status.name==='Active')">
+        <button type="button" class="btn close-button" (click)="continueSubscription(sub)">
+          <img src="../../../../../assets/active.png">
+        </button>
+      </td>
+      <td *ngIf="sub.status.name==='Active'">
+        <button type="button" class="btn close-button" (click)="pauseSubscription(sub)">
+          <img src="../../../../../assets/pause.png">
+        </button>
+      </td>
+
+    </ng-container>
+
+    <ng-container *ngIf="isAdmin()">
+      <td *ngIf="sub.status.name!=='Blocked'">
+        <button type="button" class="btn close-button" (click)="blockSubscription(sub)">
+          <img src="../../../../../assets/block.png">
+        </button>
+      </td>
+      <td *ngIf="sub.status.name==='Blocked'">
+        <img src="../../../../../assets/blocked.png">
+      </td>
+    </ng-container>
     <td *ngIf="isUser()">
       <button type="button" class="btn close-button" (click)="openModal(deleteSubscriptionTemplate)">
         <img src="../../../../../assets/delete.png"></button>

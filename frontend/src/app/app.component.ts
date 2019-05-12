@@ -1,8 +1,9 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Subscription} from "rxjs";
+import {Subject, Subscription} from "rxjs";
 import {TokenService} from "./services/token.service";
 import {AuthorizationService} from "./services/authorization.service";
 import {UsersService} from "./services/users.service";
+import {delay} from "rxjs/operators";
 
 @Component({
   selector: 'app-root',
@@ -27,9 +28,13 @@ export class AppComponent implements OnInit, OnDestroy {
           if (value != null) {
             this.authService.setAuthorizedUser(value);
           }
+          this.authService.setReady();
         })
       );
+    } else {
+      this.authService.setReady();
     }
+
   }
 
 }

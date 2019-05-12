@@ -16,13 +16,14 @@ import {Service} from "../../../account/models/service";
 })
 export class CatalogComponent implements OnInit, OnDestroy {
 
-  public catalog: Service[];
   private subscriptions: Subscription[] = [];
 
   asyncCatalog: Observable<Service[]>;
   p: number = 1;
   total: number;
 
+  ready = false;
+  subscriptionsReady = false;
 
   getPage(page: number) {
     this.loadingService.show();
@@ -53,23 +54,20 @@ export class CatalogComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subscriptions.push(
-      this.catalogService.getNumberOfPages(this.headerService.getSelectedLink().name).subscribe(value => {
-        this.total = value;
-        console.log(value);
-        this.getPage(1);
+      this.authService.getSubject().subscribe(value => {
+        this.ready = value;
+
+        this.subscriptionsService.getSubscriptionsFromFapi();
+        this.subscriptions.push(
+          this.catalogService.getNumberOfPages(this.headerService.getSelectedLink().name).subscribe(value => {
+            this.total = value;
+            this.getPage(1);
+          })
+        );
       })
-    );
-    this.subscriptionsService.getSubscriptionsFromFapi();
+    )
   }
 
-  getCatalog() {
-    this.subscriptions.push(this.catalogService.getCatalog(this.headerService.getSelectedLink().name)
-      .subscribe(catalog => {
-        this.catalog = catalog
-        }
-      ));
-
-  }
 
   subscribeToService(service: Service, template: TemplateRef<any>) {
     this.subscriptions.push
@@ -81,9 +79,6 @@ export class CatalogComponent implements OnInit, OnDestroy {
         this.subscriptions.push(
           this.subscriptionsService.subscribeToService(service).subscribe(value => {
             this.subscriptionsService.getSubscriptionsFromFapi();
-            setTimeout(() => {
-              this.getCatalog();
-            }, 1000);
           }));
       }
     }));
@@ -94,9 +89,6 @@ export class CatalogComponent implements OnInit, OnDestroy {
       this.subscriptionsService.deleteSubscriptionByServiceId(service.id).subscribe(value => {
         this.subscriptionsService.getSubscriptionsFromFapi();
         this.closeModal();
-        setTimeout(() => {
-          this.getCatalog();
-        }, 1000);
       }));
   }
 
@@ -116,8 +108,8 @@ export class CatalogComponent implements OnInit, OnDestroy {
   }
 
 
-  isThereSubscriptionToService(sevice: Service): boolean {
-    return this.subscriptionsService.isThereSubscriptionToService(sevice);
+  isThereSubscriptionToService(service: Service): boolean {
+    return this.subscriptionsService.isThereSubscriptionToService(service);
   }
 
   ngOnDestroy(): void {

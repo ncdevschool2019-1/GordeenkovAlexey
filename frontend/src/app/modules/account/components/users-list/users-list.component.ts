@@ -15,7 +15,7 @@ export class UsersListComponent implements OnInit, OnDestroy {
 
   users: User[];
   subscriptions: Subscription[] = [];
-
+  ready = false;
 
   isUser(): boolean {
     return this.authService.isUser();
@@ -55,7 +55,11 @@ export class UsersListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    setTimeout(() => this.getUsers(), 1000);
+    this.subscriptions.push(
+      this.authService.getSubject().subscribe(value => {
+        this.getUsers();
+        this.ready = value;
+      }));
 
 
   }

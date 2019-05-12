@@ -2,9 +2,10 @@ import {Injectable} from '@angular/core';
 import {Sub} from "../modules/account/models/sub";
 
 import {HttpClient} from "@angular/common/http";
-import {Observable, of, Subscription} from 'rxjs';
+import {Observable, of, Subject, Subscription} from 'rxjs';
 import {UsersService} from "./users.service";
 import {Service} from "../modules/account/models/service";
+import {AuthorizationService} from "./authorization.service";
 
 @Injectable({
   providedIn: 'root'
@@ -36,7 +37,9 @@ export class SubscriptionService {
     if (this.usersService.getActiveUser() != undefined) {
       if (this.subscription) this.subscription.unsubscribe();
       this.subscription = this.http.get<Sub[]>(this.fapiServerUrl + '?id=' + this.usersService.getActiveUser().id + '&sort=' + sort + '&trend=' + trend)
-        .subscribe(subscriptions => this.subs = subscriptions);
+        .subscribe(subscriptions => {
+          this.subs = subscriptions;
+        });
     }
   }
 

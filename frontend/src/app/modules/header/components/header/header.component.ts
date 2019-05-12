@@ -14,7 +14,7 @@ export class HeaderComponent implements OnInit {
   links: Link[];
 
   isAuthorized(): boolean {
-    return this.authService.getAuthorizedUser() === null ? false : true;
+    return this.authService.isAuthorized();
   }
 
 

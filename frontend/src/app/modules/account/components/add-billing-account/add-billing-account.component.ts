@@ -56,7 +56,6 @@ export class AddBillingAccountComponent implements OnInit, OnDestroy {
   }
 
   submit() {
-    console.log("asdasda");
     this.loadingService.show();
 
     this.subscriptions.push(

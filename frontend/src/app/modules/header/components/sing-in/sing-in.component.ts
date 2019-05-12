@@ -44,7 +44,6 @@ export class SingInComponent implements OnInit, OnDestroy {
 
     this.loadingService.show();
 
-    console.log(this.authService.getAuthorizedUser());
     this.subscriptions.push(this.authService.attemptAuthorize(user).subscribe(value => {
       this.tokenService.saveAuthorizationToken(value);
       this.toastr.success('You have entered successfully!', value.login);
@@ -52,9 +51,7 @@ export class SingInComponent implements OnInit, OnDestroy {
     }, error => {
       this.loadingService.hide();
       this.toastr.error(error.error.message, 'Error');
-      console.log(error);
     }, () => {
-      console.log("Complete");
       this.subscriptions.push(this.userService.getUserByUsername(this.tokenService.getLogin()).subscribe(user => {
         this.authService.setAuthorizedUser(user);
         this.loadingService.hide();

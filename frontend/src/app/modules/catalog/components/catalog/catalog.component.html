@@ -1,5 +1,5 @@
 <ng4-loading-spinner></ng4-loading-spinner>
-<div class="content">
+<div class="content" *ngIf="ready">
   <div
     *ngFor="let service of asyncCatalog | async | paginate: { id: 'server', itemsPerPage: 2, currentPage: p, totalItems: total }">
     <img src="../../../../../assets/images/{{service.name.toLowerCase().replace(' ','')}}.png">
@@ -31,10 +31,10 @@
         </p>
       </div>
       <div class="modal-footer">
-        <button type="submit" class="btn btn-secondary" data-dismiss="modal" (click)="unsubscribeFromService(service)">
+        <button type="submit" class="btn btn-secondary" (click)="unsubscribeFromService(service)">
           Unsubscribe
         </button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeModal()">Close
+        <button type="button" class="btn btn-secondary" (click)="closeModal()">Close
         </button>
       </div>
     </ng-template>
