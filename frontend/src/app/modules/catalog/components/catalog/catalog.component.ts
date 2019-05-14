@@ -23,7 +23,6 @@ export class CatalogComponent implements OnInit, OnDestroy {
   total: number;
 
   ready = false;
-  subscriptionsReady = false;
 
   getPage(page: number) {
     this.loadingService.show();
@@ -54,7 +53,7 @@ export class CatalogComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subscriptions.push(
-      this.authService.getSubject().subscribe(value => {
+      this.authService.getUserAuthorizedSubject().subscribe(value => {
         this.ready = value;
 
         this.subscriptionsService.getSubscriptionsFromFapi();

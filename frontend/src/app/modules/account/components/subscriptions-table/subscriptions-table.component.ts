@@ -2,10 +2,10 @@ import {Component, OnDestroy, OnInit, TemplateRef} from '@angular/core';
 import {Sub} from "../../models/sub";
 import {SubscriptionService} from "../../../../services/subscription.service";
 import {Subscription} from "rxjs";
-import DateTimeFormat = Intl.DateTimeFormat;
 import {absFloor} from "ngx-bootstrap/chronos/utils";
 import {AuthorizationService} from "../../../../services/authorization.service";
 import {ModalService} from "../../../../services/modal.service";
+import {DomSanitizer, SafeResourceUrl, SafeUrl} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-subscriptions-table',
@@ -19,10 +19,15 @@ export class SubscriptionsTableComponent implements OnInit, OnDestroy {
   trend: string = 'up';
   sortBy: string = 'byName';
 
+  trustedDashboardUrl: SafeUrl;
 
-  constructor(private subscriptionService: SubscriptionService, private authService: AuthorizationService, private modalService: ModalService) {
+  constructor(public sanitizer: DomSanitizer, private subscriptionService: SubscriptionService, private authService: AuthorizationService, private modalService: ModalService) {
   }
 
+  public getLink(l: string): SafeUrl {
+    this.trustedDashboardUrl = this.sanitizer.bypassSecurityTrustUrl(l);
+    return this.trustedDashboardUrl;
+  }
 
   public closeModal() {
     this.modalService.closeModal();

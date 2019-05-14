@@ -19,7 +19,7 @@ export class UserInfoComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subscriptions.push(
-      this.authService.getSubject().subscribe(value => {
+      this.authService.getUserAuthorizedSubject().subscribe(value => {
         this.ready = value;
       })
     );

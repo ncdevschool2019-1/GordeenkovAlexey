@@ -16,6 +16,15 @@ export class SubscriptionService {
 
   private subs: Sub[] = [];
 
+  constructor(private http: HttpClient, private usersService: UsersService) {
+
+  }
+
+  clear() {
+    this.subs = [];
+    this.subscription.unsubscribe();
+  }
+
   getSubscriptions(): Sub[] {
     return this.subs;
   }
@@ -61,7 +70,5 @@ export class SubscriptionService {
     return this.deleteSubscription(sub.id);
   }
 
-  constructor(private http: HttpClient, private usersService: UsersService) {
 
-  }
 }

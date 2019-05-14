@@ -14,3 +14,17 @@ td {
 .service {
   width: 20%;
 }
+
+#iframeModal {
+  padding: 0px;
+  margin: 0px;
+  background: black;
+  display: flex;
+  flex-wrap: wrap;
+  width: 500px;
+  height: 300px;
+}
+
+#iframeModal > button {
+  margin-left: auto;
+}

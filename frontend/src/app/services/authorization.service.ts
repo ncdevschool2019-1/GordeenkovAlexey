@@ -5,6 +5,7 @@ import {LogUser} from "../modules/header/models/LogUser";
 import {AuthorizationToken} from "../modules/header/models/AuthorizationToken";
 import {User} from "../modules/account/models/user";
 import {TokenService} from "./token.service";
+import {SubscriptionService} from "./subscription.service";
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +30,7 @@ export class AuthorizationService {
     this.readySubject.next();
   }
 
-  public getSubject(): Observable<any> {
+  public getUserAuthorizedSubject(): Observable<any> {
     if (this.ready) {
       setTimeout(() => {
         this.readySubject.next(this.ready)
