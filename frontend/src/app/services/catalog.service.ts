@@ -15,8 +15,8 @@ export class CatalogService {
     return this.http.get<Service[]>('http://localhost:8081/api/catalog/type/' + type);
   }
 
-  getPage(type: string, page: number): Observable<any> {
-    return this.http.get<Service[]>('http://localhost:8081/api/catalog?type=' + type + '&page=' + page);
+  getPage(type: string, page: number, elementsPerPage: number): Observable<any> {
+    return this.http.get<Service[]>('http://localhost:8081/api/catalog?type=' + type + '&page=' + page + '&elementsPerPage=' + elementsPerPage);
   }
 
   getNumberOfPages(type: string): Observable<number> {

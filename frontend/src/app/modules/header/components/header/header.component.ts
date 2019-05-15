@@ -3,6 +3,7 @@ import {Link} from "../../models/link";
 import {HeaderService} from "../../../../services/header.service";
 import {ModalService} from "../../../../services/modal.service";
 import {AuthorizationService} from "../../../../services/authorization.service";
+import {SubscriptionService} from "../../../../services/subscription.service";
 
 @Component({
   selector: 'app-header',
@@ -20,9 +21,10 @@ export class HeaderComponent implements OnInit {
 
   signOut() {
     this.authService.leaveAccount();
+    this.subService.clear();
   }
 
-  constructor(private headerService: HeaderService, private modalService: ModalService, private authService: AuthorizationService) {
+  constructor(private subService: SubscriptionService, private headerService: HeaderService, private modalService: ModalService, private authService: AuthorizationService) {
   }
 
 

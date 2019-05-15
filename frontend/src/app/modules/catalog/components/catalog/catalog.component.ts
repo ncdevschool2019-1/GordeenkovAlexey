@@ -21,12 +21,13 @@ export class CatalogComponent implements OnInit, OnDestroy {
   asyncCatalog: Observable<Service[]>;
   p: number = 1;
   total: number;
-
+  elementsPerPage: number = 2;
   ready = false;
+
 
   getPage(page: number) {
     this.loadingService.show();
-    this.asyncCatalog = this.catalogService.getPage(this.headerService.getSelectedLink().name, page);
+    this.asyncCatalog = this.catalogService.getPage(this.headerService.getSelectedLink().name, page, this.elementsPerPage);
     this.p = page;
     this.subscriptions.push(
       this.asyncCatalog.subscribe(() => {

@@ -32,9 +32,9 @@ public class CatalogServiceImpl implements CatalogService {
     }
 
     @Override
-    public List<CatalogViewModel> getCatalog(String type, String page) {
+    public List<CatalogViewModel> getCatalog(String type, String page, String elementsPerPage) {
         RestTemplate restTemplate = new RestTemplate();
-        CatalogViewModel[] catalogViewModelsResponse = restTemplate.getForObject(backendServerUrl + "api/catalog?type=" + type + "&page=" + page, CatalogViewModel[].class);
+        CatalogViewModel[] catalogViewModelsResponse = restTemplate.getForObject(backendServerUrl + "api/catalog?type=" + type + "&page=" + page + "&elementsPerPage=" + elementsPerPage, CatalogViewModel[].class);
         return catalogViewModelsResponse == null ? Collections.emptyList() : Arrays.asList(catalogViewModelsResponse);
     }
 

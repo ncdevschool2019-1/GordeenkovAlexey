@@ -9,5 +9,5 @@ public interface CatalogService {
 
     Integer getNumberOfServices(String type);
 
-    List<Service> getCatalog(String type, String page);
+    List<Service> getCatalog(String type, String page, String elementsPerPage);
 }

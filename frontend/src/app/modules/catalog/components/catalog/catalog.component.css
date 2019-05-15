@@ -71,4 +71,25 @@
   margin-left: auto;
   margin-right: auto;
   margin-top: 70px;
+  display: flex;
+  flex-direction: column;
+}
+
+.pag > span > p {
+  color: black;
+  margin: auto;
+  margin-right: 0px;
+}
+
+.pag > span {
+  display: flex;
+}
+
+select {
+  margin: auto;
+  margin-left: 20px;
+}
+
+pagination-controls {
+  padding-right: 40px;
 }

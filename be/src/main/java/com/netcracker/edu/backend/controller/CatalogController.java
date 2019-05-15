@@ -23,8 +23,8 @@ public class CatalogController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public Iterable<Service> getPage(@RequestParam String type, String page) {
-        return catalogService.getCatalog(type, page);
+    public Iterable<Service> getPage(@RequestParam String type, String page, String elementsPerPage) {
+        return catalogService.getCatalog(type, page, elementsPerPage);
     }
 
     @RequestMapping(value = "/pages/{type}", method = RequestMethod.GET)

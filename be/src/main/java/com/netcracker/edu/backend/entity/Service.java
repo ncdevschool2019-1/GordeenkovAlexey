@@ -14,38 +14,23 @@ public class Service {
 
     private Double cost;
     private String name;
-    private String type;
     private String text;
     private String link;
 
-    @Override
-    public String toString() {
-        return "Service{" +
-                "id=" + id +
-                ", cost=" + cost +
-                ", name='" + name + '\'' +
-                ", type='" + type + '\'' +
-                ", text='" + text + '\'' +
-                ", link='" + link + '\'' +
-                '}';
+
+    @ManyToOne
+    @JoinColumn(name = "typeId")
+    private Type type;
+
+    public Service() {
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Service)) return false;
-        Service service = (Service) o;
-        return Objects.equals(getId(), service.getId()) &&
-                Objects.equals(getCost(), service.getCost()) &&
-                Objects.equals(getName(), service.getName()) &&
-                Objects.equals(getType(), service.getType()) &&
-                Objects.equals(getText(), service.getText()) &&
-                Objects.equals(getLink(), service.getLink());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getId(), getCost(), getName(), getType(), getText(), getLink());
+    public Service(Double cost, String name, String text, String link, Type type) {
+        this.cost = cost;
+        this.name = name;
+        this.text = text;
+        this.link = link;
+        this.type = type;
     }
 
     public Long getId() {
@@ -72,14 +57,6 @@ public class Service {
         this.name = name;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
     public String getText() {
         return text;
     }
@@ -96,14 +73,41 @@ public class Service {
         this.link = link;
     }
 
-    public Service(Double cost, String name, String type, String text, String link) {
-        this.cost = cost;
-        this.name = name;
-        this.type = type;
-        this.text = text;
-        this.link = link;
+    public Type getType() {
+        return type;
     }
 
-    public Service() {
+    public void setType(Type type) {
+        this.type = type;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Service)) return false;
+        Service service = (Service) o;
+        return Objects.equals(id, service.id) &&
+                Objects.equals(cost, service.cost) &&
+                Objects.equals(name, service.name) &&
+                Objects.equals(text, service.text) &&
+                Objects.equals(link, service.link) &&
+                Objects.equals(type, service.type);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, cost, name, text, link, type);
+    }
+
+    @Override
+    public String toString() {
+        return "Service{" +
+                "id=" + id +
+                ", cost=" + cost +
+                ", name='" + name + '\'' +
+                ", text='" + text + '\'' +
+                ", link='" + link + '\'' +
+                ", type=" + type +
+                '}';
     }
 }

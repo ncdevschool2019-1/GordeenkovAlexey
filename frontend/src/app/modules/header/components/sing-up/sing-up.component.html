@@ -64,17 +64,18 @@
         <ng-container *ngIf="SingUpForm.controls['email'].errors['required']">
           <p>It is necessary to fill the field</p>
         </ng-container>
-        <ng-container *ngIf="SingUpForm.controls['email'].errors['pattern']">
+        <ng-container
+          *ngIf="SingUpForm.controls['email'].errors['pattern'] ||SingUpForm.controls['email'].errors['email'] ">
           <p>Email required(example@mail.com)</p>
         </ng-container>
         <ng-container *ngIf="SingUpForm.controls['email'].errors['maxlength']">
-          <p>Max length 20 symbols</p>
+          <p>Max length 40 symbols</p>
         </ng-container>
       </div>
     </div>
 
     <div class="form-group">
-      <input class="form-control" formControlName="password" placeholder="password" type="password">
+      <input class="form-control" formControlName="password" placeholder="Password" type="password">
       <div class="alert alert-warning"
            *ngIf="SingUpForm.controls['password'].invalid &&SingUpForm.controls['password'].touched">
         <ng-container *ngIf="SingUpForm.controls['password'].errors['required']">
@@ -91,15 +92,9 @@
     <div class="form-group">
       <input class="form-control" formControlName="repeatPassword" placeholder="Repeat password" type="password">
       <div class="alert alert-warning"
-           *ngIf="SingUpForm.controls['repeatPassword'].invalid&&SingUpForm.controls['repeatPassword'].touched">
+           *ngIf="(SingUpForm.controls['repeatPassword'].invalid) &&SingUpForm.controls['repeatPassword'].touched">
         <ng-container *ngIf="SingUpForm.controls['repeatPassword'].errors['required']">
           <p>It is necessary to fill the field</p>
-        </ng-container>
-        <ng-container *ngIf="SingUpForm.controls['repeatPassword'].errors['pattern']">
-          <p>The password must contain: lowercase and uppercase Latin letters, numbers. Minimum 8 characters</p>
-        </ng-container>
-        <ng-container *ngIf="SingUpForm.controls['repeatPassword'].errors['maxlength']">
-          <p>Max length 20 symbols</p>
         </ng-container>
       </div>
       <div *ngIf="SingUpForm.controls['repeatPassword'].touched&& !passwordsMatches() "
@@ -109,7 +104,7 @@
     </div>
 
     <div class="form-group">
-      <input class="form-control" formControlName="phone" placeholder="phone" type="text">
+      <input class="form-control" formControlName="phone" placeholder="Phone" type="text">
       <div class="alert alert-warning"
            *ngIf="SingUpForm.controls['phone'].invalid &&SingUpForm.controls['phone'].touched">
         <ng-container *ngIf="SingUpForm.controls['phone'].errors['required']">

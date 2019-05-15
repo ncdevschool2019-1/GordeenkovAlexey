@@ -9,37 +9,22 @@ public class CatalogViewModel {
 
     private Long id;
 
-    private double cost;
+    private Double cost;
     private String name;
-    private String type;
     private String text;
+    private String link;
+    private Type type;
 
-    @Override
-    public String toString() {
-        return "CatalogViewModel{" +
-                "id=" + id +
-                ", cost=" + cost +
-                ", name='" + name + '\'' +
-                ", type='" + type + '\'' +
-                ", text='" + text + '\'' +
-                '}';
+    public CatalogViewModel() {
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof CatalogViewModel)) return false;
-        CatalogViewModel that = (CatalogViewModel) o;
-        return Double.compare(that.getCost(), getCost()) == 0 &&
-                Objects.equals(getId(), that.getId()) &&
-                Objects.equals(getName(), that.getName()) &&
-                Objects.equals(getType(), that.getType()) &&
-                Objects.equals(getText(), that.getText());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getId(), getCost(), getName(), getType(), getText());
+    public CatalogViewModel(Long id, Double cost, String name, String text, String link, Type type) {
+        this.id = id;
+        this.cost = cost;
+        this.name = name;
+        this.text = text;
+        this.link = link;
+        this.type = type;
     }
 
     public Long getId() {
@@ -50,11 +35,11 @@ public class CatalogViewModel {
         this.id = id;
     }
 
-    public double getCost() {
+    public Double getCost() {
         return cost;
     }
 
-    public void setCost(double cost) {
+    public void setCost(Double cost) {
         this.cost = cost;
     }
 
@@ -66,14 +51,6 @@ public class CatalogViewModel {
         this.name = name;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
     public String getText() {
         return text;
     }
@@ -82,15 +59,50 @@ public class CatalogViewModel {
         this.text = text;
     }
 
-    public CatalogViewModel(Long id, double cost, String name, String type, String text) {
-        this.id = id;
-        this.cost = cost;
-        this.name = name;
-        this.type = type;
-        this.text = text;
+    public String getLink() {
+        return link;
     }
 
-    public CatalogViewModel() {
+    public void setLink(String link) {
+        this.link = link;
+    }
+
+    public Type getType() {
+        return type;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof CatalogViewModel)) return false;
+        CatalogViewModel that = (CatalogViewModel) o;
+        return Objects.equals(id, that.id) &&
+                Objects.equals(cost, that.cost) &&
+                Objects.equals(name, that.name) &&
+                Objects.equals(text, that.text) &&
+                Objects.equals(link, that.link) &&
+                Objects.equals(type, that.type);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, cost, name, text, link, type);
+    }
+
+    @Override
+    public String toString() {
+        return "CatalogViewModel{" +
+                "id=" + id +
+                ", cost=" + cost +
+                ", name='" + name + '\'' +
+                ", text='" + text + '\'' +
+                ", link='" + link + '\'' +
+                ", type=" + type +
+                '}';
     }
 }
 

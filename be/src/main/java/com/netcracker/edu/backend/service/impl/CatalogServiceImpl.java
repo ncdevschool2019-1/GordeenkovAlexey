@@ -2,6 +2,7 @@ package com.netcracker.edu.backend.service.impl;
 
 import com.netcracker.edu.backend.entity.Service;
 import com.netcracker.edu.backend.repository.ServiceRepository;
+import com.netcracker.edu.backend.repository.TypeRepository;
 import com.netcracker.edu.backend.service.CatalogService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -10,10 +11,11 @@ import java.util.List;
 @org.springframework.stereotype.Service
 public class CatalogServiceImpl implements CatalogService {
 
-    private int itemsPerPage = 2;
 
     @Autowired
     private ServiceRepository serviceRepository;
+    @Autowired
+    private TypeRepository typeRepository;
 
     @Override
     public List<Service> getCatalog(String type) {
@@ -22,12 +24,16 @@ public class CatalogServiceImpl implements CatalogService {
 
     @Override
     public Integer getNumberOfServices(String type) {
-        return this.serviceRepository.getNumberOfServices(type);
+        short typeId = typeRepository.findByName(type).getId();
+        return this.serviceRepository.getNumberOfServices(typeId);
     }
 
     @Override
-    public List<Service> getCatalog(String type, String page) {
+    public List<Service> getCatalog(String type, String page, String elementsPerPage) {
+
+        short typeId = typeRepository.findByName(type).getId();
         Integer pageNumber = Integer.parseInt(page);
-        return (List<Service>) (this.serviceRepository.getServicesOnPage((pageNumber - 1) * this.itemsPerPage, this.itemsPerPage, type));
+        Integer itemsPerPage = Integer.parseInt(elementsPerPage);
+        return (List<Service>) (this.serviceRepository.getServicesOnPage((pageNumber - 1) * itemsPerPage, itemsPerPage, typeId));
     }
 }

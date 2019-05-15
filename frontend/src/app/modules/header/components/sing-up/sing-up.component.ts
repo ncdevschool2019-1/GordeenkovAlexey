@@ -46,13 +46,13 @@ export class SingUpComponent implements OnInit, OnDestroy {
     ]),
     repeatPassword: new FormControl("", [
       Validators.required,
-      Validators.pattern('(?=^.{8,}$)((?=.*\\d)|(?=.*\\W+))(?![.\\n])(?=.*[A-Z])(?=.*[a-z]).*$'),
       Validators.maxLength(20)
     ]),
     email: new FormControl("", [
       Validators.email,
       Validators.required,
-      Validators.maxLength(20)
+      Validators.pattern('^[-a-z0-9!#$%&\'*+/=?^_`{|}~]+(?:\\.[-a-z0-9!#$%&\'*+/=?^_`{|}~]+)*@(?:[a-z0-9]([-a-z0-9]{0,61}[a-z0-9])?\\.)*(?:aero|arpa|asia|biz|cat|com|coop|edu|gov|info|int|jobs|mil|mobi|museum|name|net|org|pro|tel|travel|[a-z][a-z])$'),
+      Validators.maxLength(40)
     ])
   });
 

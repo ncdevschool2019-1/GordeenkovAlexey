@@ -7,7 +7,7 @@ import java.util.List;
 public interface CatalogService {
     List<CatalogViewModel> getCatalog(String type);
 
-    List<CatalogViewModel> getCatalog(String type, String page);
+    List<CatalogViewModel> getCatalog(String type, String page, String elementsPerPage);
 
     Integer getNumberOfPages(String type);
 }

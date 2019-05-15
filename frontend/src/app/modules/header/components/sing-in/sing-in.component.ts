@@ -25,7 +25,6 @@ export class SingInComponent implements OnInit, OnDestroy {
     ]),
     password: new FormControl("", [
       Validators.required,
-      Validators.pattern('(?=^.{8,}$)((?=.*\\d)|(?=.*\\W+))(?![.\\n])(?=.*[A-Z])(?=.*[a-z]).*$'),
       Validators.maxLength(20)
     ]),
   });

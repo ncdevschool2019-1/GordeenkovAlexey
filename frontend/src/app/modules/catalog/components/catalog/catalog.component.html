@@ -1,7 +1,7 @@
 <ng4-loading-spinner></ng4-loading-spinner>
 <div class="content" *ngIf="ready">
   <div
-    *ngFor="let service of asyncCatalog | async | paginate: { id: 'server', itemsPerPage: 2, currentPage: p, totalItems: total }">
+    *ngFor="let service of asyncCatalog | async | paginate: { id: 'server', itemsPerPage: elementsPerPage, currentPage: p, totalItems: total }">
     <img src="../../../../../assets/images/{{service.name.toLowerCase().replace(' ','')}}.png">
 
     <p>
@@ -64,8 +64,21 @@
 
   </div>
 
+  <span class="pag">
+    <pagination-controls autoHide="true"
 
-  <pagination-controls class="pag" *ngIf="total>2" (pageChange)="getPage($event)" id="server"></pagination-controls>
+                         previousLabel=""
+                         nextLabel=""
+                         (pageChange)="getPage($event)" id="server"></pagination-controls>
+  <span>
+
+  <p>Items per page:</p>
+  <select [(ngModel)]="elementsPerPage" (change)="getPage(p)">
+    <option *ngFor="let i of [2,3,4,5]" [value]="i">{{i}}</option>
+  </select>
+  </span>
+</span>
+
 
 </div>
 

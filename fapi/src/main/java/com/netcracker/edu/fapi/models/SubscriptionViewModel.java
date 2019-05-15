@@ -11,36 +11,18 @@ public class SubscriptionViewModel {
     private Long expireDate;
     private Long startDate;
     private Status status;
-    private Service service;
+    private CatalogViewModel service;
 
-    @Override
-    public String toString() {
-        return "SubscriptionViewModel{" +
-                "id=" + id +
-                ", userId=" + userId +
-                ", expireDate=" + expireDate +
-                ", startDate=" + startDate +
-                ", status=" + status +
-                ", service=" + service +
-                '}';
+    public SubscriptionViewModel() {
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof SubscriptionViewModel)) return false;
-        SubscriptionViewModel that = (SubscriptionViewModel) o;
-        return Objects.equals(getId(), that.getId()) &&
-                Objects.equals(getUserId(), that.getUserId()) &&
-                Objects.equals(getExpireDate(), that.getExpireDate()) &&
-                Objects.equals(getStartDate(), that.getStartDate()) &&
-                Objects.equals(getStatus(), that.getStatus()) &&
-                Objects.equals(getService(), that.getService());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getId(), getUserId(), getExpireDate(), getStartDate(), getStatus(), getService());
+    public SubscriptionViewModel(Long id, Long userId, Long expireDate, Long startDate, Status status, CatalogViewModel service) {
+        this.id = id;
+        this.userId = userId;
+        this.expireDate = expireDate;
+        this.startDate = startDate;
+        this.status = status;
+        this.service = service;
     }
 
     public Long getId() {
@@ -83,24 +65,42 @@ public class SubscriptionViewModel {
         this.status = status;
     }
 
-    public Service getService() {
+    public CatalogViewModel getService() {
         return service;
     }
 
-    public void setService(Service service) {
+    public void setService(CatalogViewModel service) {
         this.service = service;
     }
 
-    public SubscriptionViewModel(Long id, Long userId, Long expireDate, Long startDate, Status status, Service service) {
-        this.id = id;
-        this.userId = userId;
-        this.expireDate = expireDate;
-        this.startDate = startDate;
-        this.status = status;
-        this.service = service;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof SubscriptionViewModel)) return false;
+        SubscriptionViewModel that = (SubscriptionViewModel) o;
+        return Objects.equals(id, that.id) &&
+                Objects.equals(userId, that.userId) &&
+                Objects.equals(expireDate, that.expireDate) &&
+                Objects.equals(startDate, that.startDate) &&
+                Objects.equals(status, that.status) &&
+                Objects.equals(service, that.service);
     }
 
-    public SubscriptionViewModel() {
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, userId, expireDate, startDate, status, service);
+    }
+
+    @Override
+    public String toString() {
+        return "SubscriptionViewModel{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", expireDate=" + expireDate +
+                ", startDate=" + startDate +
+                ", status=" + status +
+                ", service=" + service +
+                '}';
     }
 }
 

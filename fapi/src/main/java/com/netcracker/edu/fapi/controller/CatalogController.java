@@ -29,7 +29,7 @@ public class CatalogController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<List<CatalogViewModel>> getPage(@RequestParam String type, String page) {
-        return ResponseEntity.ok(catalogService.getCatalog(type, page));
+    public ResponseEntity<List<CatalogViewModel>> getPage(@RequestParam String type, String page, String elementsPerPage) {
+        return ResponseEntity.ok(catalogService.getCatalog(type, page, elementsPerPage));
     }
 }

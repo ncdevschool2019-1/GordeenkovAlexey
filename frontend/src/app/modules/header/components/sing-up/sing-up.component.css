@@ -42,8 +42,10 @@ button:hover {
 p {
 
   color: black;
+  margin: 0px;
   margin-right: auto;
   margin-left: auto;
+  font-size: 13pt;
 }
 
 h1 {
@@ -51,4 +53,8 @@ h1 {
   color: white;
   margin-right: auto;
   margin-left: auto;
+}
+
+.alert {
+  padding: 3px;
 }
