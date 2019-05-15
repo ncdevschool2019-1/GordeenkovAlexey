@@ -31,3 +31,15 @@ li {
 
 .totalBalance > p {
 }
+
+div.alert {
+  margin: 0px;
+  padding: 0px;
+  font-size: 14pt;
+}
+
+div.alert > p {
+  margin-bottom: 5px;
+}
+
+
